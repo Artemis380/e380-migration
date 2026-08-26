@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +5,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EMPIRE 380 | Migration Command Center</title>
+<title>EMPIRE 380 | Migration Pre-Registration</title>
 
 <meta name="description"
-content="EMPIRE 380 — Server 380 migration recruitment. Three seasons. A proven record. Currently #1 in Stellar Kingdom.">
+content="EMPIRE 380 — Server 380 migration pre-registration. Three seasons of competition, a proven record, and currently the #1 Stellar Kingdom.">
 
 <style>
 
 :root{
-  --bg:#04060a;
-  --bg2:#080c13;
-  --panel:#0c121b;
+  --bg:#05070b;
+  --bg2:#090d14;
+  --panel:#0d131d;
   --panel2:#111925;
   --gold:#d8a84e;
-  --gold2:#f4d17b;
+  --gold2:#f1cc76;
   --white:#f5f7fa;
   --muted:#8f9bab;
   --line:rgba(216,168,78,.22);
   --green:#38d996;
   --red:#ff5c6c;
-  --blue:#5ca8ff;
-  --shadow:0 20px 60px rgba(0,0,0,.48);
+  --blue:#5da9ff;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 *{
@@ -42,24 +41,11 @@ html{
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at 50% -10%,rgba(216,168,78,.15),transparent 35%),
-    radial-gradient(circle at 100% 40%,rgba(92,168,255,.045),transparent 25%),
+    radial-gradient(circle at 50% -10%,rgba(216,168,78,.14),transparent 35%),
     linear-gradient(180deg,var(--bg),var(--bg2));
   color:var(--white);
   min-height:100vh;
   overflow-x:hidden;
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-  background-size:45px 45px;
-  mask-image:linear-gradient(to bottom,black,transparent 80%);
 }
 
 a{
@@ -68,7 +54,7 @@ a{
 }
 
 .container{
-  width:min(1180px,92%);
+  width:min(1150px,92%);
   margin:auto;
 }
 
@@ -79,18 +65,17 @@ a{
 nav{
   position:sticky;
   top:0;
-  z-index:1000;
-  backdrop-filter:blur(18px);
-  background:rgba(4,6,10,.88);
+  z-index:100;
+  backdrop-filter:blur(16px);
+  background:rgba(5,7,11,.90);
   border-bottom:1px solid var(--line);
 }
 
 .nav-inner{
-  height:74px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:25px;
 }
 
 .logo{
@@ -99,22 +84,19 @@ nav{
   gap:12px;
   font-weight:900;
   letter-spacing:2px;
-  white-space:nowrap;
 }
 
 .logo-mark{
-  width:43px;
-  height:43px;
+  width:42px;
+  height:42px;
   border:2px solid var(--gold);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   color:var(--gold2);
-  font-size:12px;
-  box-shadow:
-    0 0 22px rgba(216,168,78,.18),
-    inset 0 0 18px rgba(216,168,78,.08);
+  font-size:13px;
+  box-shadow:0 0 22px rgba(216,168,78,.18);
 }
 
 .nav-links{
@@ -122,7 +104,6 @@ nav{
   gap:24px;
   color:var(--muted);
   font-size:13px;
-  font-weight:700;
 }
 
 .nav-links a{
@@ -138,13 +119,12 @@ nav{
   border:1px solid var(--gold);
   border-radius:8px;
   color:var(--gold2);
-  font-weight:800;
+  font-weight:700;
   transition:.2s;
 }
 
 .nav-button:hover{
-  background:rgba(216,168,78,.1);
-  box-shadow:0 0 25px rgba(216,168,78,.12);
+  background:rgba(216,168,78,.10);
 }
 
 /* =========================
@@ -152,7 +132,7 @@ nav{
 ========================= */
 
 .hero{
-  min-height:760px;
+  min-height:720px;
   display:flex;
   align-items:center;
   position:relative;
@@ -162,82 +142,62 @@ nav{
 .hero:before{
   content:"";
   position:absolute;
-  width:700px;
-  height:700px;
-  right:-280px;
-  top:-80px;
+  width:600px;
+  height:600px;
+  right:-250px;
+  top:30px;
   border-radius:50%;
-  background:rgba(216,168,78,.075);
-  filter:blur(35px);
+  background:rgba(216,168,78,.08);
+  filter:blur(25px);
 }
 
 .hero:after{
   content:"";
   position:absolute;
-  width:500px;
-  height:500px;
-  left:-300px;
-  bottom:-250px;
+  width:400px;
+  height:400px;
+  left:-250px;
+  bottom:-200px;
   border-radius:50%;
-  background:rgba(216,168,78,.055);
-  filter:blur(35px);
+  background:rgba(216,168,78,.05);
+  filter:blur(30px);
 }
 
 .hero-content{
-  max-width:950px;
-  padding:100px 0;
+  max-width:900px;
+  padding:90px 0;
   position:relative;
   z-index:2;
 }
 
-.live-status{
+.badge{
   display:inline-flex;
   align-items:center;
-  gap:9px;
-  border:1px solid rgba(56,217,150,.25);
-  background:rgba(56,217,150,.055);
-  color:var(--green);
-  padding:8px 13px;
-  border-radius:100px;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px;
-  margin-bottom:16px;
-}
-
-.live-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-  animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1}
-  50%{opacity:.35}
-}
-
-.badge{
-  display:inline-block;
+  gap:8px;
   border:1px solid var(--line);
   background:rgba(216,168,78,.07);
   color:var(--gold2);
   padding:9px 15px;
   border-radius:100px;
-  font-size:12px;
+  font-size:11px;
   letter-spacing:2px;
   font-weight:800;
   margin-bottom:25px;
 }
 
+.badge-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px rgba(56,217,150,.6);
+}
+
 .hero h1{
-  font-size:clamp(52px,8vw,104px);
-  line-height:.9;
-  letter-spacing:-5px;
+  font-size:clamp(48px,8vw,94px);
+  line-height:.92;
+  letter-spacing:-4px;
   margin-bottom:28px;
-  text-shadow:0 10px 45px rgba(0,0,0,.45);
 }
 
 .hero h1 span{
@@ -245,7 +205,7 @@ nav{
 }
 
 .hero p{
-  max-width:790px;
+  max-width:760px;
   color:var(--muted);
   font-size:19px;
   line-height:1.75;
@@ -269,21 +229,20 @@ nav{
   justify-content:center;
   padding:15px 24px;
   border-radius:9px;
-  font-weight:900;
+  font-weight:800;
   cursor:pointer;
   border:0;
-  transition:.25s;
+  transition:.2s;
 }
 
 .btn-primary{
   background:linear-gradient(135deg,var(--gold2),var(--gold));
   color:#090909;
-  box-shadow:0 8px 25px rgba(216,168,78,.1);
 }
 
 .btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 35px rgba(216,168,78,.22);
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(216,168,78,.2);
 }
 
 .btn-secondary{
@@ -294,59 +253,49 @@ nav{
 
 .btn-secondary:hover{
   border-color:var(--gold);
-  background:rgba(216,168,78,.05);
+  transform:translateY(-2px);
+}
+
+.discord-btn{
+  border:1px solid rgba(88,101,242,.55);
+  background:rgba(88,101,242,.08);
+  color:#cdd2ff;
+}
+
+.discord-btn:hover{
+  border-color:#5865f2;
+  background:rgba(88,101,242,.16);
+  transform:translateY(-2px);
 }
 
 /* =========================
-   HERO STATUS PANEL
+   STATUS STRIP
 ========================= */
 
-.hero-panel{
-  position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:270px;
-  background:rgba(12,18,27,.75);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:24px;
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(12px);
+.status-strip{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(216,168,78,.035);
 }
 
-.hero-panel-title{
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:900;
-  margin-bottom:18px;
-}
-
-.hero-rank{
-  font-size:54px;
-  font-weight:900;
-  color:var(--gold2);
-  line-height:1;
-}
-
-.hero-panel-sub{
-  color:var(--white);
-  font-weight:800;
-  margin-top:7px;
-  margin-bottom:20px;
-}
-
-.mini-line{
+.status-inner{
+  min-height:58px;
   display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  border-top:1px solid rgba(255,255,255,.06);
-  font-size:12px;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
 }
 
-.mini-line span{
-  color:var(--muted);
+.status-inner strong{
+  color:var(--gold2);
+}
+
+.status-icon{
+  color:var(--green);
+  font-size:16px;
 }
 
 /* =========================
@@ -354,9 +303,8 @@ nav{
 ========================= */
 
 .stats{
-  border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.018);
+  background:rgba(255,255,255,.015);
 }
 
 .stats-grid{
@@ -377,7 +325,7 @@ nav{
 .stat strong{
   display:block;
   color:var(--gold2);
-  font-size:32px;
+  font-size:30px;
   margin-bottom:7px;
 }
 
@@ -385,7 +333,7 @@ nav{
   color:var(--muted);
   font-size:11px;
   text-transform:uppercase;
-  letter-spacing:1.5px;
+  letter-spacing:1px;
 }
 
 /* =========================
@@ -405,19 +353,18 @@ section{
   font-size:11px;
   letter-spacing:3px;
   text-transform:uppercase;
-  font-weight:900;
+  font-weight:800;
   margin-bottom:12px;
 }
 
 .section-title h2{
   font-size:42px;
-  letter-spacing:-1px;
   margin-bottom:15px;
 }
 
 .section-title p{
   color:var(--muted);
-  max-width:780px;
+  max-width:760px;
   line-height:1.75;
 }
 
@@ -432,8 +379,6 @@ section{
 }
 
 .card{
-  position:relative;
-  overflow:hidden;
   background:linear-gradient(145deg,var(--panel),var(--panel2));
   border:1px solid var(--line);
   border-radius:16px;
@@ -442,25 +387,14 @@ section{
   transition:.25s;
 }
 
-.card:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.65;
-}
-
 .card:hover{
   transform:translateY(-5px);
-  border-color:rgba(216,168,78,.4);
+  border-color:rgba(216,168,78,.45);
 }
 
 .card-number{
   color:var(--gold2);
-  font-size:12px;
+  font-size:13px;
   font-weight:900;
   margin-bottom:20px;
 }
@@ -471,91 +405,6 @@ section{
 }
 
 .card p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* =========================
-   WHY JOIN
-========================= */
-
-.why-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:22px;
-}
-
-.why-main,
-.why-side{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:35px;
-  box-shadow:var(--shadow);
-}
-
-.why-main h3{
-  font-size:30px;
-  margin-bottom:15px;
-}
-
-.why-main > p{
-  color:var(--muted);
-  line-height:1.8;
-  margin-bottom:25px;
-}
-
-.feature{
-  display:flex;
-  gap:16px;
-  padding:17px 0;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.feature-icon{
-  width:36px;
-  height:36px;
-  flex-shrink:0;
-  border:1px solid var(--line);
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold2);
-  font-weight:900;
-}
-
-.feature h4{
-  margin-bottom:5px;
-}
-
-.feature p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-
-.why-side-title{
-  color:var(--gold2);
-  font-size:11px;
-  letter-spacing:2px;
-  font-weight:900;
-  margin-bottom:22px;
-}
-
-.motto{
-  font-size:28px;
-  line-height:1.2;
-  font-weight:900;
-  margin-bottom:25px;
-}
-
-.motto span{
-  color:var(--gold2);
-}
-
-.why-side > p{
   color:var(--muted);
   line-height:1.7;
 }
@@ -615,6 +464,169 @@ section{
   color:var(--gold2);
 }
 
+.record-statement{
+  margin-top:30px;
+  padding:30px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:
+    radial-gradient(circle at center,rgba(216,168,78,.09),transparent 65%),
+    var(--panel);
+}
+
+.record-statement .big{
+  font-size:42px;
+  font-weight:900;
+  color:var(--gold2);
+  margin-bottom:10px;
+}
+
+.record-statement p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.crown{
+  margin-top:18px;
+  color:var(--white);
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+/* =========================
+   TOP 10 POWER
+========================= */
+
+.power-table{
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.power-header,
+.power-row{
+  display:grid;
+  grid-template-columns:90px 1fr 200px;
+  align-items:center;
+}
+
+.power-header{
+  padding:16px 24px;
+  background:rgba(216,168,78,.07);
+  border-bottom:1px solid var(--line);
+  color:var(--gold2);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.power-row{
+  padding:20px 24px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:.2s;
+}
+
+.power-row:last-child{
+  border-bottom:0;
+}
+
+.power-row:hover{
+  background:rgba(216,168,78,.045);
+  transform:translateX(3px);
+}
+
+.power-rank{
+  color:var(--muted);
+  font-weight:900;
+  font-size:14px;
+}
+
+.power-player{
+  font-weight:800;
+  font-size:16px;
+}
+
+.power-value{
+  text-align:right;
+  color:var(--gold2);
+  font-weight:900;
+  font-size:16px;
+}
+
+.top-player{
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(216,168,78,.13),
+      transparent 35%
+    );
+}
+
+.top-player .power-rank{
+  color:var(--gold2);
+}
+
+.top-player .power-player{
+  font-size:18px;
+}
+
+.top-player .power-value{
+  font-size:18px;
+}
+
+.rank-medal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  margin-right:10px;
+  border:1px solid var(--line);
+  font-size:10px;
+}
+
+.power-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.power-summary > div{
+  text-align:center;
+  padding:25px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel);
+}
+
+.power-summary strong{
+  display:block;
+  color:var(--gold2);
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.power-summary span{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+  font-weight:800;
+}
+
+.power-note{
+  text-align:center;
+  margin-top:18px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
 /* =========================
    SEASON TIMELINE
 ========================= */
@@ -625,31 +637,16 @@ section{
 }
 
 .season{
-  position:relative;
   background:linear-gradient(145deg,var(--panel),var(--panel2));
   border:1px solid var(--line);
   border-radius:18px;
   padding:32px;
   box-shadow:var(--shadow);
-  overflow:hidden;
+  transition:.25s;
 }
 
-.season:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:3px;
-  background:var(--gold);
-}
-
-.season.current{
-  border-color:rgba(56,217,150,.35);
-}
-
-.season.current:before{
-  background:var(--green);
+.season:hover{
+  border-color:rgba(216,168,78,.40);
 }
 
 .season-header{
@@ -671,10 +668,6 @@ section{
   font-size:14px;
   letter-spacing:1px;
   text-align:right;
-}
-
-.current .season-result{
-  color:var(--green);
 }
 
 .matches{
@@ -710,116 +703,64 @@ section{
   font-size:14px;
 }
 
-.record-statement{
-  margin-top:30px;
-  padding:35px;
-  text-align:center;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:
-    radial-gradient(circle at center,rgba(216,168,78,.09),transparent 65%),
-    var(--panel);
-}
-
-.record-statement .big{
-  font-size:42px;
-  font-weight:900;
-  color:var(--gold2);
-  margin-bottom:10px;
-}
-
-.record-statement p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-.crown{
-  margin-top:18px;
-  color:var(--white);
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
 /* =========================
    RECRUITMENT
 ========================= */
 
-.recruitment-banner{
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:25px;
-  padding:30px;
-  margin-bottom:25px;
-  background:
-    radial-gradient(circle at right,rgba(216,168,78,.11),transparent 45%),
-    var(--panel);
-  border:1px solid var(--line);
+.recruit-box{
+  padding:45px;
   border-radius:18px;
-}
-
-.recruitment-banner h3{
-  font-size:25px;
-  margin-bottom:7px;
-}
-
-.recruitment-banner p{
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.recruitment-status{
-  padding:13px 18px;
-  border-radius:9px;
-  border:1px solid rgba(56,217,150,.25);
-  background:rgba(56,217,150,.06);
-  color:var(--green);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1px;
-  white-space:nowrap;
-}
-
-/* =========================
-   DISCORD CTA
-========================= */
-
-.discord{
-  padding:70px 0;
-}
-
-.discord-box{
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-  padding:55px 30px;
   border:1px solid var(--line);
-  border-radius:20px;
   background:
-    radial-gradient(circle at center,rgba(216,168,78,.11),transparent 65%),
+    radial-gradient(circle at 50% 0%,rgba(216,168,78,.10),transparent 55%),
     linear-gradient(145deg,var(--panel),var(--panel2));
+  text-align:center;
   box-shadow:var(--shadow);
 }
 
-.discord-box h2{
+.recruit-box h2{
   font-size:38px;
-  margin-bottom:12px;
+  margin-bottom:15px;
 }
 
-.discord-box p{
+.recruit-box p{
+  max-width:720px;
+  margin:0 auto 28px;
   color:var(--muted);
-  max-width:650px;
-  margin:0 auto 25px;
-  line-height:1.7;
+  line-height:1.75;
+}
+
+.recruit-points{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin:30px 0;
+}
+
+.recruit-point{
+  padding:20px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  background:rgba(255,255,255,.02);
+}
+
+.recruit-point strong{
+  display:block;
+  color:var(--gold2);
+  margin-bottom:6px;
+}
+
+.recruit-point span{
+  color:var(--muted);
+  font-size:12px;
 }
 
 /* =========================
-   APPLICATION
+   FORM
 ========================= */
 
 .form-wrap{
-  max-width:900px;
+  max-width:850px;
   margin:auto;
   background:linear-gradient(145deg,var(--panel),var(--panel2));
   border:1px solid var(--line);
@@ -861,7 +802,6 @@ textarea{
   padding:14px;
   font-size:14px;
   outline:none;
-  transition:.2s;
 }
 
 input:focus,
@@ -888,6 +828,11 @@ textarea{
   font-size:15px;
 }
 
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 #status{
   display:none;
   margin-top:20px;
@@ -912,6 +857,36 @@ textarea{
 }
 
 /* =========================
+   DISCORD
+========================= */
+
+.discord-section{
+  padding-top:0;
+}
+
+.discord-box{
+  border:1px solid rgba(88,101,242,.30);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(88,101,242,.10),transparent 55%),
+    var(--panel);
+  border-radius:18px;
+  padding:45px;
+  text-align:center;
+}
+
+.discord-box h2{
+  font-size:34px;
+  margin-bottom:12px;
+}
+
+.discord-box p{
+  max-width:650px;
+  margin:0 auto 25px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -919,7 +894,7 @@ footer{
   border-top:1px solid var(--line);
   padding:40px 0;
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 .footer-inner{
@@ -937,52 +912,39 @@ footer{
 }
 
 /* =========================
-   REVEAL ANIMATION
+   ANIMATION
 ========================= */
 
-.reveal{
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity .7s ease,transform .7s ease;
+.fade-up{
+  animation:fadeUp .7s ease both;
 }
 
-.reveal.visible{
-  opacity:1;
-  transform:none;
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media(max-width:1000px){
-
-  .hero-panel{
-    display:none;
-  }
-
-  .hero-content{
-    max-width:900px;
-  }
-
-  .why-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:800px){
+@media(max-width:900px){
 
   .nav-links{
     display:none;
   }
 
   .hero{
-    min-height:650px;
-  }
-
-  .hero h1{
-    letter-spacing:-3px;
+    min-height:600px;
   }
 
   .stats-grid{
@@ -1010,6 +972,10 @@ footer{
     grid-column:auto;
   }
 
+  .recruit-points{
+    grid-template-columns:1fr;
+  }
+
   .form-wrap{
     padding:25px;
   }
@@ -1032,20 +998,24 @@ footer{
     text-align:left;
   }
 
-  .recruitment-banner{
-    grid-template-columns:1fr;
-  }
-
-  .recruitment-status{
-    width:max-content;
-  }
-
 }
 
-@media(max-width:480px){
+@media(max-width:600px){
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
 
   .hero p{
     font-size:16px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
   }
 
   .stats-grid{
@@ -1069,12 +1039,46 @@ footer{
     font-size:34px;
   }
 
-  .discord-box h2{
-    font-size:30px;
+  .power-header,
+  .power-row{
+    grid-template-columns:52px 1fr auto;
   }
 
-  .buttons .btn{
-    width:100%;
+  .power-header{
+    padding:14px 15px;
+    font-size:9px;
+  }
+
+  .power-row{
+    padding:17px 15px;
+  }
+
+  .power-player{
+    font-size:13px;
+    word-break:break-word;
+  }
+
+  .power-value{
+    font-size:12px;
+  }
+
+  .top-player .power-player,
+  .top-player .power-value{
+    font-size:13px;
+  }
+
+  .power-summary{
+    grid-template-columns:1fr;
+  }
+
+  .recruit-box,
+  .discord-box{
+    padding:30px 20px;
+  }
+
+  .recruit-box h2,
+  .discord-box h2{
+    font-size:28px;
   }
 
 }
@@ -1108,6 +1112,7 @@ footer{
 
       <a href="#about">About</a>
       <a href="#record">Record</a>
+      <a href="#power">Power</a>
       <a href="#seasons">Seasons</a>
       <a href="#requirements">Recruitment</a>
       <a href="#apply">Apply</a>
@@ -1115,7 +1120,7 @@ footer{
     </div>
 
     <a href="#apply" class="nav-button">
-      APPLY
+      PRE-REGISTER
     </a>
 
   </div>
@@ -1131,17 +1136,11 @@ footer{
 
   <div class="container">
 
-    <div class="hero-content reveal">
-
-      <div class="live-status">
-        <span class="live-dot"></span>
-        RECRUITMENT OPEN
-      </div>
-
-      <br>
+    <div class="hero-content fade-up">
 
       <div class="badge">
-        SERVER 380 • MIGRATION COMMAND CENTER
+        <span class="badge-dot"></span>
+        SERVER 380 • MIGRATION PRE-REGISTRATION
       </div>
 
       <h1>
@@ -1150,62 +1149,37 @@ footer{
       </h1>
 
       <p>
-        Three seasons. Three campaigns. One kingdom that refused
+        Three seasons. Three campaigns. A kingdom that refused
         to stop climbing.
+
         <span class="hero-highlight">
-          Server 380 currently stands at #1 in Stellar Kingdom.
+          Server 380 is currently the #1 Stellar Kingdom.
         </span>
-        We are looking for active, competitive and committed
-        players ready to become part of the next chapter.
+
+        Migration is not open yet, but we are already building
+        our next roster. If you want to be part of what comes next,
+        submit your application now.
       </p>
 
       <div class="buttons">
 
         <a href="#apply" class="btn btn-primary">
-          APPLY FOR MIGRATION
+          PRE-REGISTER NOW
         </a>
 
         <a href="#record" class="btn btn-secondary">
-          VIEW OUR RECORD
+          SEE OUR RECORD
         </a>
 
-      </div>
+        <a
+          href="https://discord.gg/S2898Ba3X"
+          target="_blank"
+          rel="noopener"
+          class="btn discord-btn"
+        >
+          JOIN OUR DISCORD
+        </a>
 
-    </div>
-
-
-    <div class="hero-panel">
-
-      <div class="hero-panel-title">
-        KINGDOM STATUS
-      </div>
-
-      <div class="hero-rank">
-        #1
-      </div>
-
-      <div class="hero-panel-sub">
-        STELLAR KINGDOM
-      </div>
-
-      <div class="mini-line">
-        <span>Direct Record</span>
-        <strong>9–2</strong>
-      </div>
-
-      <div class="mini-line">
-        <span>Win Rate</span>
-        <strong class="win">81.8%</strong>
-      </div>
-
-      <div class="mini-line">
-        <span>Seasons</span>
-        <strong>3</strong>
-      </div>
-
-      <div class="mini-line">
-        <span>Migration</span>
-        <strong class="win">OPEN</strong>
       </div>
 
     </div>
@@ -1216,6 +1190,27 @@ footer{
 
 
 <!-- =========================
+     STATUS
+========================= -->
+
+<div class="status-strip">
+
+  <div class="container status-inner">
+
+    <span class="status-icon">●</span>
+
+    <span>
+      <strong>PRE-REGISTRATION OPEN</strong>
+      — Migration is not currently open. Applications are being
+      accepted now for early recruitment review.
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
      STATS
 ========================= -->
 
@@ -1223,24 +1218,24 @@ footer{
 
   <div class="container stats-grid">
 
-    <div class="stat reveal">
-      <strong>9–2</strong>
-      <span>Direct Match Record</span>
-    </div>
-
-    <div class="stat reveal">
-      <strong>81.8%</strong>
-      <span>Direct Win Rate</span>
-    </div>
-
-    <div class="stat reveal">
-      <strong>3</strong>
-      <span>Stellar Kingdom Seasons</span>
-    </div>
-
-    <div class="stat reveal">
+    <div class="stat">
       <strong>#1</strong>
       <span>Current Stellar Kingdom</span>
+    </div>
+
+    <div class="stat">
+      <strong>12–2</strong>
+      <span>Overall Tracked Record</span>
+    </div>
+
+    <div class="stat">
+      <strong>85.7%</strong>
+      <span>Tracked Match Win Rate</span>
+    </div>
+
+    <div class="stat">
+      <strong>380</strong>
+      <span>Kingdom</span>
     </div>
 
   </div>
@@ -1256,7 +1251,7 @@ footer{
 
   <div class="container">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
       <div class="small">
         THE KINGDOM
@@ -1268,9 +1263,12 @@ footer{
 
       <p>
         EMPIRE 380 is built around organization, activity,
-        competition and long-term growth. Three seasons have
-        taken us from a 2nd-place finish to 3rd place and now
-        to the top of Stellar Kingdom.
+        competition and long-term growth. We have spent three
+        seasons fighting some of the strongest kingdoms in the game.
+
+        We started with a 2nd-place Stellar Kingdom finish,
+        followed it with 3rd place, and have now climbed to
+        the very top.
       </p>
 
     </div>
@@ -1278,7 +1276,7 @@ footer{
 
     <div class="cards">
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           01
@@ -1289,14 +1287,15 @@ footer{
         </h3>
 
         <p>
-          We play to win. Major kingdom events are treated
-          seriously, and when the fight starts, Server 380 shows up.
+          We play to win. Stellar Kingdom, Desolate Desert,
+          Behemoth, MEE and other major events are treated seriously.
+          When the fight starts, Server 380 shows up.
         </p>
 
       </div>
 
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           02
@@ -1307,14 +1306,15 @@ footer{
         </h3>
 
         <p>
-          Our record has been built across multiple seasons,
-          multiple events and multiple opposing kingdoms.
+          Our record is built across multiple seasons and against
+          multiple kingdoms. Every campaign has made Server 380
+          stronger and more experienced.
         </p>
 
       </div>
 
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           03
@@ -1325,144 +1325,9 @@ footer{
         </h3>
 
         <p>
-          Communication, preparation and coordination turn
-          individual strength into collective power.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     WHY JOIN
-========================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-title reveal">
-
-      <div class="small">
-        WHY E380?
-      </div>
-
-      <h2>
-        Find Your Next Kingdom.
-      </h2>
-
-      <p>
-        We are not simply looking for the biggest accounts.
-        We are looking for players who want to be part of a
-        competitive kingdom and contribute to its success.
-      </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-      <div class="why-main reveal">
-
-        <h3>
-          Built For Players Who Want To Compete.
-        </h3>
-
-        <p>
-          E380 combines experienced leadership, organized events,
-          active communication and a competitive mindset. If you
-          want a kingdom where your effort actually matters,
-          this is where you belong.
-        </p>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            ⚔
-          </div>
-
-          <div>
-
-            <h4>
-              Serious About Events
-            </h4>
-
-            <p>
-              Stellar Kingdom, MEE, Behemoth, Desolate Desert
-              and other major objectives are coordinated as a team.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            ◆
-          </div>
-
-          <div>
-
-            <h4>
-              Experienced Players
-            </h4>
-
-            <p>
-              Three seasons of competition have given us experience
-              against a wide range of opponents and strategies.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            ♜
-          </div>
-
-          <div>
-
-            <h4>
-              One Kingdom Mentality
-            </h4>
-
-            <p>
-              Strong players matter. Strong teamwork wins wars.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="why-side reveal">
-
-        <div class="why-side-title">
-          THE E380 MINDSET
-        </div>
-
-        <div class="motto">
-          Power gets you noticed.<br>
-          <span>Commitment makes you valuable.</span>
-        </div>
-
-        <p>
-          We want players who communicate, participate,
-          follow strategy and understand that kingdom success
-          comes before individual ego.
+          Communication, coordination and preparation matter.
+          We are building a kingdom where individual strength
+          becomes collective power.
         </p>
 
       </div>
@@ -1482,7 +1347,7 @@ footer{
 
   <div class="container">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
       <div class="small">
         OUR RECORD SPEAKS FOR ITSELF
@@ -1493,9 +1358,9 @@ footer{
       </h2>
 
       <p>
-        We started Season 1 in second place. We fought through
-        Season 2 and finished third. Now, in Season 3, Server 380
-        stands at the top.
+        We started Season 1 in second place.
+        We fought through Season 2 and finished third.
+        Now, in Season 3, Server 380 stands at the very top.
       </p>
 
     </div>
@@ -1503,7 +1368,7 @@ footer{
 
     <div class="record">
 
-      <div class="record-box reveal">
+      <div class="record-box">
 
         <h3>
           Stellar Kingdom
@@ -1521,21 +1386,21 @@ footer{
 
         <div class="record-line">
           <span>Season 3</span>
-          <strong class="win">#1 CURRENTLY</strong>
+          <strong class="win">#1 — UNDISPUTED</strong>
         </div>
 
       </div>
 
 
-      <div class="record-box reveal">
+      <div class="record-box">
 
         <h3>
-          Direct Match Record
+          Overall Tracked Record
         </h3>
 
         <div class="record-line">
           <span>Victories</span>
-          <strong class="win">9</strong>
+          <strong class="win">12</strong>
         </div>
 
         <div class="record-line">
@@ -1544,8 +1409,8 @@ footer{
         </div>
 
         <div class="record-line">
-          <span>Win Rate</span>
-          <strong class="gold">81.8%</strong>
+          <span>Tracked Win Rate</span>
+          <strong class="gold">85.7%</strong>
         </div>
 
         <div class="record-line">
@@ -1558,10 +1423,10 @@ footer{
     </div>
 
 
-    <div class="record-statement reveal">
+    <div class="record-statement">
 
       <div class="big">
-        9 WINS • 2 LOSSES
+        12 WINS • 2 LOSSES
       </div>
 
       <p>
@@ -1581,6 +1446,243 @@ footer{
 
 
 <!-- =========================
+     TOP 10 POWER
+========================= -->
+
+<section id="power">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="small">
+        THE POWERHOUSE
+      </div>
+
+      <h2>
+        Top 10 Players.
+      </h2>
+
+      <p>
+        Strength is only one part of a great kingdom — but
+        Server 380 is not short on it. Meet the current top
+        10 players by power.
+      </p>
+
+    </div>
+
+
+    <div class="power-table">
+
+      <div class="power-header">
+        <span>RANK</span>
+        <span>PLAYER</span>
+        <span>POWER</span>
+      </div>
+
+
+      <div class="power-row top-player">
+
+        <div class="power-rank">
+          01
+        </div>
+
+        <div class="power-player">
+          モRムC³⁸⁰
+        </div>
+
+        <div class="power-value">
+          201,385,427
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          02
+        </div>
+
+        <div class="power-player">
+          殺戮之主
+        </div>
+
+        <div class="power-value">
+          168,459,055
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          03
+        </div>
+
+        <div class="power-player">
+          RҽԃD€ʋιʅ³⁸⁰
+        </div>
+
+        <div class="power-value">
+          149,715,918
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          04
+        </div>
+
+        <div class="power-player">
+          Aɾƚҽɱιʂ³⁸⁰
+        </div>
+
+        <div class="power-value">
+          134,163,785
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          05
+        </div>
+
+        <div class="power-player">
+          Samalops
+        </div>
+
+        <div class="power-value">
+          114,705,665
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          06
+        </div>
+
+        <div class="power-player">
+          DuceX³⁸⁰
+        </div>
+
+        <div class="power-value">
+          87,130,231
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          07
+        </div>
+
+        <div class="power-player">
+          Lunlaa³⁸⁰
+        </div>
+
+        <div class="power-value">
+          85,466,491
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          08
+        </div>
+
+        <div class="power-player">
+          Aysss
+        </div>
+
+        <div class="power-value">
+          81,543,794
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          09
+        </div>
+
+        <div class="power-player">
+          AngryIrish47
+        </div>
+
+        <div class="power-value">
+          75,228,996
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          10
+        </div>
+
+        <div class="power-player">
+          nindža
+        </div>
+
+        <div class="power-value">
+          74,239,735
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="power-summary">
+
+      <div>
+        <strong>10</strong>
+        <span>TOP PLAYERS</span>
+      </div>
+
+      <div>
+        <strong>1.17B+</strong>
+        <span>COMBINED POWER</span>
+      </div>
+
+      <div>
+        <strong>201M+</strong>
+        <span>TOP PLAYER POWER</span>
+      </div>
+
+    </div>
+
+
+    <div class="power-note">
+      POWER RANKINGS ARE SUBJECT TO CHANGE AS PLAYERS CONTINUE TO GROW.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
      SEASON HISTORY
 ========================= -->
 
@@ -1588,7 +1690,7 @@ footer{
 
   <div class="container">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
       <div class="small">
         THREE SEASONS
@@ -1599,8 +1701,8 @@ footer{
       </h2>
 
       <p>
-        From our first campaign to the current #1 position,
-        every season has added another chapter to the E380 story.
+        This is how Server 380 climbed from a strong contender
+        to the #1 Stellar Kingdom.
       </p>
 
     </div>
@@ -1611,7 +1713,7 @@ footer{
 
       <!-- SEASON 1 -->
 
-      <div class="season reveal">
+      <div class="season">
 
         <div class="season-header">
 
@@ -1659,7 +1761,7 @@ footer{
 
       <!-- SEASON 2 -->
 
-      <div class="season reveal">
+      <div class="season">
 
         <div class="season-header">
 
@@ -1707,7 +1809,7 @@ footer{
 
       <!-- SEASON 3 -->
 
-      <div class="season current reveal">
+      <div class="season">
 
         <div class="season-header">
 
@@ -1716,7 +1818,7 @@ footer{
           </div>
 
           <div class="season-result">
-            #1 STELLAR KINGDOM — CURRENT
+            #1 STELLAR KINGDOM
           </div>
 
         </div>
@@ -1725,7 +1827,7 @@ footer{
 
           <div class="match win-match">
             <span>BEHEMOTH</span>
-            <strong>Victory vs Server 388</strong>
+            <strong>Victory vs Server 386</strong>
           </div>
 
           <div class="match win-match">
@@ -1735,7 +1837,7 @@ footer{
 
           <div class="match win-match">
             <span>BEHEMOTH</span>
-            <strong>Victory vs Server 386</strong>
+            <strong>Victory vs Server 388</strong>
           </div>
 
           <div class="match win-match">
@@ -1755,7 +1857,7 @@ footer{
     </div>
 
 
-    <div class="record-statement reveal">
+    <div class="record-statement">
 
       <div class="big">
         #1 STELLAR KINGDOM
@@ -1765,7 +1867,7 @@ footer{
         Season 1: 2nd.
         Season 2: 3rd.
         Season 3: 1st.
-        The climb is real — and we are not finished.
+        The climb is real, and we are not finished.
       </p>
 
       <div class="crown">
@@ -1787,10 +1889,10 @@ footer{
 
   <div class="container">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
       <div class="small">
-        RECRUITMENT
+        WHO WE WANT
       </div>
 
       <h2>
@@ -1798,39 +1900,16 @@ footer{
       </h2>
 
       <p>
-        Power matters, but activity, communication and commitment
+        Power matters, but attitude, activity and commitment
         matter just as much.
       </p>
 
     </div>
 
 
-    <div class="recruitment-banner reveal">
-
-      <div>
-
-        <h3>
-          Migration Recruitment Is Open.
-        </h3>
-
-        <p>
-          Think E380 could be your next kingdom?
-          Submit your application and let our recruitment team
-          get to know you.
-        </p>
-
-      </div>
-
-      <div class="recruitment-status">
-        ● ACCEPTING APPLICATIONS
-      </div>
-
-    </div>
-
-
     <div class="cards">
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           01
@@ -1841,14 +1920,14 @@ footer{
         </h3>
 
         <p>
-          Consistent participation, communication and contribution
-          to kingdom objectives are essential.
+          Players who participate consistently, communicate
+          and contribute to kingdom objectives.
         </p>
 
       </div>
 
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           02
@@ -1859,14 +1938,14 @@ footer{
         </h3>
 
         <p>
-          Be ready to show up for major kingdom events and
-          follow coordinated strategies.
+          Players willing to show up for major kingdom events
+          and follow coordinated strategies.
         </p>
 
       </div>
 
 
-      <div class="card reveal">
+      <div class="card">
 
         <div class="card-number">
           03
@@ -1891,32 +1970,65 @@ footer{
 
 
 <!-- =========================
-     DISCORD
+     RECRUITMENT CTA
 ========================= -->
 
-<section class="discord">
+<section>
 
   <div class="container">
 
-    <div class="discord-box reveal">
+    <div class="recruit-box">
 
       <h2>
-        Want To Know E380?
+        Migration Isn't Open Yet.
       </h2>
 
       <p>
-        Talk to our members, meet the officers and see how
-        Server 380 operates before making your decision.
+        That doesn't mean you have to wait.
+
+        Submit your application now and get your name in front
+        of the EMPIRE 380 recruitment team before migration opens.
+        Early applications give us time to review your account,
+        experience and fit for the kingdom.
       </p>
 
-      <a
-        href="https://discord.gg/S2898Ba3X"
-        class="btn btn-secondary"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        JOIN THE E380 DISCORD
-      </a>
+
+      <div class="recruit-points">
+
+        <div class="recruit-point">
+          <strong>01</strong>
+          <span>Submit your application</span>
+        </div>
+
+        <div class="recruit-point">
+          <strong>02</strong>
+          <span>Recruitment team reviews your profile</span>
+        </div>
+
+        <div class="recruit-point">
+          <strong>03</strong>
+          <span>Join the kingdom when migration opens</span>
+        </div>
+
+      </div>
+
+
+      <div class="buttons" style="justify-content:center;">
+
+        <a href="#apply" class="btn btn-primary">
+          SUBMIT APPLICATION
+        </a>
+
+        <a
+          href="https://discord.gg/S2898Ba3X"
+          target="_blank"
+          rel="noopener"
+          class="btn discord-btn"
+        >
+          JOIN DISCORD
+        </a>
+
+      </div>
 
     </div>
 
@@ -1933,10 +2045,10 @@ footer{
 
   <div class="container">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
       <div class="small">
-        MIGRATION APPLICATION
+        MIGRATION PRE-REGISTRATION
       </div>
 
       <h2>
@@ -1944,15 +2056,16 @@ footer{
       </h2>
 
       <p>
-        If you believe you can contribute to the next chapter
-        of Server 380, complete the application below.
-        Our recruitment team will review your information.
+        Migration is not currently open for Server 380.
+        We are accepting applications in advance so our
+        recruitment team can review players and build our
+        roster before migration opens.
       </p>
 
     </div>
 
 
-    <div class="form-wrap reveal">
+    <div class="form-wrap">
 
       <form id="applicationForm">
 
@@ -2067,33 +2180,13 @@ footer{
 
             <select id="mainTroop" name="mainTroop">
 
-              <option value="">
-                Select
-              </option>
-
-              <option value="Infantry">
-                Infantry
-              </option>
-
-              <option value="Pike">
-                Pike
-              </option>
-
-              <option value="Archer">
-                Archer
-              </option>
-
-              <option value="Cavalry">
-                Cavalry
-              </option>
-
-              <option value="Sword">
-                Sword
-              </option>
-
-              <option value="Mixed">
-                Mixed
-              </option>
+              <option value="">Select</option>
+              <option value="Infantry">Infantry</option>
+              <option value="Pike">Pike</option>
+              <option value="Archer">Archer</option>
+              <option value="Cavalry">Cavalry</option>
+              <option value="Sword">Sword</option>
+              <option value="Mixed">Mixed</option>
 
             </select>
 
@@ -2108,25 +2201,11 @@ footer{
 
             <select id="troopTier" name="troopTier">
 
-              <option value="">
-                Select
-              </option>
-
-              <option value="T6">
-                T6
-              </option>
-
-              <option value="T7">
-                T7
-              </option>
-
-              <option value="T8">
-                T8
-              </option>
-
-              <option value="T9">
-                T9
-              </option>
+              <option value="">Select</option>
+              <option value="T6">T6</option>
+              <option value="T7">T7</option>
+              <option value="T8">T8</option>
+              <option value="T9">T9</option>
 
             </select>
 
@@ -2160,9 +2239,7 @@ footer{
               name="migration"
             >
 
-              <option value="">
-                Select
-              </option>
+              <option value="">Select</option>
 
               <option value="Ready">
                 Ready to migrate
@@ -2236,6 +2313,15 @@ footer{
           information provided is accurate. Recruitment officers
           may contact you through Discord regarding your application.
 
+          <br><br>
+
+          <strong style="color:var(--gold2);">
+            Please note:
+          </strong>
+
+          Migration is not currently open. This application is
+          for pre-registration and recruitment review.
+
         </div>
 
 
@@ -2244,13 +2330,49 @@ footer{
           class="btn btn-primary submit"
           id="submitButton"
         >
-          SUBMIT APPLICATION
+          SUBMIT PRE-REGISTRATION
         </button>
 
 
         <div id="status"></div>
 
       </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DISCORD
+========================= -->
+
+<section class="discord-section">
+
+  <div class="container">
+
+    <div class="discord-box">
+
+      <h2>
+        Want To Know More?
+      </h2>
+
+      <p>
+        Join the EMPIRE 380 Discord, speak with our members,
+        follow recruitment updates and get ready for the next
+        chapter of Server 380.
+      </p>
+
+      <a
+        href="https://discord.gg/S2898Ba3X"
+        target="_blank"
+        rel="noopener"
+        class="btn discord-btn"
+      >
+        JOIN EMPIRE 380 DISCORD
+      </a>
 
     </div>
 
@@ -2280,7 +2402,7 @@ footer{
     </div>
 
     <div>
-      Server 380 • Migration Recruitment
+      Server 380 • Migration Pre-Registration
     </div>
 
   </div>
@@ -2290,7 +2412,6 @@ footer{
 
 <!-- =========================
      GOOGLE APPS SCRIPT
-     EXISTING BACKEND
 ========================= -->
 
 <script>
@@ -2405,8 +2526,8 @@ form.addEventListener(
 
       statusBox.innerHTML =
         "<strong>APPLICATION RECEIVED</strong><br><br>" +
-        "Your EMPIRE 380 migration application has been submitted successfully. " +
-        "Our recruitment team will review your information.";
+        "Your EMPIRE 380 pre-registration has been submitted successfully. " +
+        "Our recruitment team will review your information and contact you through Discord if required.";
 
 
       form.reset();
@@ -2432,7 +2553,7 @@ form.addEventListener(
     button.disabled = false;
 
     button.textContent =
-      "SUBMIT APPLICATION";
+      "SUBMIT PRE-REGISTRATION";
 
   }
 );
@@ -2473,52 +2594,7 @@ document
 
   });
 
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealElements =
-  document.querySelectorAll(".reveal");
-
-
-const observer =
-  new IntersectionObserver(
-    function(entries){
-
-      entries.forEach(
-        entry=>{
-
-          if(entry.isIntersecting){
-
-            entry.target.classList.add(
-              "visible"
-            );
-
-            observer.unobserve(
-              entry.target
-            );
-
-          }
-
-        }
-      );
-
-    },
-    {
-      threshold:.12
-    }
-  );
-
-
-revealElements.forEach(
-  element=>{
-    observer.observe(element);
-  }
-);
-
 </script>
 
 </body>
 </html>
-```
