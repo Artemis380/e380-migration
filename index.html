@@ -5,28 +5,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EMPIRE 380 | Migration Pre-Registration</title>
+<title>EMPIRE 380 | Migration Command</title>
 
 <meta name="description"
-content="EMPIRE 380 — Server 380 migration pre-registration. Three seasons of competition, a proven record, and currently the #1 Stellar Kingdom.">
+content="EMPIRE 380 — Server 380 migration pre-registration. Fear the Banner. Respect the Crown.">
 
 <style>
 
 :root{
-  --bg:#05070b;
-  --bg2:#090d14;
-  --panel:#0d131d;
-  --panel2:#111925;
+  --bg:#030507;
+  --bg2:#070a10;
+  --panel:#0b1018;
+  --panel2:#101722;
   --gold:#d8a84e;
-  --gold2:#f1cc76;
+  --gold2:#f3cf78;
+  --gold3:#fff0b0;
   --white:#f5f7fa;
-  --muted:#8f9bab;
+  --muted:#8993a2;
   --line:rgba(216,168,78,.22);
   --green:#38d996;
   --red:#ff5c6c;
-  --blue:#5da9ff;
-  --purple:#5865f2;
-  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --blue:#5865f2;
+  --shadow:0 25px 80px rgba(0,0,0,.55);
 }
 
 *{
@@ -37,32 +37,54 @@ content="EMPIRE 380 — Server 380 migration pre-registration. Three seasons of 
 
 html{
   scroll-behavior:smooth;
+  scroll-snap-type:y proximity;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:
-    radial-gradient(circle at 50% -10%,rgba(216,168,78,.14),transparent 35%),
-    radial-gradient(circle at 10% 50%,rgba(88,101,242,.04),transparent 30%),
-    linear-gradient(180deg,var(--bg),var(--bg2));
+  background:#030507;
   color:var(--white);
   min-height:100vh;
   overflow-x:hidden;
 }
+
+/* =====================================================
+   CINEMATIC AMBIENT BACKGROUND
+===================================================== */
 
 body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:999;
+  z-index:-5;
   background:
-    linear-gradient(
-      rgba(255,255,255,.015) 1px,
-      transparent 1px
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(216,168,78,.11),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 70%,
+      rgba(216,168,78,.045),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 90% 40%,
+      rgba(216,168,78,.035),
+      transparent 25%
     );
-  background-size:100% 4px;
-  opacity:.25;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  opacity:.035;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
 a{
@@ -70,81 +92,86 @@ a{
   text-decoration:none;
 }
 
-.container{
-  width:min(1150px,92%);
-  margin:auto;
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
 }
 
-/* =========================
-   AMBIENT BACKGROUND
-========================= */
+/* floating particles */
 
-.ambient{
+.particles{
   position:fixed;
   inset:0;
   pointer-events:none;
   overflow:hidden;
-  z-index:-1;
+  z-index:-2;
 }
 
-.ambient-orb{
+.particle{
   position:absolute;
+  width:2px;
+  height:2px;
   border-radius:50%;
-  filter:blur(70px);
-  opacity:.18;
-  animation:floatOrb 12s ease-in-out infinite alternate;
+  background:var(--gold2);
+  opacity:.25;
+  animation:floatParticle linear infinite;
 }
 
-.orb1{
-  width:420px;
-  height:420px;
-  background:var(--gold);
-  top:-160px;
-  right:-100px;
-}
+.particle:nth-child(1){left:7%;top:80%;animation-duration:18s}
+.particle:nth-child(2){left:15%;top:60%;animation-duration:23s}
+.particle:nth-child(3){left:25%;top:90%;animation-duration:17s}
+.particle:nth-child(4){left:35%;top:70%;animation-duration:26s}
+.particle:nth-child(5){left:45%;top:95%;animation-duration:21s}
+.particle:nth-child(6){left:55%;top:65%;animation-duration:19s}
+.particle:nth-child(7){left:66%;top:85%;animation-duration:25s}
+.particle:nth-child(8){left:76%;top:55%;animation-duration:20s}
+.particle:nth-child(9){left:85%;top:75%;animation-duration:24s}
+.particle:nth-child(10){left:94%;top:90%;animation-duration:18s}
+.particle:nth-child(11){left:50%;top:40%;animation-duration:29s}
+.particle:nth-child(12){left:30%;top:30%;animation-duration:22s}
 
-.orb2{
-  width:350px;
-  height:350px;
-  background:#5865f2;
-  bottom:5%;
-  left:-180px;
-  animation-delay:2s;
-}
-
-.orb3{
-  width:250px;
-  height:250px;
-  background:#f1cc76;
-  top:45%;
-  right:-120px;
-  animation-delay:4s;
-}
-
-@keyframes floatOrb{
+@keyframes floatParticle{
   from{
-    transform:translate(0,0) scale(1);
+    transform:translateY(20vh) translateX(0);
+    opacity:0;
   }
-  to{
-    transform:translate(35px,-30px) scale(1.12);
+
+  15%{
+    opacity:.3;
+  }
+
+  50%{
+    transform:translateY(-30vh) translateX(35px);
+    opacity:.18;
+  }
+
+  100%{
+    transform:translateY(-120vh) translateX(-20px);
+    opacity:0;
   }
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* =====================================================
+   NAV
+===================================================== */
 
 nav{
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  width:100%;
   z-index:100;
   backdrop-filter:blur(18px);
-  background:rgba(5,7,11,.88);
-  border-bottom:1px solid var(--line);
+  background:rgba(3,5,7,.72);
+  border-bottom:1px solid rgba(216,168,78,.14);
 }
 
 .nav-inner{
+  width:min(1200px,92%);
   height:72px;
+  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -161,131 +188,217 @@ nav{
 .logo-mark{
   width:42px;
   height:42px;
-  border:2px solid var(--gold);
+  border:1px solid var(--gold);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   color:var(--gold2);
-  font-size:13px;
+  font-size:11px;
   box-shadow:
-    0 0 22px rgba(216,168,78,.18),
+    0 0 20px rgba(216,168,78,.15),
     inset 0 0 15px rgba(216,168,78,.08);
-  animation:pulseLogo 3s ease-in-out infinite;
+  animation:logoPulse 4s ease-in-out infinite;
 }
 
-@keyframes pulseLogo{
+@keyframes logoPulse{
   0%,100%{
     box-shadow:
-      0 0 22px rgba(216,168,78,.18),
-      inset 0 0 15px rgba(216,168,78,.08);
+      0 0 15px rgba(216,168,78,.12),
+      inset 0 0 10px rgba(216,168,78,.05);
   }
+
   50%{
     box-shadow:
-      0 0 38px rgba(216,168,78,.35),
-      inset 0 0 20px rgba(216,168,78,.15);
+      0 0 30px rgba(216,168,78,.3),
+      inset 0 0 18px rgba(216,168,78,.1);
   }
 }
 
 .nav-links{
   display:flex;
-  gap:24px;
+  gap:26px;
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 .nav-links a{
+  position:relative;
+  transition:.25s;
+}
+
+.nav-links a:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:1px;
+  background:var(--gold2);
   transition:.25s;
 }
 
 .nav-links a:hover{
   color:var(--gold2);
-  text-shadow:0 0 12px rgba(216,168,78,.3);
+}
+
+.nav-links a:hover:after{
+  width:100%;
 }
 
 .nav-button{
   padding:11px 18px;
   border:1px solid var(--gold);
-  border-radius:8px;
+  border-radius:7px;
   color:var(--gold2);
-  font-weight:700;
+  font-size:12px;
+  font-weight:800;
   transition:.25s;
 }
 
 .nav-button:hover{
-  background:rgba(216,168,78,.10);
-  box-shadow:0 0 20px rgba(216,168,78,.15);
+  background:rgba(216,168,78,.1);
+  box-shadow:0 0 25px rgba(216,168,78,.12);
 }
 
-/* =========================
+/* =====================================================
+   CINEMATIC SECTIONS
+===================================================== */
+
+section,
+.hero{
+  scroll-snap-align:start;
+  scroll-snap-stop:normal;
+}
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
-  min-height:760px;
+  min-height:100vh;
+  position:relative;
   display:flex;
   align-items:center;
-  position:relative;
   overflow:hidden;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(216,168,78,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #030507 0%,
+      #070a10 55%,
+      #030507 100%
+    );
 }
 
 .hero:before{
   content:"";
   position:absolute;
-  width:650px;
-  height:650px;
-  right:-280px;
-  top:-20px;
+  width:900px;
+  height:900px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   border-radius:50%;
-  background:rgba(216,168,78,.08);
-  filter:blur(25px);
-  animation:heroGlow 7s ease-in-out infinite alternate;
+  border:1px solid rgba(216,168,78,.08);
+  box-shadow:
+    0 0 100px rgba(216,168,78,.04),
+    inset 0 0 100px rgba(216,168,78,.03);
+  animation:heroRing 12s linear infinite;
 }
 
 .hero:after{
   content:"";
   position:absolute;
-  width:450px;
-  height:450px;
-  left:-280px;
-  bottom:-200px;
-  border-radius:50%;
-  background:rgba(216,168,78,.06);
-  filter:blur(30px);
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(216,168,78,.035) 50%,
+      transparent 100%
+    );
+  animation:heroLight 7s ease-in-out infinite;
 }
 
-@keyframes heroGlow{
+@keyframes heroRing{
   from{
-    transform:scale(.9);
-    opacity:.5;
+    transform:translate(-50%,-50%) rotate(0deg);
   }
+
   to{
-    transform:scale(1.2);
-    opacity:1;
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+@keyframes heroLight{
+  0%,100%{
+    opacity:.2;
+  }
+
+  50%{
+    opacity:.8;
+  }
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  opacity:.09;
+  background-image:
+    linear-gradient(rgba(216,168,78,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(216,168,78,.15) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 65%,
+    transparent
+  );
+  animation:gridMove 25s linear infinite;
+}
+
+@keyframes gridMove{
+  from{
+    background-position:0 0;
+  }
+
+  to{
+    background-position:80px 80px;
   }
 }
 
 .hero-content{
-  max-width:1000px;
-  padding:90px 0;
+  width:min(1150px,92%);
+  margin:auto;
   position:relative;
-  z-index:2;
+  z-index:3;
+  padding-top:90px;
+}
+
+.hero-inner{
+  max-width:1000px;
 }
 
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  border:1px solid var(--line);
-  background:rgba(216,168,78,.07);
+  gap:9px;
+  border:1px solid rgba(216,168,78,.28);
+  background:rgba(216,168,78,.05);
   color:var(--gold2);
-  padding:9px 15px;
+  padding:10px 16px;
   border-radius:100px;
-  font-size:11px;
-  letter-spacing:2px;
-  font-weight:800;
+  font-size:10px;
+  letter-spacing:2.5px;
+  font-weight:900;
   margin-bottom:28px;
-  animation:fadeUp .8s ease both;
+  animation:fadeIn 1s ease both;
 }
 
 .badge-dot{
@@ -293,64 +406,51 @@ nav{
   height:7px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 12px rgba(56,217,150,.6);
-  animation:dotPulse 2s infinite;
-}
-
-@keyframes dotPulse{
-  0%,100%{
-    opacity:1;
-    transform:scale(1);
-  }
-  50%{
-    opacity:.5;
-    transform:scale(.7);
-  }
+  box-shadow:0 0 15px rgba(56,217,150,.8);
 }
 
 .hero h1{
-  font-size:clamp(45px,7.5vw,92px);
-  line-height:.91;
-  letter-spacing:-5px;
-  margin-bottom:30px;
-  animation:heroTitle 1s cubic-bezier(.2,.8,.2,1) both;
-  text-shadow:
-    0 0 40px rgba(216,168,78,.08);
+  font-size:clamp(52px,9vw,112px);
+  line-height:.87;
+  letter-spacing:-6px;
+  font-weight:1000;
+  margin-bottom:35px;
+  animation:titleReveal 1.1s cubic-bezier(.2,.7,.2,1) both;
 }
 
-.hero h1 span{
+.hero h1 .gold{
   color:var(--gold2);
   text-shadow:
-    0 0 35px rgba(216,168,78,.18);
+    0 0 40px rgba(216,168,78,.18),
+    0 0 80px rgba(216,168,78,.08);
 }
 
-.hero h1 .crown-line{
-  display:block;
-  font-size:.72em;
-  letter-spacing:-3px;
-  margin-top:8px;
+.hero h1 .thin{
+  font-weight:300;
+  color:#d9dce2;
 }
 
-@keyframes heroTitle{
+@keyframes titleReveal{
   from{
     opacity:0;
     transform:translateY(35px);
-    filter:blur(8px);
+    letter-spacing:-10px;
   }
+
   to{
     opacity:1;
     transform:translateY(0);
-    filter:blur(0);
+    letter-spacing:-6px;
   }
 }
 
-.hero p{
-  max-width:800px;
+.hero-subtitle{
+  max-width:760px;
   color:var(--muted);
-  font-size:19px;
-  line-height:1.75;
-  margin-bottom:34px;
-  animation:fadeUp 1s .2s ease both;
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:35px;
+  animation:fadeIn 1.3s .3s ease both;
 }
 
 .hero-highlight{
@@ -361,57 +461,44 @@ nav{
 .buttons{
   display:flex;
   flex-wrap:wrap;
-  gap:14px;
-  animation:fadeUp 1s .35s ease both;
+  gap:13px;
+  animation:fadeIn 1.3s .45s ease both;
 }
 
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:15px 24px;
-  border-radius:9px;
-  font-weight:800;
+  min-height:52px;
+  padding:14px 24px;
+  border-radius:8px;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.5px;
   cursor:pointer;
   border:0;
-  transition:.25s;
-  position:relative;
-  overflow:hidden;
-}
-
-.btn:after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:60%;
-  height:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.18),
-    transparent
-  );
-  transition:.5s;
-}
-
-.btn:hover:after{
-  left:140%;
+  transition:.3s;
 }
 
 .btn-primary{
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#090909;
+  background:linear-gradient(
+    135deg,
+    var(--gold3),
+    var(--gold)
+  );
+  color:#080808;
+  box-shadow:
+    0 10px 35px rgba(216,168,78,.13);
 }
 
 .btn-primary:hover{
   transform:translateY(-3px);
-  box-shadow:0 12px 35px rgba(216,168,78,.25);
+  box-shadow:
+    0 15px 45px rgba(216,168,78,.25);
 }
 
 .btn-secondary{
-  border:1px solid var(--line);
-  color:var(--white);
+  border:1px solid rgba(216,168,78,.25);
   background:rgba(255,255,255,.025);
 }
 
@@ -421,36 +508,70 @@ nav{
 }
 
 .discord-btn{
-  border:1px solid rgba(88,101,242,.55);
+  border:1px solid rgba(88,101,242,.5);
   background:rgba(88,101,242,.08);
-  color:#cdd2ff;
+  color:#d9dcff;
 }
 
 .discord-btn:hover{
-  border-color:#5865f2;
-  background:rgba(88,101,242,.16);
+  border-color:var(--blue);
+  background:rgba(88,101,242,.15);
   transform:translateY(-3px);
-  box-shadow:0 12px 35px rgba(88,101,242,.15);
 }
 
-/* =========================
-   STATUS STRIP
-========================= */
+.hero-scroll{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:4;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  text-align:center;
+  animation:scrollFloat 2.5s ease-in-out infinite;
+}
+
+.hero-scroll span{
+  display:block;
+  width:1px;
+  height:35px;
+  background:linear-gradient(
+    var(--gold2),
+    transparent
+  );
+  margin:9px auto 0;
+}
+
+@keyframes scrollFloat{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+  }
+
+  50%{
+    transform:translateX(-50%) translateY(7px);
+  }
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status-strip{
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  background:rgba(216,168,78,.035);
+  background:rgba(216,168,78,.025);
 }
 
 .status-inner{
-  min-height:58px;
+  min-height:62px;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:12px;
   text-align:center;
-  font-size:13px;
+  font-size:12px;
   color:var(--muted);
 }
 
@@ -460,17 +581,15 @@ nav{
 
 .status-icon{
   color:var(--green);
-  font-size:16px;
-  animation:dotPulse 2s infinite;
+  text-shadow:0 0 15px rgba(56,217,150,.6);
 }
 
-/* =========================
+/* =====================================================
    STATS
-========================= */
+===================================================== */
 
 .stats{
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.015);
 }
 
 .stats-grid{
@@ -479,14 +598,9 @@ nav{
 }
 
 .stat{
-  padding:30px 20px;
+  padding:34px 20px;
   text-align:center;
   border-right:1px solid var(--line);
-  transition:.3s;
-}
-
-.stat:hover{
-  background:rgba(216,168,78,.035);
 }
 
 .stat:last-child{
@@ -496,23 +610,46 @@ nav{
 .stat strong{
   display:block;
   color:var(--gold2);
-  font-size:30px;
-  margin-bottom:7px;
+  font-size:32px;
+  margin-bottom:8px;
+  text-shadow:0 0 25px rgba(216,168,78,.15);
 }
 
 .stat span{
   color:var(--muted);
-  font-size:11px;
+  font-size:9px;
   text-transform:uppercase;
-  letter-spacing:1px;
+  letter-spacing:1.5px;
 }
 
-/* =========================
-   SECTION
-========================= */
+/* =====================================================
+   GENERIC SECTIONS
+===================================================== */
 
 section{
-  padding:100px 0;
+  position:relative;
+  padding:110px 0;
+  overflow:hidden;
+}
+
+section:before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  left:-350px;
+  top:20%;
+  border-radius:50%;
+  background:rgba(216,168,78,.035);
+  filter:blur(80px);
+  pointer-events:none;
+}
+
+.container{
+  width:min(1150px,92%);
+  margin:auto;
+  position:relative;
+  z-index:2;
 }
 
 .section-title{
@@ -521,27 +658,29 @@ section{
 
 .section-title .small{
   color:var(--gold2);
-  font-size:11px;
+  font-size:10px;
   letter-spacing:3px;
   text-transform:uppercase;
-  font-weight:800;
-  margin-bottom:12px;
+  font-weight:900;
+  margin-bottom:13px;
 }
 
 .section-title h2{
-  font-size:42px;
-  margin-bottom:15px;
+  font-size:clamp(32px,5vw,50px);
+  line-height:1;
+  margin-bottom:16px;
+  letter-spacing:-2px;
 }
 
 .section-title p{
   color:var(--muted);
   max-width:760px;
-  line-height:1.75;
+  line-height:1.8;
 }
 
-/* =========================
+/* =====================================================
    CARDS
-========================= */
+===================================================== */
 
 .cards{
   display:grid;
@@ -550,50 +689,52 @@ section{
 }
 
 .card{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:30px;
-  box-shadow:var(--shadow);
-  transition:.35s;
   position:relative;
   overflow:hidden;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(16,23,34,.95),
+      rgba(8,12,18,.95)
+    );
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:32px;
+  box-shadow:var(--shadow);
+  transition:.35s;
 }
 
 .card:before{
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--gold),
-    transparent
-  );
-  transform:translateX(-100%);
-  transition:.5s;
-}
-
-.card:hover:before{
-  transform:translateX(100%);
+  width:180px;
+  height:180px;
+  right:-90px;
+  top:-90px;
+  border-radius:50%;
+  background:rgba(216,168,78,.08);
+  filter:blur(20px);
+  transition:.4s;
 }
 
 .card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(216,168,78,.45);
+  transform:translateY(-8px);
+  border-color:rgba(216,168,78,.5);
   box-shadow:
-    0 25px 70px rgba(0,0,0,.5),
-    0 0 30px rgba(216,168,78,.05);
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 35px rgba(216,168,78,.05);
+}
+
+.card:hover:before{
+  transform:scale(1.5);
 }
 
 .card-number{
   color:var(--gold2);
-  font-size:13px;
+  font-size:11px;
   font-weight:900;
-  margin-bottom:20px;
+  letter-spacing:2px;
+  margin-bottom:22px;
 }
 
 .card h3{
@@ -603,12 +744,12 @@ section{
 
 .card p{
   color:var(--muted);
-  line-height:1.7;
+  line-height:1.75;
 }
 
-/* =========================
+/* =====================================================
    RECORD
-========================= */
+===================================================== */
 
 .record{
   display:grid;
@@ -617,29 +758,28 @@ section{
 }
 
 .record-box{
-  background:var(--panel);
+  background:linear-gradient(
+    145deg,
+    var(--panel),
+    var(--panel2)
+  );
   border:1px solid var(--line);
-  padding:30px;
+  padding:32px;
   border-radius:16px;
-  transition:.3s;
-}
-
-.record-box:hover{
-  border-color:rgba(216,168,78,.4);
-  transform:translateY(-4px);
+  box-shadow:var(--shadow);
 }
 
 .record-box h3{
   color:var(--gold2);
   margin-bottom:20px;
-  font-size:22px;
+  font-size:21px;
 }
 
 .record-line{
   display:flex;
   justify-content:space-between;
   gap:20px;
-  padding:14px 0;
+  padding:15px 0;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
@@ -668,69 +808,78 @@ section{
 }
 
 .record-statement{
-  margin-top:30px;
-  padding:30px;
+  position:relative;
+  overflow:hidden;
+  margin-top:25px;
+  padding:45px 30px;
   text-align:center;
   border:1px solid var(--line);
   border-radius:16px;
   background:
-    radial-gradient(circle at center,rgba(216,168,78,.09),transparent 65%),
+    radial-gradient(
+      circle at center,
+      rgba(216,168,78,.11),
+      transparent 65%
+    ),
     var(--panel);
-  position:relative;
-  overflow:hidden;
 }
 
-.record-statement:before{
+.record-statement:after{
   content:"";
   position:absolute;
-  width:200px;
-  height:200px;
-  border-radius:50%;
-  border:1px solid rgba(216,168,78,.08);
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  animation:rotateRing 15s linear infinite;
+  left:-100%;
+  top:0;
+  width:50%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.04),
+    transparent
+  );
+  animation:shine 8s ease-in-out infinite;
 }
 
-@keyframes rotateRing{
-  to{
-    transform:translate(-50%,-50%) rotate(360deg);
+@keyframes shine{
+  0%,65%{
+    left:-100%;
+  }
+
+  85%,100%{
+    left:150%;
   }
 }
 
 .record-statement .big{
-  position:relative;
-  z-index:2;
-  font-size:42px;
+  font-size:clamp(30px,5vw,46px);
   font-weight:900;
   color:var(--gold2);
   margin-bottom:10px;
 }
 
 .record-statement p{
-  position:relative;
-  z-index:2;
   color:var(--muted);
-  line-height:1.7;
+  line-height:1.75;
 }
 
 .crown{
-  position:relative;
-  z-index:2;
   margin-top:18px;
   color:var(--white);
-  font-size:18px;
+  font-size:14px;
   font-weight:900;
-  letter-spacing:1px;
+  letter-spacing:2px;
 }
 
-/* =========================
-   POWER
-========================= */
+/* =====================================================
+   POWER TABLE
+===================================================== */
 
 .power-table{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  background:linear-gradient(
+    145deg,
+    var(--panel),
+    var(--panel2)
+  );
   border:1px solid var(--line);
   border-radius:18px;
   overflow:hidden;
@@ -745,18 +894,18 @@ section{
 }
 
 .power-header{
-  padding:16px 24px;
-  background:rgba(216,168,78,.07);
+  padding:17px 24px;
+  background:rgba(216,168,78,.065);
   border-bottom:1px solid var(--line);
   color:var(--gold2);
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
   letter-spacing:2px;
 }
 
 .power-row{
   padding:20px 24px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.055);
   transition:.25s;
 }
 
@@ -766,46 +915,42 @@ section{
 
 .power-row:hover{
   background:rgba(216,168,78,.045);
-  transform:translateX(4px);
+  transform:translateX(5px);
 }
 
 .power-rank{
   color:var(--muted);
   font-weight:900;
-  font-size:14px;
+  font-size:13px;
 }
 
 .power-player{
   font-weight:800;
-  font-size:16px;
+  font-size:15px;
 }
 
 .power-value{
   text-align:right;
   color:var(--gold2);
   font-weight:900;
-  font-size:16px;
 }
 
 .top-player{
   background:
     radial-gradient(
-      circle at 85% 50%,
-      rgba(216,168,78,.13),
-      transparent 35%
+      circle at 90% 50%,
+      rgba(216,168,78,.14),
+      transparent 40%
     );
 }
 
-.top-player .power-rank{
+.top-player .power-rank,
+.top-player .power-value{
   color:var(--gold2);
 }
 
 .top-player .power-player{
-  font-size:18px;
-}
-
-.top-player .power-value{
-  font-size:18px;
+  font-size:17px;
 }
 
 .power-summary{
@@ -815,18 +960,12 @@ section{
   margin-top:20px;
 }
 
-.power-summary > div{
+.power-summary>div{
   text-align:center;
   padding:25px 15px;
   border:1px solid var(--line);
   border-radius:14px;
   background:var(--panel);
-  transition:.3s;
-}
-
-.power-summary > div:hover{
-  transform:translateY(-4px);
-  border-color:rgba(216,168,78,.4);
 }
 
 .power-summary strong{
@@ -838,22 +977,22 @@ section{
 
 .power-summary span{
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
   letter-spacing:1px;
   font-weight:800;
 }
 
 .power-note{
   text-align:center;
-  margin-top:18px;
+  margin-top:17px;
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
   letter-spacing:1px;
 }
 
-/* =========================
+/* =====================================================
    SEASONS
-========================= */
+===================================================== */
 
 .seasons{
   display:grid;
@@ -861,25 +1000,29 @@ section{
 }
 
 .season{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:32px;
-  box-shadow:var(--shadow);
-  transition:.3s;
   position:relative;
   overflow:hidden;
+  background:
+    linear-gradient(
+      145deg,
+      var(--panel),
+      var(--panel2)
+    );
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:34px;
+  box-shadow:var(--shadow);
+  transition:.3s;
 }
 
 .season:before{
   content:"";
   position:absolute;
-  left:0;
   top:0;
-  width:3px;
+  left:0;
+  width:2px;
   height:100%;
   background:linear-gradient(
-    180deg,
     transparent,
     var(--gold),
     transparent
@@ -887,8 +1030,8 @@ section{
 }
 
 .season:hover{
-  border-color:rgba(216,168,78,.40);
   transform:translateY(-4px);
+  border-color:rgba(216,168,78,.42);
 }
 
 .season-header{
@@ -900,14 +1043,14 @@ section{
 }
 
 .season-title{
-  font-size:26px;
+  font-size:27px;
   font-weight:900;
 }
 
 .season-result{
   color:var(--gold2);
+  font-size:12px;
   font-weight:900;
-  font-size:14px;
   letter-spacing:1px;
   text-align:right;
 }
@@ -919,78 +1062,72 @@ section{
 }
 
 .match{
-  padding:15px 17px;
+  padding:16px 17px;
   border:1px solid rgba(255,255,255,.06);
   border-radius:10px;
-  background:rgba(255,255,255,.02);
-  color:#dfe4eb;
-  transition:.25s;
-}
-
-.match:hover{
-  transform:translateX(4px);
-  background:rgba(255,255,255,.035);
+  background:rgba(255,255,255,.018);
 }
 
 .match span{
-  color:var(--muted);
   display:block;
-  font-size:11px;
-  margin-bottom:5px;
-}
-
-.match.win-match{
-  border-color:rgba(56,217,150,.18);
-}
-
-.match.loss-match{
-  border-color:rgba(255,92,108,.18);
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:6px;
+  letter-spacing:.5px;
 }
 
 .match strong{
-  font-size:14px;
+  font-size:13px;
 }
 
-/* =========================
+.win-match{
+  border-color:rgba(56,217,150,.18);
+}
+
+.loss-match{
+  border-color:rgba(255,92,108,.18);
+}
+
+/* =====================================================
    RECRUITMENT
-========================= */
+===================================================== */
 
 .recruit-box{
-  padding:45px;
+  position:relative;
+  overflow:hidden;
+  padding:55px 40px;
   border-radius:18px;
   border:1px solid var(--line);
   background:
-    radial-gradient(circle at 50% 0%,rgba(216,168,78,.10),transparent 55%),
-    linear-gradient(145deg,var(--panel),var(--panel2));
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(216,168,78,.13),
+      transparent 55%
+    ),
+    linear-gradient(
+      145deg,
+      var(--panel),
+      var(--panel2)
+    );
   text-align:center;
   box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
 }
 
-.recruit-box:after{
-  content:"";
+.recruit-box:before{
+  content:"380";
   position:absolute;
-  width:350px;
-  height:350px;
-  border-radius:50%;
-  border:1px solid rgba(216,168,78,.06);
-  top:-180px;
-  left:50%;
-  transform:translateX(-50%);
-  animation:slowSpin 20s linear infinite;
-}
-
-@keyframes slowSpin{
-  to{
-    transform:translateX(-50%) rotate(360deg);
-  }
+  right:-30px;
+  bottom:-90px;
+  font-size:220px;
+  font-weight:1000;
+  color:rgba(216,168,78,.025);
+  pointer-events:none;
 }
 
 .recruit-box h2{
   position:relative;
   z-index:2;
-  font-size:38px;
+  font-size:40px;
   margin-bottom:15px;
 }
 
@@ -1000,7 +1137,7 @@ section{
   max-width:720px;
   margin:0 auto 28px;
   color:var(--muted);
-  line-height:1.75;
+  line-height:1.8;
 }
 
 .recruit-points{
@@ -1013,16 +1150,10 @@ section{
 }
 
 .recruit-point{
-  padding:20px;
+  padding:22px;
   border:1px solid rgba(255,255,255,.07);
   border-radius:12px;
-  background:rgba(255,255,255,.02);
-  transition:.3s;
-}
-
-.recruit-point:hover{
-  transform:translateY(-5px);
-  border-color:var(--line);
+  background:rgba(255,255,255,.018);
 }
 
 .recruit-point strong{
@@ -1033,39 +1164,32 @@ section{
 
 .recruit-point span{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
 }
 
-/* =========================
+/* =====================================================
    FORM
-========================= */
+===================================================== */
 
 .form-wrap{
   max-width:850px;
   margin:auto;
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  background:
+    linear-gradient(
+      145deg,
+      var(--panel),
+      var(--panel2)
+    );
   border:1px solid var(--line);
   border-radius:18px;
   padding:40px;
   box-shadow:var(--shadow);
-  position:relative;
-}
-
-.form-wrap:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:18px;
-  pointer-events:none;
-  box-shadow:inset 0 0 50px rgba(216,168,78,.025);
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:20px;
-  position:relative;
-  z-index:2;
 }
 
 .form-group{
@@ -1079,7 +1203,7 @@ section{
 label{
   display:block;
   color:#d9dee6;
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
   margin-bottom:8px;
 }
@@ -1088,12 +1212,12 @@ input,
 select,
 textarea{
   width:100%;
-  background:#080c12;
-  border:1px solid rgba(255,255,255,.10);
+  background:#06090e;
+  border:1px solid rgba(255,255,255,.1);
   color:var(--white);
   border-radius:8px;
   padding:14px;
-  font-size:14px;
+  font-size:13px;
   outline:none;
   transition:.25s;
 }
@@ -1101,14 +1225,16 @@ textarea{
 input:hover,
 select:hover,
 textarea:hover{
-  border-color:rgba(216,168,78,.25);
+  border-color:rgba(216,168,78,.2);
 }
 
 input:focus,
 select:focus,
 textarea:focus{
   border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(216,168,78,.08);
+  box-shadow:
+    0 0 0 3px rgba(216,168,78,.07),
+    0 0 20px rgba(216,168,78,.04);
 }
 
 textarea{
@@ -1118,94 +1244,68 @@ textarea{
 
 .form-note{
   color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
+  font-size:11px;
+  line-height:1.7;
   margin:18px 0;
-  position:relative;
-  z-index:2;
 }
 
 .submit{
   width:100%;
-  font-size:15px;
-  position:relative;
-  z-index:2;
+  font-size:13px;
 }
 
 .submit:disabled{
-  opacity:.6;
+  opacity:.55;
   cursor:not-allowed;
 }
 
 #status{
   display:none;
   margin-top:20px;
-  padding:15px;
+  padding:16px;
   border-radius:8px;
   line-height:1.5;
-  font-size:14px;
-  position:relative;
-  z-index:2;
+  font-size:13px;
 }
 
 .status-success{
-  display:block !important;
-  background:rgba(56,217,150,.10);
-  border:1px solid rgba(56,217,150,.3);
+  display:block!important;
+  background:rgba(56,217,150,.08);
+  border:1px solid rgba(56,217,150,.28);
   color:var(--green);
-  animation:fadeUp .4s ease both;
 }
 
 .status-error{
-  display:block !important;
-  background:rgba(255,92,108,.10);
-  border:1px solid rgba(255,92,108,.3);
+  display:block!important;
+  background:rgba(255,92,108,.08);
+  border:1px solid rgba(255,92,108,.28);
   color:var(--red);
-  animation:fadeUp .4s ease both;
 }
 
-/* =========================
+/* =====================================================
    DISCORD
-========================= */
+===================================================== */
 
 .discord-section{
   padding-top:0;
 }
 
 .discord-box{
-  border:1px solid rgba(88,101,242,.30);
+  border:1px solid rgba(88,101,242,.3);
   background:
-    radial-gradient(circle at 50% 0%,rgba(88,101,242,.10),transparent 55%),
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(88,101,242,.11),
+      transparent 55%
+    ),
     var(--panel);
   border-radius:18px;
-  padding:45px;
+  padding:55px 30px;
   text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.discord-box:before{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(88,101,242,.08);
-  border-radius:50%;
-  left:50%;
-  top:-190px;
-  transform:translateX(-50%);
-  animation:slowSpin 18s linear infinite;
-}
-
-.discord-box h2,
-.discord-box p,
-.discord-box a{
-  position:relative;
-  z-index:2;
 }
 
 .discord-box h2{
-  font-size:34px;
+  font-size:36px;
   margin-bottom:12px;
 }
 
@@ -1213,18 +1313,18 @@ textarea{
   max-width:650px;
   margin:0 auto 25px;
   color:var(--muted);
-  line-height:1.7;
+  line-height:1.8;
 }
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
   border-top:1px solid var(--line);
-  padding:40px 0;
+  padding:45px 0;
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
 }
 
 .footer-inner{
@@ -1241,37 +1341,65 @@ footer{
   margin-bottom:5px;
 }
 
-/* =========================
-   ANIMATION
-========================= */
+/* =====================================================
+   REVEAL ANIMATIONS
+===================================================== */
 
-.fade-up{
-  animation:fadeUp .7s ease both;
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.2,.7,.2,1);
 }
 
-@keyframes fadeUp{
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-delay-1{
+  transition-delay:.1s;
+}
+
+.reveal-delay-2{
+  transition-delay:.2s;
+}
+
+.reveal-delay-3{
+  transition-delay:.3s;
+}
+
+@keyframes fadeIn{
   from{
     opacity:0;
-    transform:translateY(15px);
   }
+
   to{
     opacity:1;
-    transform:translateY(0);
   }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:900px){
+
+  html{
+    scroll-snap-type:none;
+  }
 
   .nav-links{
     display:none;
   }
 
   .hero{
-    min-height:650px;
+    min-height:100vh;
+  }
+
+  .hero h1{
+    font-size:clamp(48px,13vw,82px);
   }
 
   .stats-grid{
@@ -1303,19 +1431,6 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .form-wrap{
-    padding:25px;
-  }
-
-  section{
-    padding:70px 0;
-  }
-
-  .footer-inner{
-    flex-direction:column;
-    text-align:center;
-  }
-
   .season-header{
     flex-direction:column;
     align-items:flex-start;
@@ -1325,22 +1440,35 @@ footer{
     text-align:left;
   }
 
+  .footer-inner{
+    flex-direction:column;
+    text-align:center;
+  }
+
 }
 
 @media(max-width:600px){
 
+  .nav-inner{
+    height:64px;
+  }
+
+  .nav-button{
+    padding:9px 13px;
+    font-size:10px;
+  }
+
+  .hero-content{
+    padding-top:75px;
+  }
+
   .hero h1{
-    font-size:clamp(42px,13vw,65px);
     letter-spacing:-3px;
+    margin-bottom:25px;
   }
 
-  .hero h1 .crown-line{
-    font-size:.65em;
-    letter-spacing:-2px;
-  }
-
-  .hero p{
-    font-size:16px;
+  .hero-subtitle{
+    font-size:15px;
   }
 
   .buttons{
@@ -1349,6 +1477,10 @@ footer{
 
   .btn{
     width:100%;
+  }
+
+  .hero-scroll{
+    display:none;
   }
 
   .stats-grid{
@@ -1364,8 +1496,8 @@ footer{
     border-bottom:0;
   }
 
-  .record-statement .big{
-    font-size:32px;
+  section{
+    padding:75px 0;
   }
 
   .section-title h2{
@@ -1374,12 +1506,12 @@ footer{
 
   .power-header,
   .power-row{
-    grid-template-columns:52px 1fr auto;
+    grid-template-columns:48px 1fr auto;
   }
 
   .power-header{
     padding:14px 15px;
-    font-size:9px;
+    font-size:8px;
   }
 
   .power-row{
@@ -1387,17 +1519,17 @@ footer{
   }
 
   .power-player{
-    font-size:13px;
+    font-size:12px;
     word-break:break-word;
   }
 
   .power-value{
-    font-size:12px;
+    font-size:11px;
   }
 
   .top-player .power-player,
   .top-player .power-value{
-    font-size:13px;
+    font-size:12px;
   }
 
   .power-summary{
@@ -1406,29 +1538,33 @@ footer{
 
   .recruit-box,
   .discord-box{
-    padding:30px 20px;
+    padding:35px 20px;
   }
 
   .recruit-box h2,
   .discord-box h2{
-    font-size:28px;
+    font-size:29px;
+  }
+
+  .form-wrap{
+    padding:24px 18px;
   }
 
 }
 
-/* =========================
-   REDUCE MOTION
-========================= */
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
 
 @media(prefers-reduced-motion:reduce){
 
   *,
   *:before,
   *:after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-    transition-duration:.01ms !important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
   }
 
 }
@@ -1438,24 +1574,35 @@ footer{
 
 <body>
 
-<!-- AMBIENT BACKGROUND -->
+<!-- =====================================================
+     AMBIENT PARTICLES
+===================================================== -->
 
-<div class="ambient">
+<div class="particles">
 
-  <div class="ambient-orb orb1"></div>
-  <div class="ambient-orb orb2"></div>
-  <div class="ambient-orb orb3"></div>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      NAVIGATION
-========================= -->
+===================================================== -->
 
 <nav>
 
-  <div class="container nav-inner">
+  <div class="nav-inner">
 
     <div class="logo">
 
@@ -1489,39 +1636,46 @@ footer{
 </nav>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <header class="hero">
 
-  <div class="container">
+  <div class="hero-grid"></div>
 
-    <div class="hero-content">
+  <div class="hero-content">
+
+    <div class="hero-inner">
 
       <div class="badge">
-
         <span class="badge-dot"></span>
-
         SERVER 380 • MIGRATION PRE-REGISTRATION
-
       </div>
-
 
       <h1>
 
         FEAR THE<br>
 
-        <span>BANNER.</span>
+        <span class="gold">
+          BANNER.
+        </span>
 
-        <span class="crown-line">
-          RESPECT THE CROWN.
+        <br>
+
+        <span class="thin">
+          RESPECT THE
+        </span>
+
+        <br>
+
+        <span class="gold">
+          CROWN.
         </span>
 
       </h1>
 
-
-      <p>
+      <p class="hero-subtitle">
 
         Three seasons. Three campaigns.
         A kingdom that refused to stop climbing.
@@ -1535,7 +1689,6 @@ footer{
         submit your application now.
 
       </p>
-
 
       <div class="buttons">
 
@@ -1562,12 +1715,20 @@ footer{
 
   </div>
 
+  <div class="hero-scroll">
+
+    EXPLORE SERVER 380
+
+    <span></span>
+
+  </div>
+
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
      STATUS
-========================= -->
+===================================================== -->
 
 <div class="status-strip">
 
@@ -1577,7 +1738,9 @@ footer{
 
     <span>
 
-      <strong>PRE-REGISTRATION OPEN</strong>
+      <strong>
+        PRE-REGISTRATION OPEN
+      </strong>
 
       — Migration is not currently open.
       Applications are being accepted now for early recruitment review.
@@ -1589,9 +1752,9 @@ footer{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      STATS
-========================= -->
+===================================================== -->
 
 <div class="stats">
 
@@ -1622,15 +1785,15 @@ footer{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      ABOUT
-========================= -->
+===================================================== -->
 
 <section id="about">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         THE KINGDOM
@@ -1641,17 +1804,13 @@ footer{
       </h2>
 
       <p>
-
         EMPIRE 380 is built around organization, activity,
-        competition and long-term growth.
-
-        We have spent three seasons fighting some of the strongest
-        kingdoms in the game.
+        competition and long-term growth. We have spent three
+        seasons fighting some of the strongest kingdoms in the game.
 
         We started with a 2nd-place Stellar Kingdom finish,
         followed it with 3rd place, and have now climbed to
         the very top.
-
       </p>
 
     </div>
@@ -1659,7 +1818,7 @@ footer{
 
     <div class="cards">
 
-      <div class="card">
+      <div class="card reveal reveal-delay-1">
 
         <div class="card-number">
           01
@@ -1670,18 +1829,15 @@ footer{
         </h3>
 
         <p>
-
           We play to win. Stellar Kingdom, Desolate Desert,
           Behemoth, MEE and other major events are treated seriously.
-
           When the fight starts, Server 380 shows up.
-
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="card reveal reveal-delay-2">
 
         <div class="card-number">
           02
@@ -1692,18 +1848,15 @@ footer{
         </h3>
 
         <p>
-
           Our record is built across multiple seasons and against
-          multiple kingdoms.
-
-          Every campaign has made Server 380 stronger and more experienced.
-
+          multiple kingdoms. Every campaign has made Server 380
+          stronger and more experienced.
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="card reveal reveal-delay-3">
 
         <div class="card-number">
           03
@@ -1714,12 +1867,9 @@ footer{
         </h3>
 
         <p>
-
           Communication, coordination and preparation matter.
-
           We are building a kingdom where individual strength
           becomes collective power.
-
         </p>
 
       </div>
@@ -1731,15 +1881,15 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      RECORD
-========================= -->
+===================================================== -->
 
 <section id="record">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         OUR RECORD SPEAKS FOR ITSELF
@@ -1750,11 +1900,9 @@ footer{
       </h2>
 
       <p>
-
         We started Season 1 in second place.
         We fought through Season 2 and finished third.
         Now, in Season 3, Server 380 stands at the very top.
-
       </p>
 
     </div>
@@ -1762,7 +1910,7 @@ footer{
 
     <div class="record">
 
-      <div class="record-box">
+      <div class="record-box reveal">
 
         <h3>
           Stellar Kingdom
@@ -1786,7 +1934,7 @@ footer{
       </div>
 
 
-      <div class="record-box">
+      <div class="record-box reveal reveal-delay-2">
 
         <h3>
           Overall Tracked Record
@@ -1817,18 +1965,15 @@ footer{
     </div>
 
 
-    <div class="record-statement">
+    <div class="record-statement reveal">
 
       <div class="big">
         12 WINS • 2 LOSSES
       </div>
 
       <p>
-
-        Every victory was earned.
-        Every defeat taught us something.
+        Every victory was earned. Every defeat taught us something.
         Every season has made 380 stronger.
-
       </p>
 
       <div class="crown">
@@ -1842,15 +1987,15 @@ footer{
 </section>
 
 
-<!-- =========================
-     TOP 10 POWER
-========================= -->
+<!-- =====================================================
+     TOP 10
+===================================================== -->
 
 <section id="power">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         THE POWERHOUSE
@@ -1861,195 +2006,90 @@ footer{
       </h2>
 
       <p>
-
         Strength is only one part of a great kingdom —
         but Server 380 is not short on it.
-
         Meet the current top 10 players by power.
-
       </p>
 
     </div>
 
 
-    <div class="power-table">
+    <div class="power-table reveal">
 
       <div class="power-header">
-
         <span>RANK</span>
         <span>PLAYER</span>
         <span>POWER</span>
-
       </div>
 
 
       <div class="power-row top-player">
-
-        <div class="power-rank">
-          01
-        </div>
-
-        <div class="power-player">
-          モRムC³⁸⁰
-        </div>
-
-        <div class="power-value">
-          201,385,427
-        </div>
-
+        <div class="power-rank">01</div>
+        <div class="power-player">モRムC³⁸⁰</div>
+        <div class="power-value">201,385,427</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          02
-        </div>
-
-        <div class="power-player">
-          殺戮之主
-        </div>
-
-        <div class="power-value">
-          168,459,055
-        </div>
-
+        <div class="power-rank">02</div>
+        <div class="power-player">殺戮之主</div>
+        <div class="power-value">168,459,055</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          03
-        </div>
-
-        <div class="power-player">
-          RҽԃD€ʋιʅ³⁸⁰
-        </div>
-
-        <div class="power-value">
-          149,715,918
-        </div>
-
+        <div class="power-rank">03</div>
+        <div class="power-player">RҽԃD€ʋιʅ³⁸⁰</div>
+        <div class="power-value">149,715,918</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          04
-        </div>
-
-        <div class="power-player">
-          Aɾƚҽɱιʂ³⁸⁰
-        </div>
-
-        <div class="power-value">
-          134,163,785
-        </div>
-
+        <div class="power-rank">04</div>
+        <div class="power-player">Aɾƚҽɱιʂ³⁸⁰</div>
+        <div class="power-value">134,163,785</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          05
-        </div>
-
-        <div class="power-player">
-          Samalops
-        </div>
-
-        <div class="power-value">
-          114,705,665
-        </div>
-
+        <div class="power-rank">05</div>
+        <div class="power-player">Samalops</div>
+        <div class="power-value">114,705,665</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          06
-        </div>
-
-        <div class="power-player">
-          DuceX³⁸⁰
-        </div>
-
-        <div class="power-value">
-          87,130,231
-        </div>
-
+        <div class="power-rank">06</div>
+        <div class="power-player">DuceX³⁸⁰</div>
+        <div class="power-value">87,130,231</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          07
-        </div>
-
-        <div class="power-player">
-          Lunlaa³⁸⁰
-        </div>
-
-        <div class="power-value">
-          85,466,491
-        </div>
-
+        <div class="power-rank">07</div>
+        <div class="power-player">Lunlaa³⁸⁰</div>
+        <div class="power-value">85,466,491</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          08
-        </div>
-
-        <div class="power-player">
-          Aysss
-        </div>
-
-        <div class="power-value">
-          81,543,794
-        </div>
-
+        <div class="power-rank">08</div>
+        <div class="power-player">Aysss</div>
+        <div class="power-value">81,543,794</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          09
-        </div>
-
-        <div class="power-player">
-          AngryIrish47
-        </div>
-
-        <div class="power-value">
-          75,228,996
-        </div>
-
+        <div class="power-rank">09</div>
+        <div class="power-player">AngryIrish47</div>
+        <div class="power-value">75,228,996</div>
       </div>
 
 
       <div class="power-row">
-
-        <div class="power-rank">
-          10
-        </div>
-
-        <div class="power-player">
-          nindža
-        </div>
-
-        <div class="power-value">
-          74,239,735
-        </div>
-
+        <div class="power-rank">10</div>
+        <div class="power-player">nindža</div>
+        <div class="power-value">74,239,735</div>
       </div>
 
     </div>
@@ -2057,17 +2097,17 @@ footer{
 
     <div class="power-summary">
 
-      <div>
+      <div class="reveal">
         <strong>10</strong>
         <span>TOP PLAYERS</span>
       </div>
 
-      <div>
+      <div class="reveal reveal-delay-1">
         <strong>1.17B+</strong>
         <span>COMBINED POWER</span>
       </div>
 
-      <div>
+      <div class="reveal reveal-delay-2">
         <strong>201M+</strong>
         <span>TOP PLAYER POWER</span>
       </div>
@@ -2076,9 +2116,7 @@ footer{
 
 
     <div class="power-note">
-
       POWER RANKINGS ARE SUBJECT TO CHANGE AS PLAYERS CONTINUE TO GROW.
-
     </div>
 
   </div>
@@ -2086,15 +2124,15 @@ footer{
 </section>
 
 
-<!-- =========================
-     SEASON HISTORY
-========================= -->
+<!-- =====================================================
+     SEASONS
+===================================================== -->
 
 <section id="seasons">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         THREE SEASONS
@@ -2105,10 +2143,8 @@ footer{
       </h2>
 
       <p>
-
         This is how Server 380 climbed from a strong contender
         to the #1 Stellar Kingdom.
-
       </p>
 
     </div>
@@ -2117,9 +2153,7 @@ footer{
     <div class="seasons">
 
 
-      <!-- SEASON 1 -->
-
-      <div class="season">
+      <div class="season reveal">
 
         <div class="season-header">
 
@@ -2165,9 +2199,7 @@ footer{
       </div>
 
 
-      <!-- SEASON 2 -->
-
-      <div class="season">
+      <div class="season reveal">
 
         <div class="season-header">
 
@@ -2213,9 +2245,7 @@ footer{
       </div>
 
 
-      <!-- SEASON 3 -->
-
-      <div class="season">
+      <div class="season reveal">
 
         <div class="season-header">
 
@@ -2263,20 +2293,17 @@ footer{
     </div>
 
 
-    <div class="record-statement">
+    <div class="record-statement reveal">
 
       <div class="big">
         #1 STELLAR KINGDOM
       </div>
 
       <p>
-
         Season 1: 2nd.
         Season 2: 3rd.
         Season 3: 1st.
-
         The climb is real, and we are not finished.
-
       </p>
 
       <div class="crown">
@@ -2290,15 +2317,15 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      RECRUITMENT
-========================= -->
+===================================================== -->
 
 <section id="requirements">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         WHO WE WANT
@@ -2309,10 +2336,8 @@ footer{
       </h2>
 
       <p>
-
         Power matters, but attitude, activity and commitment
         matter just as much.
-
       </p>
 
     </div>
@@ -2320,63 +2345,45 @@ footer{
 
     <div class="cards">
 
-      <div class="card">
-
-        <div class="card-number">
-          01
-        </div>
+      <div class="card reveal">
+        <div class="card-number">01</div>
 
         <h3>
           Active Players
         </h3>
 
         <p>
-
           Players who participate consistently, communicate
           and contribute to kingdom objectives.
-
         </p>
-
       </div>
 
 
-      <div class="card">
-
-        <div class="card-number">
-          02
-        </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-number">02</div>
 
         <h3>
           Event Players
         </h3>
 
         <p>
-
           Players willing to show up for major kingdom events
           and follow coordinated strategies.
-
         </p>
-
       </div>
 
 
-      <div class="card">
-
-        <div class="card-number">
-          03
-        </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-number">03</div>
 
         <h3>
           Team Players
         </h3>
 
         <p>
-
           Strong individuals are welcome, but when the fight
           matters, Server 380 comes first.
-
         </p>
-
       </div>
 
     </div>
@@ -2386,30 +2393,27 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      RECRUITMENT CTA
-========================= -->
+===================================================== -->
 
 <section>
 
   <div class="container">
 
-    <div class="recruit-box">
+    <div class="recruit-box reveal">
 
       <h2>
         Migration Isn't Open Yet.
       </h2>
 
       <p>
-
         That doesn't mean you have to wait.
 
         Submit your application now and get your name in front
         of the EMPIRE 380 recruitment team before migration opens.
-
         Early applications give us time to review your account,
         experience and fit for the kingdom.
-
       </p>
 
 
@@ -2457,15 +2461,15 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      APPLICATION
-========================= -->
+===================================================== -->
 
 <section id="apply">
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-title reveal">
 
       <div class="small">
         MIGRATION PRE-REGISTRATION
@@ -2476,19 +2480,16 @@ footer{
       </h2>
 
       <p>
-
         Migration is not currently open for Server 380.
-
         We are accepting applications in advance so our
         recruitment team can review players and build our
         roster before migration opens.
-
       </p>
 
     </div>
 
 
-    <div class="form-wrap">
+    <div class="form-wrap reveal">
 
       <form id="applicationForm">
 
@@ -2733,10 +2734,8 @@ footer{
         <div class="form-note">
 
           By submitting this application, you confirm that the
-          information provided is accurate.
-
-          Recruitment officers may contact you through Discord
-          regarding your application.
+          information provided is accurate. Recruitment officers
+          may contact you through Discord regarding your application.
 
           <br><br>
 
@@ -2744,9 +2743,8 @@ footer{
             Please note:
           </strong>
 
-          Migration is not currently open.
-
-          This application is for pre-registration and recruitment review.
+          Migration is not currently open. This application is
+          for pre-registration and recruitment review.
 
         </div>
 
@@ -2771,26 +2769,24 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      DISCORD
-========================= -->
+===================================================== -->
 
 <section class="discord-section">
 
   <div class="container">
 
-    <div class="discord-box">
+    <div class="discord-box reveal">
 
       <h2>
         Want To Know More?
       </h2>
 
       <p>
-
         Join the EMPIRE 380 Discord, speak with our members,
         follow recruitment updates and get ready for the next
         chapter of Server 380.
-
       </p>
 
       <a
@@ -2809,9 +2805,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -2838,11 +2834,15 @@ footer{
 </footer>
 
 
-<!-- =========================
-     GOOGLE APPS SCRIPT
-========================= -->
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
+
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwZIPDm_fHZphkWuovSTkaivnNEwmg8MrzDR6ornKRIdTSbVC1mWTbK0WXDywKkgg6p/exec";
@@ -2987,9 +2987,9 @@ form.addEventListener(
 );
 
 
-/* =========================
-   SMOOTH SCROLL
-========================= */
+/* =====================================================
+   SMOOTH ANCHOR NAVIGATION
+===================================================== */
 
 document
   .querySelectorAll(
@@ -3012,7 +3012,8 @@ document
           event.preventDefault();
 
           target.scrollIntoView({
-            behavior:"smooth"
+            behavior:"smooth",
+            block:"start"
           });
 
         }
@@ -3021,6 +3022,72 @@ document
     );
 
   });
+
+
+/* =====================================================
+   CINEMATIC SCROLL REVEALS
+===================================================== */
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(
+        entry=>{
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(
+    element=>{
+      observer.observe(element);
+    }
+  );
+
+
+/* =====================================================
+   SUBTLE MOUSE LIGHTING
+===================================================== */
+
+document.addEventListener(
+  "mousemove",
+  function(event){
+
+    const x =
+      (event.clientX / window.innerWidth) * 100;
+
+    const y =
+      (event.clientY / window.innerHeight) * 100;
+
+    document.body.style.background =
+      `
+      radial-gradient(
+        circle at ${x}% ${y}%,
+        rgba(216,168,78,.025),
+        transparent 28%
+      ),
+      #030507
+      `;
+
+  }
+);
 
 </script>
 
