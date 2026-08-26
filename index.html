@@ -1,344 +1,1255 @@
-/**
- * E380 MIGRATION BACKEND
- * Google Sheets + Email + Discord
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const SHEET_NAME = 'Applications';
-const NOTIFY_EMAIL = 'hansa1sm@gmail.com';
+<title>EMPIRE 380 | Migration Recruitment</title>
 
-// IMPORTANT: Regenerate your Discord webhook because the previous one
-// was exposed. Put the NEW webhook URL here.
-const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1542023501697781891/m3NKq9T51gz8kXcqnB4Qo9RRh4P5gz-Z2wCTh3mgL1UE1Wfi595yVehV8tPFu7MRWUfc';
+<meta name="description"
+content="EMPIRE 380 — Server 380 migration recruitment. Apply to join a competitive, organized and active kingdom.">
+
+<style>
+:root{
+  --bg:#05070b;
+  --bg2:#090d14;
+  --panel:#0d131d;
+  --panel2:#111925;
+  --gold:#d8a84e;
+  --gold2:#f1cc76;
+  --white:#f5f7fa;
+  --muted:#8f9bab;
+  --line:rgba(216,168,78,.22);
+  --green:#38d996;
+  --red:#ff5c6c;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(216,168,78,.14),transparent 35%),
+    linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--white);
+  min-height:100vh;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1150px,92%);
+  margin:auto;
+}
+
+/* NAV */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(16px);
+  background:rgba(5,7,11,.86);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold2);
+  font-size:14px;
+  box-shadow:0 0 22px rgba(216,168,78,.18);
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  color:var(--gold2);
+}
+
+.nav-button{
+  padding:11px 18px;
+  border:1px solid var(--gold);
+  border-radius:8px;
+  color:var(--gold2);
+  font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+  min-height:720px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  right:-200px;
+  top:50px;
+  border-radius:50%;
+  background:rgba(216,168,78,.08);
+  filter:blur(20px);
+}
+
+.hero-content{
+  max-width:850px;
+  padding:90px 0;
+  position:relative;
+}
+
+.badge{
+  display:inline-block;
+  border:1px solid var(--line);
+  background:rgba(216,168,78,.07);
+  color:var(--gold2);
+  padding:9px 15px;
+  border-radius:100px;
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:clamp(48px,8vw,92px);
+  line-height:.92;
+  letter-spacing:-4px;
+  margin-bottom:28px;
+}
+
+.hero h1 span{
+  color:var(--gold2);
+}
+
+.hero p{
+  max-width:680px;
+  color:var(--muted);
+  font-size:19px;
+  line-height:1.7;
+  margin-bottom:34px;
+}
+
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 24px;
+  border-radius:9px;
+  font-weight:800;
+  cursor:pointer;
+  border:0;
+  transition:.2s;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#090909;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(216,168,78,.2);
+}
+
+.btn-secondary{
+  border:1px solid var(--line);
+  color:var(--white);
+  background:rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover{
+  border-color:var(--gold);
+}
+
+/* STATS */
+
+.stats{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.015);
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+  padding:30px 20px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+  border-right:0;
+}
+
+.stat strong{
+  display:block;
+  color:var(--gold2);
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* SECTION */
+
+section{
+  padding:100px 0;
+}
+
+.section-title{
+  margin-bottom:45px;
+}
+
+.section-title .small{
+  color:var(--gold2);
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.section-title h2{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.section-title p{
+  color:var(--muted);
+  max-width:700px;
+  line-height:1.7;
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.card-number{
+  color:var(--gold2);
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+.card h3{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* RECORD */
+
+.record{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.record-box{
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:30px;
+  border-radius:16px;
+}
+
+.record-box h3{
+  color:var(--gold2);
+  margin-bottom:20px;
+}
+
+.record-line{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.record-line:last-child{
+  border-bottom:0;
+}
+
+.record-line span:first-child{
+  color:var(--muted);
+}
+
+/* FORM */
+
+.form-wrap{
+  max-width:850px;
+  margin:auto;
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:40px;
+  box-shadow:var(--shadow);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  display:block;
+  color:#d9dee6;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  background:#080c12;
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--white);
+  border-radius:8px;
+  padding:14px;
+  font-size:14px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(216,168,78,.08);
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+.form-note{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  margin:18px 0;
+}
+
+.submit{
+  width:100%;
+  font-size:15px;
+}
+
+#status{
+  display:none;
+  margin-top:20px;
+  padding:15px;
+  border-radius:8px;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.status-success{
+  display:block !important;
+  background:rgba(56,217,150,.10);
+  border:1px solid rgba(56,217,150,.3);
+  color:var(--green);
+}
+
+.status-error{
+  display:block !important;
+  background:rgba(255,92,108,.10);
+  border:1px solid rgba(255,92,108,.3);
+  color:var(--red);
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+.footer-brand{
+  color:var(--gold2);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    min-height:600px;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat:nth-child(2){
+    border-right:0;
+  }
+
+  .cards,
+  .record{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .form-wrap{
+    padding:25px;
+  }
+
+  section{
+    padding:70px 0;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+@media(max-width:480px){
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .stat:last-child{
+    border-bottom:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="container nav-inner">
+
+    <div class="logo">
+      <div class="logo-mark">380</div>
+      <div>EMPIRE 380</div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#record">Record</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#apply">Apply</a>
+    </div>
+
+    <a href="#apply" class="nav-button">APPLY</a>
+
+  </div>
+</nav>
 
 
-function doPost(e) {
+<!-- HERO -->
 
-  try {
+<header class="hero">
 
-    const d = JSON.parse(
-      e.postData && e.postData.contents
-        ? e.postData.contents
-        : '{}'
-    );
+  <div class="container">
 
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    <div class="hero-content">
 
-    const sh =
-      ss.getSheetByName(SHEET_NAME) ||
-      ss.insertSheet(SHEET_NAME);
+      <div class="badge">
+        SERVER 380 • MIGRATION RECRUITMENT
+      </div>
+
+      <h1>
+        FEAR THE<br>
+        <span>BANNER.</span>
+      </h1>
+
+      <p>
+        EMPIRE 380 is building for the next chapter.
+        We are looking for active, competitive and committed
+        players who want more than just another alliance.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#apply" class="btn btn-primary">
+          APPLY FOR MIGRATION
+        </a>
+
+        <a href="#about" class="btn btn-secondary">
+          DISCOVER E380
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
 
 
-    // Make sure the sheet has the correct headers
-    if (sh.getLastRow() === 0) {
+<!-- STATS -->
 
-      sh.appendRow([
-        'Timestamp',
-        'Player Name',
-        'Server',
-        'Power',
-        'Citadel',
-        'VIP',
-        'Main March',
-        'Secondary March',
-        'Discord',
-        'Current Alliance',
-        'Migration Reason',
-        'Activity Level',
-        'Event Times',
-        'Additional Information',
-        'Status',
-        'Officer',
-        'Notes'
-      ]);
+<div class="stats">
 
+  <div class="container stats-grid">
+
+    <div class="stat">
+      <strong>#1</strong>
+      <span>Current Stellar Kingdom</span>
+    </div>
+
+    <div class="stat">
+      <strong>81.8%</strong>
+      <span>Direct Match Win Rate</span>
+    </div>
+
+    <div class="stat">
+      <strong>9–2</strong>
+      <span>Recorded Direct Record</span>
+    </div>
+
+    <div class="stat">
+      <strong>380</strong>
+      <span>Kingdom</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="small">THE KINGDOM</div>
+
+      <h2>More Than An Alliance.</h2>
+
+      <p>
+        EMPIRE 380 is built around organization, activity,
+        competitive events and long-term growth. We want
+        players who contribute to the kingdom rather than
+        simply occupy a roster spot.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Competitive</h3>
+        <p>
+          We play to win. Stellar Kingdom, Desert Dominion,
+          Behemoth and other major events are treated seriously.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>Organized</h3>
+        <p>
+          Clear event coordination, communication and
+          structured leadership keep the kingdom moving together.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Active</h3>
+        <p>
+          Activity matters. We expect players to participate,
+          communicate and contribute to kingdom objectives.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RECORD -->
+
+<section id="record">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="small">PROVEN RESULTS</div>
+
+      <h2>The Record.</h2>
+
+      <p>
+        Server 380 has already competed against some of the
+        strongest kingdoms in the game.
+      </p>
+
+    </div>
+
+
+    <div class="record">
+
+      <div class="record-box">
+
+        <h3>Stellar Kingdom</h3>
+
+        <div class="record-line">
+          <span>Season 1</span>
+          <strong>2nd Place</strong>
+        </div>
+
+        <div class="record-line">
+          <span>Season 2</span>
+          <strong>3rd Place</strong>
+        </div>
+
+        <div class="record-line">
+          <span>Season 3</span>
+          <strong>#1 CURRENTLY</strong>
+        </div>
+
+      </div>
+
+
+      <div class="record-box">
+
+        <h3>Direct Competition</h3>
+
+        <div class="record-line">
+          <span>Victories</span>
+          <strong>9</strong>
+        </div>
+
+        <div class="record-line">
+          <span>Losses</span>
+          <strong>2</strong>
+        </div>
+
+        <div class="record-line">
+          <span>Win Rate</span>
+          <strong>81.8%</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REQUIREMENTS -->
+
+<section id="requirements">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="small">WHO WE WANT</div>
+
+      <h2>Bring The Right Mindset.</h2>
+
+      <p>
+        Power matters, but attitude and activity matter just as much.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Active Players</h3>
+        <p>
+          Players who participate consistently and communicate
+          with the kingdom.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>Event Players</h3>
+        <p>
+          Players willing to show up for major kingdom events
+          and follow coordinated strategies.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Team Players</h3>
+        <p>
+          Strong individuals are welcome, but the kingdom
+          comes first when it matters.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- APPLICATION -->
+
+<section id="apply">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="small">MIGRATION APPLICATION</div>
+
+      <h2>Apply To EMPIRE 380.</h2>
+
+      <p>
+        Complete the application below. Your information will be
+        reviewed by the recruitment team.
+      </p>
+
+    </div>
+
+
+    <div class="form-wrap">
+
+      <form id="applicationForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="playerName">
+              In-Game Name *
+            </label>
+
+            <input
+              type="text"
+              id="playerName"
+              name="playerName"
+              placeholder="Your in-game name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="discord">
+              Discord Username *
+            </label>
+
+            <input
+              type="text"
+              id="discord"
+              name="discord"
+              placeholder="username"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="currentServer">
+              Current Server *
+            </label>
+
+            <input
+              type="text"
+              id="currentServer"
+              name="currentServer"
+              placeholder="Example: 385"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="power">
+              Current Power *
+            </label>
+
+            <input
+              type="number"
+              id="power"
+              name="power"
+              placeholder="Example: 75000000"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="citadel">
+              Citadel Level
+            </label>
+
+            <input
+              type="number"
+              id="citadel"
+              name="citadel"
+              placeholder="Example: 36"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="merits">
+              Merits
+            </label>
+
+            <input
+              type="number"
+              id="merits"
+              name="merits"
+              placeholder="Example: 2300000"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="mainTroop">
+              Main Troop Type
+            </label>
+
+            <select id="mainTroop" name="mainTroop">
+
+              <option value="">Select</option>
+              <option value="Infantry">Infantry</option>
+              <option value="Pike">Pike</option>
+              <option value="Archer">Archer</option>
+              <option value="Cavalry">Cavalry</option>
+              <option value="Sword">Sword</option>
+              <option value="Mixed">Mixed</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="troopTier">
+              Highest Troop Tier
+            </label>
+
+            <select id="troopTier" name="troopTier">
+
+              <option value="">Select</option>
+              <option value="T6">T6</option>
+              <option value="T7">T7</option>
+              <option value="T8">T8</option>
+              <option value="T9">T9</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="vip">
+              VIP Level
+            </label>
+
+            <input
+              type="number"
+              id="vip"
+              name="vip"
+              placeholder="Example: 17"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="migration">
+              Migration Availability
+            </label>
+
+            <select id="migration" name="migration">
+
+              <option value="">Select</option>
+              <option value="Ready">Ready to migrate</option>
+              <option value="Preparing">Preparing</option>
+              <option value="Need information">Need information</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label for="previousServer">
+              Previous Server / History
+            </label>
+
+            <input
+              type="text"
+              id="previousServer"
+              name="previousServer"
+              placeholder="Previous kingdoms or migration history"
+            >
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label for="events">
+              Event Experience
+            </label>
+
+            <textarea
+              id="events"
+              name="events"
+              placeholder="Tell us about your experience with Stellar Kingdom, Desert Dominion, Behemoth, MEE, etc."
+            ></textarea>
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label for="aboutPlayer">
+              Tell Us About Yourself
+            </label>
+
+            <textarea
+              id="aboutPlayer"
+              name="aboutPlayer"
+              placeholder="Why do you want to join EMPIRE 380?"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-note">
+          By submitting this application, you confirm that the information
+          provided is accurate. Recruitment officers may contact you through
+          Discord regarding your application.
+        </div>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary submit"
+          id="submitButton"
+        >
+          SUBMIT APPLICATION
+        </button>
+
+
+        <div id="status"></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+      <div class="footer-brand">EMPIRE 380</div>
+      <div>Fear the Banner. Respect the Crown.</div>
+    </div>
+
+    <div>
+      Server 380 • Migration Recruitment
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/*
+=========================================================
+EMPIRE 380 GOOGLE APPS SCRIPT CONNECTION
+=========================================================
+*/
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwZIPDm_fHZphkWuovSTkaivnNEwmg8MrzDR6ornKRIdTSbVC1mWTbK0WXDywKkgg6p/exec";
+
+
+const form = document.getElementById("applicationForm");
+const button = document.getElementById("submitButton");
+const statusBox = document.getElementById("status");
+
+
+form.addEventListener("submit", async function(event){
+
+  event.preventDefault();
+
+  button.disabled = true;
+  button.textContent = "SUBMITTING...";
+
+  statusBox.className = "";
+  statusBox.style.display = "none";
+
+  const formData = new FormData(form);
+
+  const data = {};
+
+  formData.forEach((value,key)=>{
+    data[key] = value;
+  });
+
+  data.timestamp = new Date().toISOString();
+
+  try{
+
+    const response = await fetch(API_URL,{
+
+      method:"POST",
+
+      headers:{
+        "Content-Type":"text/plain;charset=utf-8"
+      },
+
+      body:JSON.stringify(data)
+
+    });
+
+
+    let result = null;
+
+    try{
+      result = await response.json();
+    }catch(e){
+      result = null;
     }
 
 
-    // Support different field names from the website
-    const name =
-      d.name ||
-      d.playerName ||
-      '';
+    if(!response.ok){
 
-    const server =
-      d.server ||
-      '';
-
-    const power =
-      d.power ||
-      '';
-
-    const citadel =
-      d.citadel ||
-      '';
-
-    const vip =
-      d.vip ||
-      '';
-
-    const mainMarch =
-      d.mainMarch ||
-      d.troop ||
-      '';
-
-    const secondaryMarch =
-      d.secondaryMarch ||
-      '';
-
-    const discord =
-      d.discord ||
-      '';
-
-    const alliance =
-      d.alliance ||
-      '';
-
-    const reason =
-      d.reason ||
-      '';
-
-    const activityLevel =
-      d.activityLevel ||
-      '';
-
-    const eventTimes =
-      d.eventTimes ||
-      d.timezone ||
-      '';
-
-    const extra =
-      d.extra ||
-      d.additionalInformation ||
-      '';
-
-    const officer =
-      d.officer ||
-      '';
-
-    const notes =
-      d.notes ||
-      '';
-
-
-    // Add application to Google Sheet
-    sh.appendRow([
-
-      new Date(),
-
-      name,
-
-      server,
-
-      power,
-
-      citadel,
-
-      vip,
-
-      mainMarch,
-
-      secondaryMarch,
-
-      discord,
-
-      alliance,
-
-      reason,
-
-      activityLevel,
-
-      eventTimes,
-
-      extra,
-
-      'Pending',
-
-      officer,
-
-      notes
-
-    ]);
-
-
-    // Email notification
-    const subject =
-      'E380 Migration Application — ' +
-      (name || 'New Applicant');
-
-
-    const body =
-
-      'NEW E380 MIGRATION APPLICATION\n\n' +
-
-      'Player Name: ' + (name || 'Not provided') + '\n' +
-
-      'Server: ' + (server || 'Not provided') + '\n' +
-
-      'Power: ' + (power || 'Not provided') + '\n' +
-
-      'Citadel: ' + (citadel || 'Not provided') + '\n' +
-
-      'VIP: ' + (vip || 'Not provided') + '\n' +
-
-      'Main March: ' + (mainMarch || 'Not provided') + '\n' +
-
-      'Secondary March: ' + (secondaryMarch || 'Not provided') + '\n' +
-
-      'Discord: ' + (discord || 'Not provided') + '\n' +
-
-      'Current Alliance: ' + (alliance || 'Not provided') + '\n' +
-
-      'Activity Level: ' + (activityLevel || 'Not provided') + '\n' +
-
-      'Event Times: ' + (eventTimes || 'Not provided') + '\n\n' +
-
-      'Migration Reason:\n' +
-
-      (reason || 'Not provided') +
-
-      '\n\nAdditional Information:\n' +
-
-      (extra || 'None provided');
-
-
-    if (
-      NOTIFY_EMAIL &&
-      NOTIFY_EMAIL.indexOf('@') > -1
-    ) {
-
-      MailApp.sendEmail(
-        NOTIFY_EMAIL,
-        subject,
-        body
+      throw new Error(
+        "The server returned an error."
       );
 
     }
 
 
-    // Discord notification
-    if (
-      DISCORD_WEBHOOK &&
-      DISCORD_WEBHOOK.indexOf('PASTE_NEW') === -1
-    ) {
+    if(result && result.success === false){
 
-      const payload = {
-
-        content:
-
-          '**NEW E380 MIGRATION APPLICATION**\n\n' +
-
-          '**Player:** ' +
-          (name || 'Unknown') + '\n' +
-
-          '**Server:** ' +
-          (server || '?') + '\n' +
-
-          '**Power:** ' +
-          (power || '?') + '\n' +
-
-          '**Citadel:** C' +
-          (citadel || '?') + '\n' +
-
-          '**VIP:** ' +
-          (vip || '?') + '\n' +
-
-          '**Main March:** ' +
-          (mainMarch || '?') + '\n' +
-
-          '**Secondary March:** ' +
-          (secondaryMarch || '?') + '\n' +
-
-          '**Discord:** ' +
-          (discord || 'Not provided') + '\n' +
-
-          '**Alliance:** ' +
-          (alliance || 'Not provided') +
-
-          '\n\nApplication received by the E380 Migration Portal.'
-
-      };
-
-
-      UrlFetchApp.fetch(
-        DISCORD_WEBHOOK,
-        {
-          method: 'post',
-          contentType: 'application/json',
-          payload: JSON.stringify(payload)
-        }
+      throw new Error(
+        result.message || "Application was not accepted."
       );
 
     }
 
 
-    return ContentService
-      .createTextOutput(
-        JSON.stringify({
-          ok: true
-        })
-      )
-      .setMimeType(
-        ContentService.MimeType.JSON
-      );
+    statusBox.className = "status-success";
+
+    statusBox.innerHTML =
+      "<strong>APPLICATION RECEIVED</strong><br><br>" +
+      "Your EMPIRE 380 migration application has been submitted successfully. " +
+      "Our recruitment team will review your information.";
+
+    form.reset();
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(error);
 
-    return ContentService
-      .createTextOutput(
-        JSON.stringify({
-          ok: false,
-          error: error.toString()
-        })
-      )
-      .setMimeType(
-        ContentService.MimeType.JSON
-      );
+    statusBox.className = "status-error";
+
+    statusBox.innerHTML =
+      "<strong>SUBMISSION ERROR</strong><br><br>" +
+      "We could not submit your application right now. " +
+      "Please check your connection and try again.";
 
   }
 
-}
+
+  button.disabled = false;
+  button.textContent = "SUBMIT APPLICATION";
+
+});
 
 
-/**
- * Run this ONCE manually.
- */
-function setup() {
+/*
+=========================================================
+SMOOTH SCROLL
+=========================================================
+*/
 
-  const ss =
-    SpreadsheetApp.getActiveSpreadsheet();
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
 
-  const sh =
-    ss.getSheetByName(SHEET_NAME) ||
-    ss.insertSheet(SHEET_NAME);
+  link.addEventListener("click",function(event){
 
+    const target = document.querySelector(
+      this.getAttribute("href")
+    );
 
-  if (sh.getLastRow() === 0) {
+    if(target){
 
-    sh.appendRow([
+      event.preventDefault();
 
-      'Timestamp',
-      'Player Name',
-      'Server',
-      'Power',
-      'Citadel',
-      'VIP',
-      'Main March',
-      'Secondary March',
-      'Discord',
-      'Current Alliance',
-      'Migration Reason',
-      'Activity Level',
-      'Event Times',
-      'Additional Information',
-      'Status',
-      'Officer',
-      'Notes'
+      target.scrollIntoView({
+        behavior:"smooth"
+      });
 
-    ]);
+    }
 
-  }
+  });
 
-}
+});
+
+</script>
+
+</body>
+</html>
