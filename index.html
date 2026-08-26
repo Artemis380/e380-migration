@@ -1,0 +1,344 @@
+/**
+ * E380 MIGRATION BACKEND
+ * Google Sheets + Email + Discord
+ */
+
+const SHEET_NAME = 'Applications';
+const NOTIFY_EMAIL = 'hansa1sm@gmail.com';
+
+// IMPORTANT: Regenerate your Discord webhook because the previous one
+// was exposed. Put the NEW webhook URL here.
+const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1542023501697781891/m3NKq9T51gz8kXcqnB4Qo9RRh4P5gz-Z2wCTh3mgL1UE1Wfi595yVehV8tPFu7MRWUfc';
+
+
+function doPost(e) {
+
+  try {
+
+    const d = JSON.parse(
+      e.postData && e.postData.contents
+        ? e.postData.contents
+        : '{}'
+    );
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    const sh =
+      ss.getSheetByName(SHEET_NAME) ||
+      ss.insertSheet(SHEET_NAME);
+
+
+    // Make sure the sheet has the correct headers
+    if (sh.getLastRow() === 0) {
+
+      sh.appendRow([
+        'Timestamp',
+        'Player Name',
+        'Server',
+        'Power',
+        'Citadel',
+        'VIP',
+        'Main March',
+        'Secondary March',
+        'Discord',
+        'Current Alliance',
+        'Migration Reason',
+        'Activity Level',
+        'Event Times',
+        'Additional Information',
+        'Status',
+        'Officer',
+        'Notes'
+      ]);
+
+    }
+
+
+    // Support different field names from the website
+    const name =
+      d.name ||
+      d.playerName ||
+      '';
+
+    const server =
+      d.server ||
+      '';
+
+    const power =
+      d.power ||
+      '';
+
+    const citadel =
+      d.citadel ||
+      '';
+
+    const vip =
+      d.vip ||
+      '';
+
+    const mainMarch =
+      d.mainMarch ||
+      d.troop ||
+      '';
+
+    const secondaryMarch =
+      d.secondaryMarch ||
+      '';
+
+    const discord =
+      d.discord ||
+      '';
+
+    const alliance =
+      d.alliance ||
+      '';
+
+    const reason =
+      d.reason ||
+      '';
+
+    const activityLevel =
+      d.activityLevel ||
+      '';
+
+    const eventTimes =
+      d.eventTimes ||
+      d.timezone ||
+      '';
+
+    const extra =
+      d.extra ||
+      d.additionalInformation ||
+      '';
+
+    const officer =
+      d.officer ||
+      '';
+
+    const notes =
+      d.notes ||
+      '';
+
+
+    // Add application to Google Sheet
+    sh.appendRow([
+
+      new Date(),
+
+      name,
+
+      server,
+
+      power,
+
+      citadel,
+
+      vip,
+
+      mainMarch,
+
+      secondaryMarch,
+
+      discord,
+
+      alliance,
+
+      reason,
+
+      activityLevel,
+
+      eventTimes,
+
+      extra,
+
+      'Pending',
+
+      officer,
+
+      notes
+
+    ]);
+
+
+    // Email notification
+    const subject =
+      'E380 Migration Application — ' +
+      (name || 'New Applicant');
+
+
+    const body =
+
+      'NEW E380 MIGRATION APPLICATION\n\n' +
+
+      'Player Name: ' + (name || 'Not provided') + '\n' +
+
+      'Server: ' + (server || 'Not provided') + '\n' +
+
+      'Power: ' + (power || 'Not provided') + '\n' +
+
+      'Citadel: ' + (citadel || 'Not provided') + '\n' +
+
+      'VIP: ' + (vip || 'Not provided') + '\n' +
+
+      'Main March: ' + (mainMarch || 'Not provided') + '\n' +
+
+      'Secondary March: ' + (secondaryMarch || 'Not provided') + '\n' +
+
+      'Discord: ' + (discord || 'Not provided') + '\n' +
+
+      'Current Alliance: ' + (alliance || 'Not provided') + '\n' +
+
+      'Activity Level: ' + (activityLevel || 'Not provided') + '\n' +
+
+      'Event Times: ' + (eventTimes || 'Not provided') + '\n\n' +
+
+      'Migration Reason:\n' +
+
+      (reason || 'Not provided') +
+
+      '\n\nAdditional Information:\n' +
+
+      (extra || 'None provided');
+
+
+    if (
+      NOTIFY_EMAIL &&
+      NOTIFY_EMAIL.indexOf('@') > -1
+    ) {
+
+      MailApp.sendEmail(
+        NOTIFY_EMAIL,
+        subject,
+        body
+      );
+
+    }
+
+
+    // Discord notification
+    if (
+      DISCORD_WEBHOOK &&
+      DISCORD_WEBHOOK.indexOf('PASTE_NEW') === -1
+    ) {
+
+      const payload = {
+
+        content:
+
+          '**NEW E380 MIGRATION APPLICATION**\n\n' +
+
+          '**Player:** ' +
+          (name || 'Unknown') + '\n' +
+
+          '**Server:** ' +
+          (server || '?') + '\n' +
+
+          '**Power:** ' +
+          (power || '?') + '\n' +
+
+          '**Citadel:** C' +
+          (citadel || '?') + '\n' +
+
+          '**VIP:** ' +
+          (vip || '?') + '\n' +
+
+          '**Main March:** ' +
+          (mainMarch || '?') + '\n' +
+
+          '**Secondary March:** ' +
+          (secondaryMarch || '?') + '\n' +
+
+          '**Discord:** ' +
+          (discord || 'Not provided') + '\n' +
+
+          '**Alliance:** ' +
+          (alliance || 'Not provided') +
+
+          '\n\nApplication received by the E380 Migration Portal.'
+
+      };
+
+
+      UrlFetchApp.fetch(
+        DISCORD_WEBHOOK,
+        {
+          method: 'post',
+          contentType: 'application/json',
+          payload: JSON.stringify(payload)
+        }
+      );
+
+    }
+
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+          ok: true
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+          ok: false,
+          error: error.toString()
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+  }
+
+}
+
+
+/**
+ * Run this ONCE manually.
+ */
+function setup() {
+
+  const ss =
+    SpreadsheetApp.getActiveSpreadsheet();
+
+  const sh =
+    ss.getSheetByName(SHEET_NAME) ||
+    ss.insertSheet(SHEET_NAME);
+
+
+  if (sh.getLastRow() === 0) {
+
+    sh.appendRow([
+
+      'Timestamp',
+      'Player Name',
+      'Server',
+      'Power',
+      'Citadel',
+      'VIP',
+      'Main March',
+      'Secondary March',
+      'Discord',
+      'Current Alliance',
+      'Migration Reason',
+      'Activity Level',
+      'Event Times',
+      'Additional Information',
+      'Status',
+      'Officer',
+      'Notes'
+
+    ]);
+
+  }
+
+}
