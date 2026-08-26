@@ -4,26 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EMPIRE 380 | Migration Command</title>
+<title>EMPIRE 380 | Migration Pre-Registration</title>
 
 <meta name="description"
 content="EMPIRE 380 — Server 380 migration pre-registration. Three seasons. A proven record. Currently #1 Stellar Kingdom.">
 
 <style>
 :root{
-  --bg:#030509;
-  --bg2:#070b12;
+  --bg:#030507;
+  --bg2:#070a10;
   --panel:rgba(12,17,27,.82);
-  --panel2:rgba(17,24,37,.82);
+  --panel2:rgba(18,25,38,.72);
   --gold:#d8a84e;
-  --gold2:#f4d27e;
-  --gold3:#fff0b5;
-  --white:#f5f7fa;
-  --muted:#8994a5;
+  --gold2:#f5d27b;
+  --gold3:#fff0bd;
+  --white:#f7f8fb;
+  --muted:#8f99aa;
+  --line:rgba(216,168,78,.20);
   --green:#38d996;
   --red:#ff5c6c;
-  --blue:#5865f2;
-  --line:rgba(216,168,78,.22);
+  --discord:#5865f2;
   --shadow:0 25px 80px rgba(0,0,0,.55);
 }
 
@@ -35,69 +35,91 @@ content="EMPIRE 380 — Server 380 migration pre-registration. Three seasons. A 
 
 html{
   scroll-behavior:smooth;
-  scroll-snap-type:y mandatory;
-  overflow-y:auto;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#030509;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(216,168,78,.13),transparent 32%),
+    radial-gradient(circle at 0% 50%,rgba(216,168,78,.035),transparent 25%),
+    radial-gradient(circle at 100% 80%,rgba(88,101,242,.035),transparent 25%),
+    linear-gradient(180deg,#030507,#080b11 50%,#030507);
   color:var(--white);
+  min-height:100vh;
   overflow-x:hidden;
 }
 
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
 /* =====================================================
-   AMBIENT BACKGROUND
+   AMBIENT CANVAS
 ===================================================== */
 
 #ambient{
   position:fixed;
   inset:0;
+  z-index:-1;
   pointer-events:none;
-  overflow:hidden;
-  z-index:0;
 }
 
-.ambient-glow{
+.ambient-orb{
   position:absolute;
-  border-radius:50%;
-  filter:blur(80px);
-  opacity:.16;
-  animation:drift 14s ease-in-out infinite alternate;
-}
-
-.glow-one{
-  width:500px;
-  height:500px;
-  background:#d8a84e;
-  top:-250px;
-  left:15%;
-}
-
-.glow-two{
   width:450px;
   height:450px;
-  background:#8b5cf6;
-  right:-250px;
-  top:30%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(216,168,78,.09),transparent 68%);
+  filter:blur(20px);
+  animation:orbFloat 14s ease-in-out infinite alternate;
+}
+
+.orb1{
+  top:-180px;
+  left:-120px;
+}
+
+.orb2{
+  right:-180px;
+  top:25%;
   animation-delay:-5s;
 }
 
-.glow-three{
-  width:350px;
-  height:350px;
-  background:#d8a84e;
-  left:-200px;
-  bottom:5%;
+.orb3{
+  bottom:-220px;
+  left:35%;
   animation-delay:-9s;
 }
 
-@keyframes drift{
+@keyframes orbFloat{
   from{
-    transform:translate(0,0) scale(1);
+    transform:translate3d(-25px,-15px,0) scale(.95);
   }
   to{
-    transform:translate(80px,50px) scale(1.25);
+    transform:translate3d(35px,25px,0) scale(1.08);
   }
 }
 
@@ -117,17 +139,23 @@ nav{
   top:0;
   left:0;
   right:0;
-  height:72px;
   z-index:100;
-  background:rgba(3,5,9,.72);
+  height:74px;
+  background:rgba(3,5,7,.70);
   backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(216,168,78,.16);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(216,168,78,.12);
+  transition:.3s;
+}
+
+nav.scrolled{
+  background:rgba(3,5,7,.94);
+  border-bottom-color:var(--line);
+  box-shadow:0 10px 40px rgba(0,0,0,.35);
 }
 
 .nav-inner{
-  width:min(1200px,92%);
   height:100%;
-  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -139,40 +167,62 @@ nav{
   gap:12px;
   font-weight:900;
   letter-spacing:2px;
+  font-size:14px;
 }
 
 .logo-mark{
-  width:42px;
-  height:42px;
+  width:43px;
+  height:43px;
   border:1px solid var(--gold);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:11px;
   color:var(--gold2);
+  font-size:11px;
+  position:relative;
   box-shadow:
-    0 0 20px rgba(216,168,78,.18),
-    inset 0 0 15px rgba(216,168,78,.08);
-  animation:logoPulse 3s ease-in-out infinite;
+    0 0 20px rgba(216,168,78,.15),
+    inset 0 0 15px rgba(216,168,78,.05);
 }
 
-@keyframes logoPulse{
-  0%,100%{box-shadow:0 0 20px rgba(216,168,78,.18)}
-  50%{box-shadow:0 0 35px rgba(216,168,78,.42)}
+.logo-mark::before,
+.logo-mark::after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(216,168,78,.3);
+  border-radius:50%;
+}
+
+.logo-mark::before{
+  inset:5px;
+}
+
+.logo-mark::after{
+  inset:-5px;
+  opacity:.35;
 }
 
 .nav-links{
   display:flex;
-  gap:22px;
+  gap:25px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .nav-links a{
-  color:var(--muted);
-  text-decoration:none;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1px;
+  position:relative;
+  transition:.2s;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:-7px;
+  height:1px;
+  background:var(--gold);
   transition:.25s;
 }
 
@@ -180,117 +230,24 @@ nav{
   color:var(--gold2);
 }
 
+.nav-links a:hover::after{
+  right:0;
+}
+
 .nav-button{
-  padding:10px 16px;
+  padding:11px 17px;
   border:1px solid var(--gold);
-  border-radius:8px;
+  border-radius:7px;
   color:var(--gold2);
-  text-decoration:none;
   font-size:11px;
   font-weight:900;
-  letter-spacing:1px;
+  letter-spacing:.5px;
   transition:.25s;
 }
 
 .nav-button:hover{
-  background:rgba(216,168,78,.1);
-  box-shadow:0 0 25px rgba(216,168,78,.15);
-}
-
-/* =====================================================
-   SIDE NAV
-===================================================== */
-
-.side-nav{
-  position:fixed;
-  right:25px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:90;
-  display:flex;
-  flex-direction:column;
-  gap:13px;
-}
-
-.side-dot{
-  width:8px;
-  height:8px;
-  border:1px solid var(--muted);
-  border-radius:50%;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.side-dot.active{
-  background:var(--gold2);
-  border-color:var(--gold2);
-  box-shadow:0 0 15px rgba(216,168,78,.7);
-  transform:scale(1.5);
-}
-
-/* =====================================================
-   SECTIONS
-===================================================== */
-
-.screen{
-  min-height:100vh;
-  height:100vh;
-  scroll-snap-align:start;
-  scroll-snap-stop:always;
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  padding:100px 0 50px;
-}
-
-.container{
-  width:min(1150px,90%);
-  margin:auto;
-  position:relative;
-  z-index:3;
-}
-
-.center{
-  text-align:center;
-}
-
-.section-label{
-  color:var(--gold2);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:4px;
-  margin-bottom:15px;
-}
-
-h1,h2,h3{
-  line-height:1;
-}
-
-.section-title{
-  font-size:clamp(38px,5vw,68px);
-  letter-spacing:-3px;
-  margin-bottom:20px;
-}
-
-.section-description{
-  max-width:750px;
-  color:var(--muted);
-  line-height:1.75;
-  font-size:16px;
-}
-
-.gold{
-  color:var(--gold2);
-}
-
-.green{
-  color:var(--green);
-}
-
-.red{
-  color:var(--red);
+  background:rgba(216,168,78,.10);
+  box-shadow:0 0 25px rgba(216,168,78,.12);
 }
 
 /* =====================================================
@@ -298,83 +255,138 @@ h1,h2,h3{
 ===================================================== */
 
 .hero{
-  text-align:center;
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:120px 0 80px;
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  opacity:.11;
+  background-image:
+    linear-gradient(rgba(216,168,78,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(216,168,78,.12) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+.hero-glow{
+  position:absolute;
+  width:700px;
+  height:700px;
+  left:50%;
+  top:40%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(216,168,78,.10),transparent 65%);
+  filter:blur(10px);
+  animation:heroPulse 6s ease-in-out infinite;
+}
+
+@keyframes heroPulse{
+  0%,100%{
+    opacity:.55;
+    transform:translate(-50%,-50%) scale(.95);
+  }
+  50%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.08);
+  }
 }
 
 .hero-content{
-  animation:heroIn 1s ease both;
+  position:relative;
+  z-index:2;
+  max-width:920px;
 }
 
-@keyframes heroIn{
-  from{
-    opacity:0;
-    transform:translateY(35px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.hero-badge{
+.eyebrow{
   display:inline-flex;
   align-items:center;
   gap:9px;
+  padding:9px 14px;
   border:1px solid var(--line);
-  background:rgba(216,168,78,.06);
-  padding:10px 17px;
   border-radius:100px;
+  background:rgba(216,168,78,.045);
   color:var(--gold2);
   font-size:10px;
-  font-weight:900;
   letter-spacing:2px;
-  margin-bottom:30px;
+  font-weight:900;
+  margin-bottom:27px;
+  box-shadow:0 0 30px rgba(216,168,78,.04);
 }
 
-.live-dot{
+.eyebrow-dot{
   width:7px;
   height:7px;
-  background:var(--green);
   border-radius:50%;
-  box-shadow:0 0 14px rgba(56,217,150,.7);
-  animation:blink 1.5s infinite;
+  background:var(--green);
+  box-shadow:0 0 14px rgba(56,217,150,.8);
+  animation:statusPulse 2s infinite;
 }
 
-@keyframes blink{
-  50%{opacity:.3}
+@keyframes statusPulse{
+  0%,100%{box-shadow:0 0 5px rgba(56,217,150,.3)}
+  50%{box-shadow:0 0 18px rgba(56,217,150,.9)}
 }
 
 .hero h1{
-  font-size:clamp(65px,11vw,150px);
-  letter-spacing:-8px;
+  font-size:clamp(60px,11vw,132px);
+  line-height:.82;
+  letter-spacing:-7px;
   font-weight:1000;
-  margin-bottom:28px;
-  text-shadow:0 20px 70px rgba(0,0,0,.5);
+  margin-bottom:35px;
+  text-shadow:
+    0 0 50px rgba(216,168,78,.08),
+    0 20px 60px rgba(0,0,0,.5);
 }
 
-.hero h1 span{
-  color:var(--gold2);
-  text-shadow:0 0 45px rgba(216,168,78,.18);
+.hero h1 .line{
+  display:block;
 }
 
-.hero-sub{
-  max-width:800px;
-  margin:auto;
+.hero h1 .gold{
+  background:linear-gradient(
+    110deg,
+    var(--gold),
+    var(--gold3),
+    var(--gold2),
+    var(--gold)
+  );
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:goldShine 5s linear infinite;
+}
+
+@keyframes goldShine{
+  to{
+    background-position:250% center;
+  }
+}
+
+.hero-description{
+  max-width:760px;
   color:var(--muted);
   font-size:18px;
-  line-height:1.75;
+  line-height:1.8;
+  margin-bottom:35px;
 }
 
-.hero-sub strong{
+.hero-description strong{
   color:var(--gold2);
 }
 
 .buttons{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
   gap:13px;
-  margin-top:32px;
 }
 
 .btn{
@@ -382,32 +394,53 @@ h1,h2,h3{
   align-items:center;
   justify-content:center;
   min-height:50px;
-  padding:0 23px;
-  border-radius:9px;
+  padding:14px 23px;
+  border-radius:8px;
   font-weight:900;
   font-size:12px;
   letter-spacing:.5px;
-  text-decoration:none;
-  border:1px solid transparent;
   cursor:pointer;
+  border:1px solid transparent;
   transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.18),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:.5s;
+}
+
+.btn:hover::before{
+  left:140%;
 }
 
 .btn-primary{
-  color:#080808;
+  color:#090909;
   background:linear-gradient(135deg,var(--gold3),var(--gold));
-  box-shadow:0 10px 35px rgba(216,168,78,.12);
+  box-shadow:0 10px 35px rgba(216,168,78,.14);
 }
 
 .btn-primary:hover{
   transform:translateY(-3px);
-  box-shadow:0 15px 45px rgba(216,168,78,.25);
+  box-shadow:0 16px 40px rgba(216,168,78,.25);
 }
 
 .btn-secondary{
-  color:var(--white);
   background:rgba(255,255,255,.025);
-  border-color:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.10);
 }
 
 .btn-secondary:hover{
@@ -417,37 +450,164 @@ h1,h2,h3{
 
 .discord-btn{
   color:#dce0ff;
-  background:rgba(88,101,242,.08);
+  background:rgba(88,101,242,.07);
   border-color:rgba(88,101,242,.45);
 }
 
 .discord-btn:hover{
-  background:rgba(88,101,242,.16);
-  border-color:var(--blue);
+  background:rgba(88,101,242,.15);
+  border-color:var(--discord);
   transform:translateY(-3px);
 }
 
-.scroll-hint{
+.hero-scroll{
   position:absolute;
   bottom:28px;
   left:50%;
   transform:translateX(-50%);
-  color:#697385;
+  color:var(--muted);
   font-size:9px;
   letter-spacing:3px;
   text-transform:uppercase;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:9px;
+  opacity:.65;
 }
 
 .scroll-line{
   width:1px;
-  height:35px;
+  height:42px;
   background:linear-gradient(var(--gold),transparent);
-  margin:8px auto 0;
-  animation:scrollPulse 2s infinite;
+  animation:scrollLine 2s infinite;
 }
 
-@keyframes scrollPulse{
-  50%{height:55px;opacity:.4}
+@keyframes scrollLine{
+  0%{height:10px;opacity:0}
+  30%{opacity:1}
+  100%{height:42px;opacity:0}
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-strip{
+  position:relative;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(216,168,78,.025);
+}
+
+.status-inner{
+  min-height:60px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:11px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.status-inner strong{
+  color:var(--gold2);
+}
+
+.status-icon{
+  color:var(--green);
+  text-shadow:0 0 10px rgba(56,217,150,.6);
+}
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.012);
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+  padding:34px 20px;
+  text-align:center;
+  border-right:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+
+.stat:last-child{
+  border-right:0;
+}
+
+.stat::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:0;
+  height:1px;
+  background:var(--gold);
+  transition:.5s;
+}
+
+.stat:hover::after{
+  left:15%;
+  width:70%;
+}
+
+.stat strong{
+  display:block;
+  font-size:32px;
+  color:var(--gold2);
+  margin-bottom:7px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section{
+  padding:120px 0;
+  position:relative;
+}
+
+.section-title{
+  margin-bottom:48px;
+}
+
+.section-kicker{
+  color:var(--gold2);
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.section-title h2{
+  font-size:clamp(34px,5vw,54px);
+  letter-spacing:-2px;
+  margin-bottom:15px;
+}
+
+.section-title p{
+  max-width:780px;
+  color:var(--muted);
+  line-height:1.8;
 }
 
 /* =====================================================
@@ -458,22 +618,22 @@ h1,h2,h3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
-  margin-top:35px;
 }
 
 .card{
   position:relative;
-  padding:30px;
+  padding:32px;
+  min-height:230px;
   border:1px solid var(--line);
-  border-radius:17px;
+  border-radius:16px;
   background:
-    linear-gradient(145deg,rgba(14,20,31,.9),rgba(8,12,19,.9));
+    linear-gradient(145deg,rgba(15,21,32,.88),rgba(10,14,22,.70));
   box-shadow:var(--shadow);
   overflow:hidden;
   transition:.35s;
 }
 
-.card:before{
+.card::before{
   content:"";
   position:absolute;
   width:180px;
@@ -481,99 +641,69 @@ h1,h2,h3{
   right:-100px;
   top:-100px;
   border-radius:50%;
-  background:rgba(216,168,78,.08);
-  filter:blur(20px);
+  background:rgba(216,168,78,.07);
+  filter:blur(15px);
+  transition:.4s;
 }
 
 .card:hover{
   transform:translateY(-8px);
-  border-color:rgba(216,168,78,.5);
-  box-shadow:0 30px 80px rgba(0,0,0,.65);
+  border-color:rgba(216,168,78,.48);
+}
+
+.card:hover::before{
+  transform:scale(1.5);
 }
 
 .card-number{
   color:var(--gold2);
   font-size:11px;
-  font-weight:900;
   letter-spacing:2px;
-  margin-bottom:22px;
+  font-weight:900;
+  margin-bottom:25px;
 }
 
 .card h3{
-  font-size:24px;
-  margin-bottom:13px;
+  font-size:22px;
+  margin-bottom:12px;
 }
 
 .card p{
   color:var(--muted);
-  line-height:1.7;
+  line-height:1.75;
   font-size:14px;
-}
-
-/* =====================================================
-   STATS
-===================================================== */
-
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-top:40px;
-}
-
-.stat-card{
-  text-align:center;
-  padding:30px 15px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:rgba(10,15,23,.75);
-}
-
-.stat-number{
-  color:var(--gold2);
-  font-size:42px;
-  font-weight:1000;
-  margin-bottom:8px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:2px;
-  font-weight:900;
 }
 
 /* =====================================================
    RECORD
 ===================================================== */
 
-.record-layout{
+.record{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:35px;
+  gap:18px;
 }
 
 .record-box{
   padding:30px;
   border:1px solid var(--line);
-  border-radius:17px;
-  background:linear-gradient(145deg,var(--panel),rgba(7,11,17,.9));
+  border-radius:16px;
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
   box-shadow:var(--shadow);
 }
 
 .record-box h3{
   color:var(--gold2);
-  font-size:20px;
-  margin-bottom:20px;
+  font-size:21px;
+  margin-bottom:18px;
 }
 
 .record-line{
   display:flex;
   justify-content:space-between;
-  padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:14px;
+  gap:20px;
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,.055);
 }
 
 .record-line:last-child{
@@ -584,58 +714,79 @@ h1,h2,h3{
   color:var(--muted);
 }
 
-.record-statement{
-  margin-top:18px;
-  padding:28px;
-  text-align:center;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:
-    radial-gradient(circle at center,rgba(216,168,78,.1),transparent 65%),
-    rgba(10,15,23,.8);
+.record-line strong{
+  text-align:right;
 }
 
-.record-big{
-  font-size:clamp(28px,4vw,48px);
+.win{color:var(--green)}
+.loss{color:var(--red)}
+.gold{color:var(--gold2)}
+
+.record-statement{
+  margin-top:18px;
+  padding:42px 30px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,rgba(216,168,78,.10),transparent 60%),
+    var(--panel);
+  box-shadow:var(--shadow);
+}
+
+.record-statement .big{
+  font-size:clamp(32px,5vw,52px);
   font-weight:1000;
+  letter-spacing:-2px;
   color:var(--gold2);
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
 .record-statement p{
   color:var(--muted);
-  font-size:13px;
   line-height:1.7;
+}
+
+.crown{
+  margin-top:20px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 /* =====================================================
    POWER
 ===================================================== */
 
-.power-layout{
-  display:grid;
-  grid-template-columns:1.6fr .8fr;
-  gap:25px;
-  align-items:center;
-  margin-top:30px;
-}
-
 .power-table{
   border:1px solid var(--line);
   border-radius:17px;
   overflow:hidden;
-  background:rgba(9,14,22,.88);
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
   box-shadow:var(--shadow);
 }
 
+.power-header,
 .power-row{
   display:grid;
-  grid-template-columns:60px 1fr 180px;
+  grid-template-columns:90px 1fr 210px;
   align-items:center;
-  min-height:55px;
-  padding:0 20px;
+}
+
+.power-header{
+  padding:16px 25px;
+  color:var(--gold2);
+  background:rgba(216,168,78,.06);
+  border-bottom:1px solid var(--line);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.power-row{
+  padding:19px 25px;
   border-bottom:1px solid rgba(255,255,255,.055);
-  transition:.3s;
+  transition:.25s;
 }
 
 .power-row:last-child{
@@ -643,120 +794,151 @@ h1,h2,h3{
 }
 
 .power-row:hover{
-  background:rgba(216,168,78,.055);
+  background:rgba(216,168,78,.04);
   transform:translateX(5px);
 }
 
-.power-row:first-child{
-  background:radial-gradient(circle at right,rgba(216,168,78,.12),transparent 50%);
+.top-player{
+  background:
+    radial-gradient(circle at 90% 50%,rgba(216,168,78,.13),transparent 35%);
 }
 
-.rank{
+.power-rank{
   color:var(--muted);
   font-weight:900;
-  font-size:12px;
 }
 
-.player{
-  font-weight:800;
-  font-size:14px;
-}
-
-.power{
+.top-player .power-rank{
   color:var(--gold2);
+}
+
+.power-player{
+  font-size:15px;
+  font-weight:800;
+}
+
+.top-player .power-player{
+  font-size:17px;
+}
+
+.power-value{
   text-align:right;
+  color:var(--gold2);
   font-weight:900;
-  font-size:13px;
 }
 
-.power-side{
-  display:grid;
-  gap:15px;
+.top-player .power-value{
+  font-size:17px;
 }
 
-.power-box{
-  padding:25px;
+.rank-crown{
+  display:inline-flex;
+  width:28px;
+  height:28px;
   border:1px solid var(--line);
-  border-radius:16px;
-  background:rgba(11,16,25,.8);
-  text-align:center;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  margin-right:9px;
+  font-size:10px;
 }
 
-.power-box strong{
+.power-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:18px;
+}
+
+.power-summary > div{
+  padding:25px 15px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel);
+}
+
+.power-summary strong{
   display:block;
   color:var(--gold2);
-  font-size:30px;
-  margin-bottom:8px;
+  font-size:28px;
+  margin-bottom:7px;
 }
 
-.power-box span{
+.power-summary span{
   color:var(--muted);
   font-size:9px;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
   font-weight:900;
+}
+
+.power-note{
+  text-align:center;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:1px;
+  margin-top:17px;
 }
 
 /* =====================================================
-   SEASONS
+   SEASONS - CINEMATIC HORIZONTAL FEEL
 ===================================================== */
 
-.season-tabs{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin:25px 0;
+.season-track{
+  position:relative;
 }
 
-.season-tab{
-  padding:12px 22px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:rgba(255,255,255,.025);
-  color:var(--muted);
-  font-weight:900;
-  font-size:11px;
-  cursor:pointer;
-  transition:.25s;
+.season-track::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:37px;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--gold),
+    transparent
+  );
+  opacity:.3;
 }
 
-.season-tab.active,
-.season-tab:hover{
-  background:rgba(216,168,78,.1);
-  color:var(--gold2);
-  border-color:var(--gold);
+.seasons{
+  display:grid;
+  gap:25px;
 }
 
-.season-panel{
-  display:none;
-  max-width:900px;
-  margin:auto;
-  animation:panelIn .4s ease;
-}
-
-.season-panel.active{
-  display:block;
-}
-
-@keyframes panelIn{
-  from{
-    opacity:0;
-    transform:translateY(15px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.season-main{
-  padding:35px;
+.season{
+  position:relative;
   border:1px solid var(--line);
   border-radius:18px;
-  background:linear-gradient(145deg,var(--panel),rgba(7,11,17,.9));
+  padding:34px;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(216,168,78,.06),transparent 30%),
+    linear-gradient(145deg,var(--panel),var(--panel2));
   box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:.35s;
 }
 
-.season-heading{
+.season:hover{
+  border-color:rgba(216,168,78,.48);
+  transform:translateY(-5px);
+}
+
+.season::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:linear-gradient(var(--gold),transparent);
+}
+
+.season-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -764,120 +946,148 @@ h1,h2,h3{
   margin-bottom:25px;
 }
 
-.season-heading h3{
-  font-size:30px;
+.season-title{
+  font-size:27px;
+  font-weight:1000;
+  letter-spacing:-1px;
 }
 
 .season-result{
   color:var(--gold2);
+  font-size:12px;
   font-weight:900;
-  font-size:11px;
   letter-spacing:1px;
+  text-align:right;
 }
 
 .matches{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
 }
 
 .match{
   padding:16px;
-  border:1px solid rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.055);
   border-radius:10px;
-  background:rgba(255,255,255,.02);
+  background:rgba(255,255,255,.018);
 }
 
-.match small{
+.match span{
   display:block;
   color:var(--muted);
   font-size:9px;
   letter-spacing:1px;
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 
 .match strong{
   font-size:13px;
 }
 
-.match.win-match{
-  border-color:rgba(56,217,150,.18);
+.win-match{
+  border-color:rgba(56,217,150,.14);
 }
 
-.match.loss-match{
-  border-color:rgba(255,92,108,.18);
+.loss-match{
+  border-color:rgba(255,92,108,.14);
 }
 
 /* =====================================================
    RECRUITMENT
 ===================================================== */
 
-.recruitment-layout{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:16px;
-  margin-top:30px;
-}
-
-.recruit-card{
-  padding:28px;
+.recruit-box{
+  position:relative;
+  overflow:hidden;
+  padding:55px 40px;
+  text-align:center;
   border:1px solid var(--line);
-  border-radius:16px;
-  background:linear-gradient(145deg,var(--panel),rgba(7,11,17,.9));
-  transition:.3s;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(216,168,78,.12),transparent 55%),
+    linear-gradient(145deg,var(--panel),var(--panel2));
+  box-shadow:var(--shadow);
 }
 
-.recruit-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(216,168,78,.45);
+.recruit-box::before{
+  content:"380";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:250px;
+  font-weight:1000;
+  color:rgba(216,168,78,.018);
+  pointer-events:none;
 }
 
-.recruit-icon{
-  width:42px;
-  height:42px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid var(--line);
-  border-radius:10px;
-  color:var(--gold2);
-  margin-bottom:20px;
-  font-weight:900;
+.recruit-box > *{
+  position:relative;
+  z-index:2;
 }
 
-.recruit-card h3{
-  font-size:19px;
-  margin-bottom:10px;
+.recruit-box h2{
+  font-size:clamp(30px,5vw,45px);
+  letter-spacing:-2px;
+  margin-bottom:15px;
 }
 
-.recruit-card p{
+.recruit-box p{
+  max-width:760px;
+  margin:0 auto 30px;
   color:var(--muted);
-  line-height:1.7;
-  font-size:13px;
+  line-height:1.8;
+}
+
+.recruit-points{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:30px 0;
+}
+
+.recruit-point{
+  padding:22px 15px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;
+  background:rgba(255,255,255,.018);
+}
+
+.recruit-point strong{
+  display:block;
+  color:var(--gold2);
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.recruit-point span{
+  color:var(--muted);
+  font-size:11px;
 }
 
 /* =====================================================
-   APPLICATION
+   FORM
 ===================================================== */
 
-.application-screen{
-  overflow-y:auto;
-}
-
 .form-wrap{
-  max-width:900px;
-  margin:25px auto 0;
-  padding:32px;
+  max-width:880px;
+  margin:auto;
+  padding:40px;
   border:1px solid var(--line);
-  border-radius:18px;
-  background:linear-gradient(145deg,rgba(13,19,29,.96),rgba(8,12,19,.96));
+  border-radius:19px;
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
   box-shadow:var(--shadow);
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:19px;
+}
+
+.form-group{
+  margin-bottom:3px;
 }
 
 .form-group.full{
@@ -886,23 +1096,29 @@ h1,h2,h3{
 
 label{
   display:block;
-  color:#dce1e8;
-  font-size:11px;
+  color:#dfe3e9;
+  font-size:12px;
   font-weight:800;
-  margin-bottom:7px;
+  margin-bottom:8px;
 }
 
 input,
 select,
 textarea{
   width:100%;
-  background:#060a10;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;
-  padding:12px;
+  padding:14px;
   color:var(--white);
+  background:#060a10;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;
   outline:none;
   font-size:13px;
+  transition:.2s;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#586273;
 }
 
 input:focus,
@@ -913,27 +1129,33 @@ textarea:focus{
 }
 
 textarea{
-  min-height:90px;
+  min-height:125px;
   resize:vertical;
 }
 
 .form-note{
   color:var(--muted);
-  font-size:10px;
-  line-height:1.6;
-  margin:17px 0;
+  font-size:11px;
+  line-height:1.7;
+  margin:22px 0;
 }
 
 .submit{
   width:100%;
+  font-size:13px;
+}
+
+.submit:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 #status{
   display:none;
-  margin-top:15px;
-  padding:15px;
-  border-radius:8px;
-  font-size:12px;
+  margin-top:18px;
+  padding:16px;
+  border-radius:9px;
+  font-size:13px;
   line-height:1.6;
 }
 
@@ -952,164 +1174,162 @@ textarea{
 }
 
 /* =====================================================
-   FINAL
+   DISCORD
 ===================================================== */
 
-.final-screen{
+.discord-section{
+  padding-top:0;
+}
+
+.discord-box{
+  position:relative;
+  overflow:hidden;
+  padding:55px 30px;
   text-align:center;
+  border:1px solid rgba(88,101,242,.30);
+  border-radius:19px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(88,101,242,.11),transparent 55%),
+    var(--panel);
+  box-shadow:var(--shadow);
 }
 
-.final-crown{
-  font-size:clamp(70px,12vw,150px);
-  color:var(--gold2);
-  margin-bottom:20px;
-  filter:drop-shadow(0 0 35px rgba(216,168,78,.2));
-  animation:crownFloat 4s ease-in-out infinite;
+.discord-box::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  left:50%;
+  top:-230px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:rgba(88,101,242,.10);
+  filter:blur(40px);
 }
 
-@keyframes crownFloat{
-  50%{
-    transform:translateY(-10px);
-    filter:drop-shadow(0 0 60px rgba(216,168,78,.4));
-  }
+.discord-box > *{
+  position:relative;
+  z-index:2;
 }
 
-.final-screen h2{
-  font-size:clamp(40px,7vw,85px);
-  letter-spacing:-4px;
-  margin-bottom:20px;
+.discord-box h2{
+  font-size:35px;
+  letter-spacing:-1px;
+  margin-bottom:12px;
 }
 
-.final-screen p{
+.discord-box p{
   max-width:650px;
-  margin:auto;
+  margin:0 auto 27px;
   color:var(--muted);
   line-height:1.75;
 }
 
 /* =====================================================
-   RESPONSIVE
+   FOOTER
+===================================================== */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.footer-brand{
+  color:var(--gold2);
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+
+/* =====================================================
+   REVEAL ANIMATIONS
+===================================================== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-left{
+  opacity:0;
+  transform:translateX(-35px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal-left.visible{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.reveal-scale{
+  opacity:0;
+  transform:scale(.94);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal-scale.visible{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* =====================================================
+   MOBILE
 ===================================================== */
 
 @media(max-width:900px){
-
-  html{
-    scroll-snap-type:none;
-  }
-
-  .screen{
-    height:auto;
-    min-height:100vh;
-    scroll-snap-align:none;
-    padding:110px 0 70px;
-  }
-
-  .side-nav{
-    display:none;
-  }
 
   .nav-links{
     display:none;
   }
 
-  .cards,
-  .record-layout,
-  .power-layout,
-  .recruitment-layout{
-    grid-template-columns:1fr;
-  }
-
-  .power-side{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .stat-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .application-screen{
-    overflow:visible;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .nav-button{
-    padding:9px 11px;
-    font-size:9px;
+  .hero{
+    min-height:850px;
   }
 
   .hero h1{
-    letter-spacing:-5px;
+    font-size:clamp(60px,17vw,100px);
   }
 
-  .hero-sub{
-    font-size:15px;
-  }
-
-  .buttons{
-    flex-direction:column;
-  }
-
-  .btn{
-    width:100%;
-  }
-
-  .stat-grid{
+  .stats-grid{
     grid-template-columns:1fr 1fr;
   }
 
-  .stat-number{
-    font-size:30px;
+  .stat:nth-child(2){
+    border-right:0;
   }
 
-  .section-title{
-    font-size:38px;
-  }
-
-  .power-row{
-    grid-template-columns:40px 1fr auto;
-    padding:0 12px;
-  }
-
-  .player{
-    font-size:12px;
-    word-break:break-word;
-  }
-
-  .power{
-    font-size:10px;
-  }
-
-  .power-side{
+  .cards,
+  .record{
     grid-template-columns:1fr;
   }
 
-  .season-tabs{
-    overflow-x:auto;
-    justify-content:flex-start;
-  }
-
-  .season-tab{
-    flex-shrink:0;
-  }
-
-  .season-main{
-    padding:22px;
-  }
-
-  .season-heading{
-    flex-direction:column;
-    align-items:flex-start;
+  .recruit-points{
+    grid-template-columns:1fr;
   }
 
   .matches{
     grid-template-columns:1fr;
-  }
-
-  .form-wrap{
-    padding:20px;
   }
 
   .form-grid{
@@ -1120,6 +1340,165 @@ textarea{
     grid-column:auto;
   }
 
+  .form-wrap{
+    padding:27px 20px;
+  }
+
+  section{
+    padding:85px 0;
+  }
+
+  .season-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .season-result{
+    text-align:left;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+@media(max-width:600px){
+
+  .container{
+    width:min(92%,500px);
+  }
+
+  nav{
+    height:66px;
+  }
+
+  .nav-button{
+    padding:9px 12px;
+    font-size:9px;
+  }
+
+  .logo{
+    font-size:11px;
+  }
+
+  .logo-mark{
+    width:37px;
+    height:37px;
+  }
+
+  .hero{
+    padding-top:100px;
+    min-height:780px;
+  }
+
+  .hero h1{
+    letter-spacing:-4px;
+    margin-bottom:28px;
+  }
+
+  .hero-description{
+    font-size:15px;
+    line-height:1.75;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .stat:last-child{
+    border-bottom:0;
+  }
+
+  .power-header,
+  .power-row{
+    grid-template-columns:48px 1fr auto;
+  }
+
+  .power-header{
+    padding:13px 14px;
+    font-size:8px;
+  }
+
+  .power-row{
+    padding:17px 14px;
+  }
+
+  .power-player{
+    font-size:12px;
+    word-break:break-word;
+  }
+
+  .power-value{
+    font-size:11px;
+  }
+
+  .top-player .power-player,
+  .top-player .power-value{
+    font-size:12px;
+  }
+
+  .power-summary{
+    grid-template-columns:1fr;
+  }
+
+  .recruit-box,
+  .discord-box{
+    padding:40px 20px;
+  }
+
+  .record-statement{
+    padding:35px 20px;
+  }
+
+  .record-statement .big{
+    font-size:31px;
+  }
+
+  .season{
+    padding:27px 20px;
+  }
+
+  .season-title{
+    font-size:23px;
+  }
+
+  .hero-scroll{
+    display:none;
+  }
+}
+
+/* accessibility */
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-scale{
+    opacity:1;
+    transform:none;
+  }
 }
 </style>
 </head>
@@ -1127,14 +1506,17 @@ textarea{
 <body>
 
 <!-- =====================================================
-     AMBIENT EFFECTS
+     AMBIENT BACKGROUND
 ===================================================== -->
 
 <div id="ambient">
-  <div class="ambient-glow glow-one"></div>
-  <div class="ambient-glow glow-two"></div>
-  <div class="ambient-glow glow-three"></div>
+
+  <div class="ambient-orb orb1"></div>
+  <div class="ambient-orb orb2"></div>
+  <div class="ambient-orb orb3"></div>
+
   <canvas id="particles"></canvas>
+
 </div>
 
 
@@ -1142,22 +1524,31 @@ textarea{
      NAVIGATION
 ===================================================== -->
 
-<nav>
+<nav id="navbar">
 
-  <div class="nav-inner">
+  <div class="container nav-inner">
 
     <div class="logo">
-      <div class="logo-mark">380</div>
-      <div>EMPIRE 380</div>
+
+      <div class="logo-mark">
+        380
+      </div>
+
+      <div>
+        EMPIRE 380
+      </div>
+
     </div>
 
     <div class="nav-links">
-      <a href="#home">HOME</a>
-      <a href="#kingdom">KINGDOM</a>
-      <a href="#record">RECORD</a>
-      <a href="#power">POWER</a>
-      <a href="#seasons">SEASONS</a>
-      <a href="#recruitment">RECRUITMENT</a>
+
+      <a href="#about">About</a>
+      <a href="#record">Record</a>
+      <a href="#power">Power</a>
+      <a href="#seasons">Seasons</a>
+      <a href="#requirements">Recruitment</a>
+      <a href="#apply">Apply</a>
+
     </div>
 
     <a href="#apply" class="nav-button">
@@ -1170,57 +1561,53 @@ textarea{
 
 
 <!-- =====================================================
-     SIDE DOT NAVIGATION
-===================================================== -->
-
-<div class="side-nav">
-
-  <div class="side-dot active" data-target="home"></div>
-  <div class="side-dot" data-target="kingdom"></div>
-  <div class="side-dot" data-target="record"></div>
-  <div class="side-dot" data-target="power"></div>
-  <div class="side-dot" data-target="seasons"></div>
-  <div class="side-dot" data-target="recruitment"></div>
-  <div class="side-dot" data-target="apply"></div>
-  <div class="side-dot" data-target="discord"></div>
-
-</div>
-
-
-<!-- =====================================================
      HERO
 ===================================================== -->
 
-<section class="screen hero" id="home">
+<header class="hero">
+
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
 
   <div class="container">
 
-    <div class="hero-content">
+    <div class="hero-content reveal">
 
-      <div class="hero-badge">
-        <span class="live-dot"></span>
+      <div class="eyebrow">
+
+        <span class="eyebrow-dot"></span>
+
         SERVER 380 • MIGRATION PRE-REGISTRATION
+
       </div>
 
       <h1>
-        FEAR THE<br>
-        <span>BANNER.</span>
+
+        <span class="line">
+          FEAR THE
+        </span>
+
+        <span class="line gold">
+          BANNER.
+        </span>
+
       </h1>
 
-      <p class="hero-sub">
-        Three seasons. Three campaigns.
-        One kingdom that keeps climbing.
+      <p class="hero-description">
 
-        <br><br>
+        Three seasons. Three campaigns. A kingdom that refused
+        to stop climbing.
 
         <strong>
           Server 380 is currently the #1 Stellar Kingdom.
         </strong>
 
-        <br>
+        Migration is not open yet — but our recruitment is.
 
-        Migration isn't open yet —
-        but we're already building the next roster.
+        Submit your application now and get your name in front
+        of the EMPIRE 380 recruitment team before the next
+        migration window opens.
+
       </p>
 
       <div class="buttons">
@@ -1230,7 +1617,1003 @@ textarea{
         </a>
 
         <a href="#record" class="btn btn-secondary">
-          EXPLORE THE RECORD
+          SEE OUR RECORD
+        </a>
+
+        <a
+          href="https://discord.gg/S2898Ba3X"
+          target="_blank"
+          rel="noopener"
+          class="btn discord-btn"
+        >
+          JOIN OUR DISCORD
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="hero-scroll">
+
+    EXPLORE
+
+    <span class="scroll-line"></span>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-strip">
+
+  <div class="container status-inner">
+
+    <span class="status-icon">●</span>
+
+    <span>
+
+      <strong>PRE-REGISTRATION OPEN</strong>
+
+      — Migration is not currently open.
+      Applications are being accepted now for early recruitment review.
+
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<div class="stats">
+
+  <div class="container stats-grid">
+
+    <div class="stat reveal">
+
+      <strong>#1</strong>
+
+      <span>
+        Current Stellar Kingdom
+      </span>
+
+    </div>
+
+    <div class="stat reveal">
+
+      <strong>12–2</strong>
+
+      <span>
+        Overall Tracked Record
+      </span>
+
+    </div>
+
+    <div class="stat reveal">
+
+      <strong>85.7%</strong>
+
+      <span>
+        Tracked Match Win Rate
+      </span>
+
+    </div>
+
+    <div class="stat reveal">
+
+      <strong>380</strong>
+
+      <span>
+        Kingdom
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        THE KINGDOM
+      </div>
+
+      <h2>
+        More Than An Alliance.
+      </h2>
+
+      <p>
+
+        EMPIRE 380 is built around organization, activity,
+        competition and long-term growth.
+
+        We have spent three seasons fighting some of the
+        strongest kingdoms in the game.
+
+        We started with a 2nd-place Stellar Kingdom finish,
+        followed it with 3rd place, and have now climbed to
+        the very top.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          01
+        </div>
+
+        <h3>
+          Competitive
+        </h3>
+
+        <p>
+
+          We play to win.
+
+          Stellar Kingdom, Desolate Desert, Behemoth,
+          MEE and other major events are treated seriously.
+
+          When the fight starts, Server 380 shows up.
+
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          02
+        </div>
+
+        <h3>
+          Proven
+        </h3>
+
+        <p>
+
+          Our record is built across multiple seasons and
+          against multiple kingdoms.
+
+          Every campaign has made Server 380 stronger
+          and more experienced.
+
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          03
+        </div>
+
+        <h3>
+          Organized
+        </h3>
+
+        <p>
+
+          Communication, coordination and preparation matter.
+
+          We are building a kingdom where individual strength
+          becomes collective power.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RECORD
+===================================================== -->
+
+<section id="record">
+
+  <div class="container">
+
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        OUR RECORD SPEAKS FOR ITSELF
+      </div>
+
+      <h2>
+        Three Seasons. One Direction.
+      </h2>
+
+      <p>
+
+        We started Season 1 in second place.
+
+        We fought through Season 2 and finished third.
+
+        Now, in Season 3, Server 380 stands at the very top.
+
+      </p>
+
+    </div>
+
+
+    <div class="record">
+
+      <div class="record-box reveal-left">
+
+        <h3>
+          Stellar Kingdom
+        </h3>
+
+        <div class="record-line">
+
+          <span>Season 1</span>
+
+          <strong class="gold">
+            2nd Place
+          </strong>
+
+        </div>
+
+        <div class="record-line">
+
+          <span>Season 2</span>
+
+          <strong class="gold">
+            3rd Place
+          </strong>
+
+        </div>
+
+        <div class="record-line">
+
+          <span>Season 3</span>
+
+          <strong class="win">
+            #1 — UNDISPUTED
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="record-box reveal">
+
+        <h3>
+          Overall Tracked Record
+        </h3>
+
+        <div class="record-line">
+
+          <span>Victories</span>
+
+          <strong class="win">
+            12
+          </strong>
+
+        </div>
+
+        <div class="record-line">
+
+          <span>Losses</span>
+
+          <strong class="loss">
+            2
+          </strong>
+
+        </div>
+
+        <div class="record-line">
+
+          <span>Tracked Win Rate</span>
+
+          <strong class="gold">
+            85.7%
+          </strong>
+
+        </div>
+
+        <div class="record-line">
+
+          <span>Seasons</span>
+
+          <strong>
+            3
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="record-statement reveal-scale">
+
+      <div class="big">
+        12 WINS • 2 LOSSES
+      </div>
+
+      <p>
+
+        Every victory was earned.
+        Every defeat taught us something.
+        Every season has made 380 stronger.
+
+      </p>
+
+      <div class="crown">
+        THE CROWN IS NOT GIVEN. IT IS TAKEN.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     POWER
+===================================================== -->
+
+<section id="power">
+
+  <div class="container">
+
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        THE POWERHOUSE
+      </div>
+
+      <h2>
+        Top 10 Players.
+      </h2>
+
+      <p>
+
+        Strength is only one part of a great kingdom —
+        but Server 380 is not short on it.
+
+        Meet the current top 10 players by power.
+
+      </p>
+
+    </div>
+
+
+    <div class="power-table reveal-scale">
+
+      <div class="power-header">
+
+        <span>RANK</span>
+        <span>PLAYER</span>
+        <span>POWER</span>
+
+      </div>
+
+
+      <div class="power-row top-player">
+
+        <div class="power-rank">
+          <span class="rank-crown">01</span>
+        </div>
+
+        <div class="power-player">
+          モRムC³⁸⁰
+        </div>
+
+        <div class="power-value">
+          201,385,427
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          02
+        </div>
+
+        <div class="power-player">
+          殺戮之主
+        </div>
+
+        <div class="power-value">
+          168,459,055
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          03
+        </div>
+
+        <div class="power-player">
+          RҽԃD€ʋιʅ³⁸⁰
+        </div>
+
+        <div class="power-value">
+          149,715,918
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          04
+        </div>
+
+        <div class="power-player">
+          Aɾƚҽɱιʂ³⁸⁰
+        </div>
+
+        <div class="power-value">
+          134,163,785
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          05
+        </div>
+
+        <div class="power-player">
+          Samalops
+        </div>
+
+        <div class="power-value">
+          114,705,665
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          06
+        </div>
+
+        <div class="power-player">
+          DuceX³⁸⁰
+        </div>
+
+        <div class="power-value">
+          87,130,231
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          07
+        </div>
+
+        <div class="power-player">
+          Lunlaa³⁸⁰
+        </div>
+
+        <div class="power-value">
+          85,466,491
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          08
+        </div>
+
+        <div class="power-player">
+          Aysss
+        </div>
+
+        <div class="power-value">
+          81,543,794
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          09
+        </div>
+
+        <div class="power-player">
+          AngryIrish47
+        </div>
+
+        <div class="power-value">
+          75,228,996
+        </div>
+
+      </div>
+
+
+      <div class="power-row">
+
+        <div class="power-rank">
+          10
+        </div>
+
+        <div class="power-player">
+          nindža
+        </div>
+
+        <div class="power-value">
+          74,239,735
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="power-summary">
+
+      <div class="reveal">
+
+        <strong>
+          10
+        </strong>
+
+        <span>
+          TOP PLAYERS
+        </span>
+
+      </div>
+
+      <div class="reveal">
+
+        <strong>
+          1.17B+
+        </strong>
+
+        <span>
+          COMBINED POWER
+        </span>
+
+      </div>
+
+      <div class="reveal">
+
+        <strong>
+          201M+
+        </strong>
+
+        <span>
+          TOP PLAYER POWER
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="power-note">
+
+      POWER RANKINGS ARE SUBJECT TO CHANGE AS PLAYERS CONTINUE TO GROW.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEASONS
+===================================================== -->
+
+<section id="seasons">
+
+  <div class="container">
+
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        THREE SEASONS
+      </div>
+
+      <h2>
+        The Road To #1.
+      </h2>
+
+      <p>
+
+        This is how Server 380 climbed from a strong contender
+        to the #1 Stellar Kingdom.
+
+      </p>
+
+    </div>
+
+
+    <div class="seasons">
+
+
+      <!-- SEASON 1 -->
+
+      <div class="season reveal">
+
+        <div class="season-header">
+
+          <div class="season-title">
+            SEASON 1
+          </div>
+
+          <div class="season-result">
+            2ND PLACE STELLAR KINGDOM
+          </div>
+
+        </div>
+
+        <div class="matches">
+
+          <div class="match win-match">
+            <span>GOLDEN EXPEDITION</span>
+            <strong>Victory vs Server 388</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>GOLDEN EXPEDITION</span>
+            <strong>Victory vs Server 387</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 382</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 381</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 385</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SEASON 2 -->
+
+      <div class="season reveal">
+
+        <div class="season-header">
+
+          <div class="season-title">
+            SEASON 2
+          </div>
+
+          <div class="season-result">
+            3RD PLACE STELLAR KINGDOM
+          </div>
+
+        </div>
+
+        <div class="matches">
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 390</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>BEHEMOTH</span>
+            <strong>Victory vs Server 390</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>DESOLATE DESERT</span>
+            <strong>2nd Place vs 384, 403 &amp; 394</strong>
+          </div>
+
+          <div class="match loss-match">
+            <span>MEE</span>
+            <strong>Loss vs Server 385</strong>
+          </div>
+
+          <div class="match loss-match">
+            <span>BEHEMOTH</span>
+            <strong>Loss vs Server 385</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SEASON 3 -->
+
+      <div class="season reveal">
+
+        <div class="season-header">
+
+          <div class="season-title">
+            SEASON 3
+          </div>
+
+          <div class="season-result">
+            #1 STELLAR KINGDOM
+          </div>
+
+        </div>
+
+        <div class="matches">
+
+          <div class="match win-match">
+            <span>BEHEMOTH</span>
+            <strong>Victory vs Server 386</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 388</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>BEHEMOTH</span>
+            <strong>Victory vs Server 388</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>MEE</span>
+            <strong>Victory vs Server 386</strong>
+          </div>
+
+          <div class="match win-match">
+            <span>DESOLATE DESERT</span>
+            <strong>1st Place vs 394, 399 &amp; 402</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="record-statement reveal-scale">
+
+      <div class="big">
+        #1 STELLAR KINGDOM
+      </div>
+
+      <p>
+
+        Season 1: 2nd.
+        Season 2: 3rd.
+        Season 3: 1st.
+
+        The climb is real, and we are not finished.
+
+      </p>
+
+      <div class="crown">
+        SERVER 380 — FEAR THE BANNER. RESPECT THE CROWN.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RECRUITMENT
+===================================================== -->
+
+<section id="requirements">
+
+  <div class="container">
+
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        WHO WE WANT
+      </div>
+
+      <h2>
+        Bring The Right Mindset.
+      </h2>
+
+      <p>
+
+        Power matters, but attitude, activity and commitment
+        matter just as much.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          01
+        </div>
+
+        <h3>
+          Active Players
+        </h3>
+
+        <p>
+
+          Players who participate consistently, communicate
+          and contribute to kingdom objectives.
+
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          02
+        </div>
+
+        <h3>
+          Event Players
+        </h3>
+
+        <p>
+
+          Players willing to show up for major kingdom events
+          and follow coordinated strategies.
+
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <div class="card-number">
+          03
+        </div>
+
+        <h3>
+          Team Players
+        </h3>
+
+        <p>
+
+          Strong individuals are welcome, but when the fight
+          matters, Server 380 comes first.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RECRUITMENT CTA
+===================================================== -->
+
+<section>
+
+  <div class="container">
+
+    <div class="recruit-box reveal-scale">
+
+      <h2>
+        Migration Isn't Open Yet.
+      </h2>
+
+      <p>
+
+        That doesn't mean you have to wait.
+
+        Submit your application now and get your name in front
+        of the EMPIRE 380 recruitment team before migration opens.
+
+        Early applications give us time to review your account,
+        experience and fit for the kingdom.
+
+      </p>
+
+
+      <div class="recruit-points">
+
+        <div class="recruit-point">
+
+          <strong>01</strong>
+
+          <span>
+            Submit your application
+          </span>
+
+        </div>
+
+        <div class="recruit-point">
+
+          <strong>02</strong>
+
+          <span>
+            Recruitment team reviews your profile
+          </span>
+
+        </div>
+
+        <div class="recruit-point">
+
+          <strong>03</strong>
+
+          <span>
+            Join the kingdom when migration opens
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons" style="justify-content:center;">
+
+        <a href="#apply" class="btn btn-primary">
+          SUBMIT APPLICATION
         </a>
 
         <a
@@ -1248,544 +2631,6 @@ textarea{
 
   </div>
 
-  <div class="scroll-hint">
-    SCROLL TO ENTER THE EMPIRE
-    <div class="scroll-line"></div>
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     KINGDOM
-===================================================== -->
-
-<section class="screen" id="kingdom">
-
-  <div class="container">
-
-    <div class="section-label">
-      THE KINGDOM
-    </div>
-
-    <h2 class="section-title">
-      MORE THAN<br>
-      <span class="gold">AN ALLIANCE.</span>
-    </h2>
-
-    <p class="section-description">
-      EMPIRE 380 is built around organization, activity,
-      competition and long-term growth. We don't just enter
-      events — we prepare for them.
-    </p>
-
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-number">01 / COMPETITION</div>
-        <h3>Built To Win</h3>
-        <p>
-          Stellar Kingdom, Desolate Desert, Behemoth,
-          MEE and major kingdom events are treated seriously.
-          When the fight begins, 380 shows up.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-number">02 / EXPERIENCE</div>
-        <h3>Proven</h3>
-        <p>
-          Three seasons of competition against different
-          kingdoms have given Server 380 the experience
-          required for high-level battles.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-number">03 / UNITY</div>
-        <h3>One Banner</h3>
-        <p>
-          Individual strength matters. Coordination matters more.
-          We build around communication, participation and
-          putting the kingdom first.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     RECORD
-===================================================== -->
-
-<section class="screen" id="record">
-
-  <div class="container">
-
-    <div class="section-label">
-      OUR RECORD SPEAKS FOR ITSELF
-    </div>
-
-    <h2 class="section-title">
-      THE CLIMB<br>
-      <span class="gold">IS REAL.</span>
-    </h2>
-
-    <div class="record-layout">
-
-      <div class="record-box">
-
-        <h3>Stellar Kingdom</h3>
-
-        <div class="record-line">
-          <span>Season 1</span>
-          <strong class="gold">2nd Place</strong>
-        </div>
-
-        <div class="record-line">
-          <span>Season 2</span>
-          <strong class="gold">3rd Place</strong>
-        </div>
-
-        <div class="record-line">
-          <span>Season 3</span>
-          <strong class="green">#1</strong>
-        </div>
-
-      </div>
-
-      <div class="record-box">
-
-        <h3>Tracked Record</h3>
-
-        <div class="record-line">
-          <span>Victories</span>
-          <strong class="green">12</strong>
-        </div>
-
-        <div class="record-line">
-          <span>Losses</span>
-          <strong class="red">2</strong>
-        </div>
-
-        <div class="record-line">
-          <span>Win Rate</span>
-          <strong class="gold">85.7%</strong>
-        </div>
-
-        <div class="record-line">
-          <span>Seasons</span>
-          <strong>3</strong>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="record-statement">
-
-      <div class="record-big">
-        12 WINS • 2 LOSSES
-      </div>
-
-      <p>
-        Season 1: 2nd.
-        Season 2: 3rd.
-        Season 3: 1st.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     POWER
-===================================================== -->
-
-<section class="screen" id="power">
-
-  <div class="container">
-
-    <div class="section-label">
-      THE POWERHOUSE
-    </div>
-
-    <h2 class="section-title">
-      TOP 10<br>
-      <span class="gold">PLAYERS.</span>
-    </h2>
-
-    <div class="power-layout">
-
-      <div class="power-table">
-
-        <div class="power-row">
-          <div class="rank gold">01</div>
-          <div class="player">モRムC³⁸⁰</div>
-          <div class="power">201,385,427</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">02</div>
-          <div class="player">殺戮之主</div>
-          <div class="power">168,459,055</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">03</div>
-          <div class="player">RҽԃD€ʋιʅ³⁸⁰</div>
-          <div class="power">149,715,918</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">04</div>
-          <div class="player">Aɾƚҽɱιʂ³⁸⁰</div>
-          <div class="power">134,163,785</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">05</div>
-          <div class="player">Samalops</div>
-          <div class="power">114,705,665</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">06</div>
-          <div class="player">DuceX³⁸⁰</div>
-          <div class="power">87,130,231</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">07</div>
-          <div class="player">Lunlaa³⁸⁰</div>
-          <div class="power">85,466,491</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">08</div>
-          <div class="player">Aysss</div>
-          <div class="power">81,543,794</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">09</div>
-          <div class="player">AngryIrish47</div>
-          <div class="power">75,228,996</div>
-        </div>
-
-        <div class="power-row">
-          <div class="rank">10</div>
-          <div class="player">nindža</div>
-          <div class="power">74,239,735</div>
-        </div>
-
-      </div>
-
-      <div class="power-side">
-
-        <div class="power-box">
-          <strong>10</strong>
-          <span>TOP PLAYERS</span>
-        </div>
-
-        <div class="power-box">
-          <strong>1.17B+</strong>
-          <span>COMBINED POWER</span>
-        </div>
-
-        <div class="power-box">
-          <strong>201M+</strong>
-          <span>TOP POWER</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     SEASONS
-===================================================== -->
-
-<section class="screen" id="seasons">
-
-  <div class="container">
-
-    <div class="section-label">
-      THREE SEASONS
-    </div>
-
-    <h2 class="section-title">
-      THE ROAD<br>
-      <span class="gold">TO #1.</span>
-    </h2>
-
-    <div class="season-tabs">
-
-      <button class="season-tab active" data-season="s1">
-        SEASON 1
-      </button>
-
-      <button class="season-tab" data-season="s2">
-        SEASON 2
-      </button>
-
-      <button class="season-tab" data-season="s3">
-        SEASON 3
-      </button>
-
-    </div>
-
-
-    <!-- SEASON 1 -->
-
-    <div class="season-panel active" id="s1">
-
-      <div class="season-main">
-
-        <div class="season-heading">
-
-          <h3>SEASON 1</h3>
-
-          <div class="season-result">
-            2ND PLACE STELLAR KINGDOM
-          </div>
-
-        </div>
-
-        <div class="matches">
-
-          <div class="match win-match">
-            <small>GOLDEN EXPEDITION</small>
-            <strong>Victory vs Server 388</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>GOLDEN EXPEDITION</small>
-            <strong>Victory vs Server 387</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 382</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 381</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 385</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- SEASON 2 -->
-
-    <div class="season-panel" id="s2">
-
-      <div class="season-main">
-
-        <div class="season-heading">
-
-          <h3>SEASON 2</h3>
-
-          <div class="season-result">
-            3RD PLACE STELLAR KINGDOM
-          </div>
-
-        </div>
-
-        <div class="matches">
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 390</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>BEHEMOTH</small>
-            <strong>Victory vs Server 390</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>DESOLATE DESERT</small>
-            <strong>2nd Place vs 384, 403 &amp; 394</strong>
-          </div>
-
-          <div class="match loss-match">
-            <small>MEE</small>
-            <strong>Loss vs Server 385</strong>
-          </div>
-
-          <div class="match loss-match">
-            <small>BEHEMOTH</small>
-            <strong>Loss vs Server 385</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- SEASON 3 -->
-
-    <div class="season-panel" id="s3">
-
-      <div class="season-main">
-
-        <div class="season-heading">
-
-          <h3>SEASON 3</h3>
-
-          <div class="season-result">
-            #1 STELLAR KINGDOM
-          </div>
-
-        </div>
-
-        <div class="matches">
-
-          <div class="match win-match">
-            <small>BEHEMOTH</small>
-            <strong>Victory vs Server 386</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 388</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>BEHEMOTH</small>
-            <strong>Victory vs Server 388</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>MEE</small>
-            <strong>Victory vs Server 386</strong>
-          </div>
-
-          <div class="match win-match">
-            <small>DESOLATE DESERT</small>
-            <strong>1st Place vs 394, 399 &amp; 402</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     RECRUITMENT
-===================================================== -->
-
-<section class="screen" id="recruitment">
-
-  <div class="container">
-
-    <div class="section-label">
-      WHO WE WANT
-    </div>
-
-    <h2 class="section-title">
-      BRING THE<br>
-      <span class="gold">RIGHT MINDSET.</span>
-    </h2>
-
-    <p class="section-description">
-      Power gets attention. Activity, communication and
-      commitment are what make someone part of the Empire.
-    </p>
-
-    <div class="recruitment-layout">
-
-      <div class="recruit-card">
-
-        <div class="recruit-icon">01</div>
-
-        <h3>Active Players</h3>
-
-        <p>
-          Players who participate consistently and contribute
-          to kingdom objectives.
-        </p>
-
-      </div>
-
-      <div class="recruit-card">
-
-        <div class="recruit-icon">02</div>
-
-        <h3>Event Players</h3>
-
-        <p>
-          Players willing to show up for major events and
-          follow coordinated strategies.
-        </p>
-
-      </div>
-
-      <div class="recruit-card">
-
-        <div class="recruit-icon">03</div>
-
-        <h3>Team Players</h3>
-
-        <p>
-          Strong individuals are welcome, but when the fight
-          matters, Server 380 comes first.
-        </p>
-
-      </div>
-
-    </div>
-
-    <div class="buttons">
-
-      <a href="#apply" class="btn btn-primary">
-        APPLY NOW
-      </a>
-
-      <a
-        href="https://discord.gg/S2898Ba3X"
-        target="_blank"
-        rel="noopener"
-        class="btn discord-btn"
-      >
-        JOIN DISCORD
-      </a>
-
-    </div>
-
-  </div>
-
 </section>
 
 
@@ -1793,31 +2638,39 @@ textarea{
      APPLICATION
 ===================================================== -->
 
-<section class="screen application-screen" id="apply">
+<section id="apply">
 
   <div class="container">
 
-    <div class="section-label">
-      MIGRATION PRE-REGISTRATION
+    <div class="section-title reveal">
+
+      <div class="section-kicker">
+        MIGRATION PRE-REGISTRATION
+      </div>
+
+      <h2>
+        Apply To EMPIRE 380.
+      </h2>
+
+      <p>
+
+        Migration is not currently open for Server 380.
+
+        We are accepting applications in advance so our
+        recruitment team can review players and build our
+        roster before migration opens.
+
+      </p>
+
     </div>
 
-    <h2 class="section-title">
-      JOIN<br>
-      <span class="gold">EMPIRE 380.</span>
-    </h2>
 
-    <p class="section-description">
-      Migration is not currently open.
-      We are accepting applications now so our recruitment
-      team can review players before migration opens.
-    </p>
-
-
-    <div class="form-wrap">
+    <div class="form-wrap reveal-scale">
 
       <form id="applicationForm">
 
         <div class="form-grid">
+
 
           <div class="form-group">
 
@@ -1927,13 +2780,33 @@ textarea{
 
             <select id="mainTroop" name="mainTroop">
 
-              <option value="">Select</option>
-              <option value="Infantry">Infantry</option>
-              <option value="Pike">Pike</option>
-              <option value="Archer">Archer</option>
-              <option value="Cavalry">Cavalry</option>
-              <option value="Sword">Sword</option>
-              <option value="Mixed">Mixed</option>
+              <option value="">
+                Select
+              </option>
+
+              <option value="Infantry">
+                Infantry
+              </option>
+
+              <option value="Pike">
+                Pike
+              </option>
+
+              <option value="Archer">
+                Archer
+              </option>
+
+              <option value="Cavalry">
+                Cavalry
+              </option>
+
+              <option value="Sword">
+                Sword
+              </option>
+
+              <option value="Mixed">
+                Mixed
+              </option>
 
             </select>
 
@@ -1948,11 +2821,25 @@ textarea{
 
             <select id="troopTier" name="troopTier">
 
-              <option value="">Select</option>
-              <option value="T6">T6</option>
-              <option value="T7">T7</option>
-              <option value="T8">T8</option>
-              <option value="T9">T9</option>
+              <option value="">
+                Select
+              </option>
+
+              <option value="T6">
+                T6
+              </option>
+
+              <option value="T7">
+                T7
+              </option>
+
+              <option value="T8">
+                T8
+              </option>
+
+              <option value="T9">
+                T9
+              </option>
 
             </select>
 
@@ -1986,7 +2873,9 @@ textarea{
               name="migration"
             >
 
-              <option value="">Select</option>
+              <option value="">
+                Select
+              </option>
 
               <option value="Ready">
                 Ready to migrate
@@ -2050,23 +2939,28 @@ textarea{
 
           </div>
 
+
         </div>
 
 
         <div class="form-note">
 
           By submitting this application, you confirm that the
-          information provided is accurate. Recruitment officers
-          may contact you through Discord regarding your application.
+          information provided is accurate.
+
+          Recruitment officers may contact you through Discord
+          regarding your application.
 
           <br><br>
 
           <strong style="color:var(--gold2);">
-            IMPORTANT:
+            Please note:
           </strong>
 
           Migration is not currently open.
-          This is a pre-registration application for recruitment review.
+
+          This application is for pre-registration and
+          recruitment review.
 
         </div>
 
@@ -2095,36 +2989,23 @@ textarea{
      DISCORD
 ===================================================== -->
 
-<section class="screen final-screen" id="discord">
+<section class="discord-section">
 
   <div class="container">
 
-    <div class="final-crown">
-      ♛
-    </div>
+    <div class="discord-box reveal-scale">
 
-    <div class="section-label">
-      THE NEXT CHAPTER
-    </div>
+      <h2>
+        Want To Know More?
+      </h2>
 
-    <h2>
-      RESPECT<br>
-      <span class="gold">THE CROWN.</span>
-    </h2>
+      <p>
 
-    <p>
-      Migration isn't open yet.
-      But the Empire is already preparing.
+        Join the EMPIRE 380 Discord, speak with our members,
+        follow recruitment updates and get ready for the next
+        chapter of Server 380.
 
-      Submit your application, join the Discord,
-      meet the kingdom and be ready when the gates open.
-    </p>
-
-    <div class="buttons">
-
-      <a href="#apply" class="btn btn-primary">
-        PRE-REGISTER
-      </a>
+      </p>
 
       <a
         href="https://discord.gg/S2898Ba3X"
@@ -2137,18 +3018,38 @@ textarea{
 
     </div>
 
-    <div style="
-      margin-top:45px;
-      color:#626c7b;
-      font-size:10px;
-      letter-spacing:2px;
-    ">
-      FEAR THE BANNER. RESPECT THE CROWN.
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+
+      <div class="footer-brand">
+        EMPIRE 380
+      </div>
+
+      <div>
+        Fear the Banner. Respect the Crown.
+      </div>
+
+    </div>
+
+    <div>
+      Server 380 • Migration Pre-Registration
     </div>
 
   </div>
 
-</section>
+</footer>
 
 
 <!-- =====================================================
@@ -2166,37 +3067,53 @@ const API_URL =
 
 
 const form =
-  document.getElementById("applicationForm");
+document.getElementById("applicationForm");
 
 const button =
-  document.getElementById("submitButton");
+document.getElementById("submitButton");
 
 const statusBox =
-  document.getElementById("status");
+document.getElementById("status");
 
 
-form.addEventListener("submit", async function(event){
+form.addEventListener(
+"submit",
+async function(event){
 
   event.preventDefault();
 
   button.disabled = true;
-  button.textContent = "SUBMITTING...";
+
+  button.textContent =
+  "SUBMITTING...";
 
   statusBox.className = "";
-  statusBox.style.display = "none";
 
-  const formData = new FormData(form);
+  statusBox.style.display =
+  "none";
+
+
+  const formData =
+  new FormData(form);
+
   const data = {};
 
-  formData.forEach((value,key)=>{
-    data[key] = value;
-  });
 
-  data.timestamp = new Date().toISOString();
+  formData.forEach(
+    (value,key)=>{
+      data[key] = value;
+    }
+  );
+
+
+  data.timestamp =
+  new Date().toISOString();
+
 
   try{
 
-    const response = await fetch(
+    const response =
+    await fetch(
       API_URL,
       {
         method:"POST",
@@ -2206,210 +3123,237 @@ form.addEventListener("submit", async function(event){
           "text/plain;charset=utf-8"
         },
 
-        body:JSON.stringify(data)
+        body:
+        JSON.stringify(data)
       }
     );
 
+
     let result = null;
 
+
     try{
-      result = await response.json();
+
+      result =
+      await response.json();
+
     }catch(e){
+
       result = null;
+
     }
 
+
     if(!response.ok){
+
       throw new Error(
         "The server returned an error."
       );
+
     }
+
 
     if(
       result &&
       result.success === false
     ){
+
       throw new Error(
         result.message ||
         "Application was not accepted."
       );
+
     }
 
+
     statusBox.className =
-      "status-success";
+    "status-success";
+
 
     statusBox.innerHTML =
-      "<strong>APPLICATION RECEIVED</strong><br><br>" +
-      "Your EMPIRE 380 pre-registration has been submitted successfully. " +
-      "Our recruitment team will review your application and contact you through Discord if required.";
+    "<strong>APPLICATION RECEIVED</strong><br><br>" +
+    "Your EMPIRE 380 pre-registration has been submitted successfully. " +
+    "Our recruitment team will review your information and contact you through Discord if required.";
+
 
     form.reset();
+
 
   }catch(error){
 
     console.error(error);
 
+
     statusBox.className =
-      "status-error";
+    "status-error";
+
 
     statusBox.innerHTML =
-      "<strong>SUBMISSION ERROR</strong><br><br>" +
-      "We could not submit your application right now. " +
-      "Please check your connection and try again.";
+    "<strong>SUBMISSION ERROR</strong><br><br>" +
+    "We could not submit your application right now. " +
+    "Please check your connection and try again.";
 
   }
+
 
   button.disabled = false;
 
   button.textContent =
-    "SUBMIT PRE-REGISTRATION";
+  "SUBMIT PRE-REGISTRATION";
 
 });
 
 
 /* =====================================================
-   SEASON TABS
+   NAVBAR SCROLL EFFECT
 ===================================================== */
 
-const seasonTabs =
-  document.querySelectorAll(".season-tab");
+const navbar =
+document.getElementById("navbar");
 
-const seasonPanels =
-  document.querySelectorAll(".season-panel");
+window.addEventListener(
+"scroll",
+()=>{
+  if(window.scrollY > 30){
+    navbar.classList.add("scrolled");
+  }else{
+    navbar.classList.remove("scrolled");
+  }
+},
+{passive:true}
+);
 
 
-seasonTabs.forEach(tab=>{
+/* =====================================================
+   SCROLL REVEALS
+===================================================== */
 
-  tab.addEventListener("click",()=>{
+const revealElements =
+document.querySelectorAll(
+".reveal,.reveal-left,.reveal-scale"
+);
 
-    seasonTabs.forEach(t=>{
-      t.classList.remove("active");
-    });
 
-    seasonPanels.forEach(panel=>{
-      panel.classList.remove("active");
-    });
+const revealObserver =
+new IntersectionObserver(
+(entries)=>{
+  entries.forEach(
+    entry=>{
+      if(entry.isIntersecting){
 
-    tab.classList.add("active");
+        entry.target.classList.add(
+          "visible"
+        );
 
-    const target =
-      document.getElementById(
-        tab.dataset.season
+        revealObserver.unobserve(
+          entry.target
+        );
+
+      }
+    }
+  );
+},
+{
+  threshold:.12,
+  rootMargin:"0px 0px -50px 0px"
+}
+);
+
+
+revealElements.forEach(
+element=>{
+  revealObserver.observe(element);
+}
+);
+
+
+/* =====================================================
+   SMOOTH ANCHOR SCROLL
+===================================================== */
+
+document
+.querySelectorAll(
+'a[href^="#"]'
+)
+.forEach(
+link=>{
+
+  link.addEventListener(
+    "click",
+    function(event){
+
+      const target =
+      document.querySelector(
+        this.getAttribute("href")
       );
 
-    if(target){
-      target.classList.add("active");
-    }
 
-  });
+      if(target){
 
-});
+        event.preventDefault();
 
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
 
-/* =====================================================
-   SIDE NAVIGATION
-===================================================== */
+      }
 
-const sideDots =
-  document.querySelectorAll(".side-dot");
-
-
-sideDots.forEach(dot=>{
-
-  dot.addEventListener("click",()=>{
-
-    const target =
-      document.getElementById(
-        dot.dataset.target
-      );
-
-    if(target){
-
-      target.scrollIntoView({
-        behavior:"smooth"
-      });
-
-    }
-
-  });
-
-});
-
-
-/* =====================================================
-   ACTIVE SECTION DETECTION
-===================================================== */
-
-const screens =
-  document.querySelectorAll(".screen");
-
-
-const observer =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          sideDots.forEach(dot=>{
-            dot.classList.remove("active");
-          });
-
-          const active =
-            document.querySelector(
-              '.side-dot[data-target="' +
-              entry.target.id +
-              '"]'
-            );
-
-          if(active){
-            active.classList.add("active");
-          }
-
-        }
-
-      });
-
-    },
-    {
-      threshold:.55
     }
   );
 
-
-screens.forEach(screen=>{
-  observer.observe(screen);
 });
 
 
 /* =====================================================
-   AMBIENT PARTICLES
+   CINEMATIC PARTICLES
 ===================================================== */
 
 const canvas =
-  document.getElementById("particles");
+document.getElementById("particles");
 
 const ctx =
-  canvas.getContext("2d");
+canvas.getContext("2d");
 
 let particles = [];
 
+let width =
+window.innerWidth;
+
+let height =
+window.innerHeight;
+
+
 function resizeCanvas(){
 
+  width =
+  window.innerWidth;
+
+  height =
+  window.innerHeight;
+
   canvas.width =
-    window.innerWidth;
+  width * window.devicePixelRatio;
 
   canvas.height =
-    window.innerHeight;
+  height * window.devicePixelRatio;
+
+  canvas.style.width =
+  width + "px";
+
+  canvas.style.height =
+  height + "px";
+
+  ctx.setTransform(
+    window.devicePixelRatio,
+    0,
+    0,
+    window.devicePixelRatio,
+    0,
+    0
+  );
 
 }
-
-resizeCanvas();
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
 
 
 function createParticles(){
@@ -2417,33 +3361,39 @@ function createParticles(){
   particles = [];
 
   const count =
-    Math.min(
-      90,
-      Math.floor(
-        window.innerWidth / 15
-      )
-    );
+  Math.min(
+    100,
+    Math.floor(
+      width / 14
+    )
+  );
 
-  for(let i=0;i<count;i++){
+
+  for(
+    let i=0;
+    i<count;
+    i++
+  ){
 
     particles.push({
 
-      x:Math.random() *
-        canvas.width,
+      x:
+      Math.random()*width,
 
-      y:Math.random() *
-        canvas.height,
+      y:
+      Math.random()*height,
 
-      size:Math.random()*1.7+.3,
+      size:
+      Math.random()*1.7+.3,
 
       speed:
-        Math.random()*.25+.05,
-
-      drift:
-        (Math.random()-.5)*.15,
+      Math.random()*.25+.05,
 
       opacity:
-        Math.random()*.45+.08
+      Math.random()*.55+.08,
+
+      drift:
+      (Math.random()-.5)*.15
 
     });
 
@@ -2451,225 +3401,121 @@ function createParticles(){
 
 }
 
-createParticles();
 
-
-function animateParticles(){
+function drawParticles(){
 
   ctx.clearRect(
     0,
     0,
-    canvas.width,
-    canvas.height
+    width,
+    height
   );
 
-  particles.forEach(p=>{
 
-    p.y -= p.speed;
-    p.x += p.drift;
+  particles.forEach(
+    p=>{
 
-    if(p.y < -10){
+      p.y -= p.speed;
 
-      p.y =
-        canvas.height + 10;
+      p.x += p.drift;
 
-      p.x =
-        Math.random() *
-        canvas.width;
 
-    }
+      if(p.y < -10){
+        p.y = height + 10;
+      }
 
-    if(p.x < -10)
-      p.x = canvas.width + 10;
+      if(p.x < -10){
+        p.x = width + 10;
+      }
 
-    if(p.x > canvas.width+10)
-      p.x = -10;
+      if(p.x > width + 10){
+        p.x = -10;
+      }
 
-    ctx.beginPath();
 
-    ctx.arc(
-      p.x,
-      p.y,
-      p.size,
-      0,
-      Math.PI*2
-    );
+      ctx.beginPath();
 
-    ctx.fillStyle =
+      ctx.arc(
+        p.x,
+        p.y,
+        p.size,
+        0,
+        Math.PI*2
+      );
+
+
+      ctx.fillStyle =
       "rgba(216,168,78," +
       p.opacity +
       ")";
 
-    ctx.fill();
 
-  });
+      ctx.fill();
+
+    }
+  );
+
 
   requestAnimationFrame(
-    animateParticles
+    drawParticles
   );
 
 }
 
-animateParticles();
+
+resizeCanvas();
+
+createParticles();
+
+drawParticles();
+
+
+window.addEventListener(
+"resize",
+()=>{
+  resizeCanvas();
+  createParticles();
+});
 
 
 /* =====================================================
-   PARALLAX AMBIENT EFFECT
+   SUBTLE MOUSE PARALLAX
 ===================================================== */
+
+const heroGlow =
+document.querySelector(".hero-glow");
 
 let mouseX = 0;
 let mouseY = 0;
 
-window.addEventListener(
-  "mousemove",
-  event=>{
-
-    mouseX =
-      (event.clientX /
-      window.innerWidth -
-      .5) * 2;
-
-    mouseY =
-      (event.clientY /
-      window.innerHeight -
-      .5) * 2;
-
-    document
-      .querySelector(".glow-one")
-      .style.transform =
-      "translate(" +
-      mouseX * 35 +
-      "px," +
-      mouseY * 25 +
-      "px)";
-
-    document
-      .querySelector(".glow-two")
-      .style.transform =
-      "translate(" +
-      mouseX * -25 +
-      "px," +
-      mouseY * -20 +
-      "px)";
-
-  }
-);
-
-
-/* =====================================================
-   KEYBOARD NAVIGATION
-===================================================== */
-
-let currentSection = 0;
-
-const sectionIds = [
-  "home",
-  "kingdom",
-  "record",
-  "power",
-  "seasons",
-  "recruitment",
-  "apply",
-  "discord"
-];
-
-
-function goToSection(index){
-
-  if(index < 0)
-    index = 0;
-
-  if(index >= sectionIds.length)
-    index = sectionIds.length - 1;
-
-  currentSection = index;
-
-  const target =
-    document.getElementById(
-      sectionIds[index]
-    );
-
-  if(target){
-
-    target.scrollIntoView({
-      behavior:"smooth"
-    });
-
-  }
-
-}
-
 
 window.addEventListener(
-  "keydown",
-  event=>{
+"mousemove",
+event=>{
 
-    if(
-      event.key === "ArrowDown" ||
-      event.key === "PageDown"
-    ){
+  mouseX =
+  (event.clientX /
+  window.innerWidth -
+  .5);
 
-      event.preventDefault();
+  mouseY =
+  (event.clientY /
+  window.innerHeight -
+  .5);
 
-      goToSection(
-        currentSection + 1
-      );
 
-    }
+  if(heroGlow){
 
-    if(
-      event.key === "ArrowUp" ||
-      event.key === "PageUp"
-    ){
+    heroGlow.style.marginLeft =
+    (mouseX * 25) + "px";
 
-      event.preventDefault();
-
-      goToSection(
-        currentSection - 1
-      );
-
-    }
+    heroGlow.style.marginTop =
+    (mouseY * 25) + "px";
 
   }
-);
 
-
-/* =====================================================
-   KEEP CURRENT SECTION INDEX UPDATED
-===================================================== */
-
-const sectionObserver =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          const index =
-            sectionIds.indexOf(
-              entry.target.id
-            );
-
-          if(index !== -1){
-            currentSection = index;
-          }
-
-        }
-
-      });
-
-    },
-    {
-      threshold:.6
-    }
-  );
-
-
-screens.forEach(
-  screen=>{
-    sectionObserver.observe(screen);
-  }
+},
+{passive:true}
 );
 
 </script>
