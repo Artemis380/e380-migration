@@ -1,626 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPIRE 380 | Migration Recruitment</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-dark: #0a0a0c;
-            --bg-card: #121318;
-            --bg-card-hover: #1a1c24;
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --gold-dark: #aa7c11;
-            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-gold: rgba(212, 175, 55, 0.3);
-            --border-glow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .brand-title {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 1px;
-        }
-
-        .gold-text {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 12, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-gold);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .css-shield-icon {
-            width: 32px;
-            height: 38px;
-            background: var(--gold-gradient);
-            clip-path: polygon(50% 0%, 100% 20%, 100% 75%, 50% 100%, 0% 75%, 0% 20%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-weight: 900;
-            font-size: 0.8rem;
-        }
-
-        .brand-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--gold-light);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-primary);
-        }
-
-        /* Buttons */
-        .btn-gold {
-            background: var(--gold-gradient);
-            color: #000;
-            padding: 0.8rem 1.8rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--gold-light);
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            border: 1px solid var(--gold-primary);
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .btn-outline:hover {
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: var(--border-glow);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(10, 10, 12, 1) 70%);
-            border-bottom: 1px solid var(--border-gold);
-        }
-
-        .hero-badge {
-            display: inline-block;
-            border: 1px solid var(--gold-primary);
-            color: var(--gold-light);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            background: rgba(18, 19, 24, 0.8);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .tagline {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: var(--gold-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            max-width: 650px;
-            margin: 0 auto 2.5rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-
-        /* Layout & Content */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-        }
-
-        /* Legacy & Story Section */
-        .story-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border-gold);
-            border-radius: 8px;
-            padding: 3rem;
-            box-shadow: var(--border-glow);
-            margin-bottom: 5rem;
-        }
-
-        .stats-banner {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            background: #08080a;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 6px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .stat-box h4 {
-            font-size: 2.2rem;
-            font-family: 'Cinzel', serif;
-            margin-bottom: 0.2rem;
-        }
-
-        .stat-box p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .story-text {
-            color: var(--text-main);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .story-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Kingdom Record Showcase */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-gold);
-            color: var(--text-main);
-            padding: 0.5rem 1.25rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--gold-gradient);
-            color: #000;
-        }
-
-        .record-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .record-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 1.5rem;
-            border-radius: 6px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .record-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold-primary);
-        }
-
-        .record-tag {
-            font-size: 0.75rem;
-            color: var(--gold-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .record-card h3 {
-            margin: 0.5rem 0;
-            color: var(--gold-light);
-        }
-
-        /* Requirements Cards */
-        .req-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .req-card {
-            background: var(--bg-card);
-            border-top: 3px solid var(--gold-primary);
-            padding: 2rem;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .req-card h3 {
-            color: var(--gold-light);
-            margin-bottom: 1rem;
-        }
-
-        /* Application Form Section */
-        .apply-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-gold);
-            padding: 3rem;
-            border-radius: 8px;
-            margin-top: 5rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-size: 0.9rem;
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            background: #0a0a0c;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: #fff;
-            padding: 0.8rem 1rem;
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-gold);
-            padding: 3rem 2rem;
-            text-align: center;
-            background: #050507;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .footer-logo {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        @media(max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
-            .hero-btns { flex-direction: column; }
-            .story-container { padding: 1.5rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <div class="css-shield-icon">380</div>
-                <span class="brand-title">EMPIRE 380</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#legacy">Our Legacy</a></li>
-                <li><a href="#record">Record</a></li>
-                <li><a href="#requirements">Requirements</a></li>
-                <li><a href="#apply">Apply</a></li>
-            </ul>
-            <a href="#apply" class="btn-gold" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">Migrate Now</a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="hero-badge">SERVER 380 • MIGRATION RECRUITMENT</div>
-        <h1 class="gold-text">FEAR THE BANNER.</h1>
-        <div class="tagline">RESPECT THE CROWN.</div>
-        <p>EMPIRE 380 is building for the next chapter. We are looking for active, competitive, and committed players who want more than just another alliance.</p>
-        <div class="hero-btns">
-            <a href="#apply" class="btn-gold">Apply For Migration</a>
-            <a href="#legacy" class="btn-outline">Read Our Legacy</a>
-        </div>
-    </section>
-
-    <!-- Main Content Container -->
-    <div class="container">
-
-        <!-- EMPIRE 380 Legacy Section -->
-        <section id="legacy" style="scroll-margin-top: 100px;">
-            <div class="story-container">
-                <h2 class="section-title gold-text" style="text-align: center; margin-bottom: 0.5rem;">WE DIDN'T GET HERE BY ACCIDENT</h2>
-                <p class="section-subtitle" style="margin-bottom: 2rem;">EMPIRE 380 is not built on promises. It is built on results.</p>
-                
-                <div class="story-text">
-                    <p>From our first season, we stepped into competitive matchups against established kingdoms and proved we belonged. <strong>Season 1 — 2nd Place Stellar Kingdom</strong>. Season 2 brought even tougher competition, yet we continued to fight, adapt and improve. Now, in <strong>Season 3, Server 380 stands at #1</strong>.</p>
-                </div>
-
-                <!-- Highlight Stats Banner -->
-                <div class="stats-banner">
-                    <div class="stat-box">
-                        <h4 class="gold-text">9 - 2</h4>
-                        <p>Direct Record</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4 class="gold-text">81.8%</h4>
-                        <p>Win Rate</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4 class="gold-text">#1 Rank</h4>
-                        <p>Season 3 Position</p>
-                    </div>
-                </div>
-
-                <div class="story-text">
-                    <p>Our record tells the story: <strong>9 direct victories, 2 losses, and an 81.8% win rate</strong>. We have faced multiple kingdoms across Stellar Kingdom, Desert Dominion, Behemoth and MEE — and every season has pushed us further.</p>
-                    
-                    <p>But numbers aren't what built EMPIRE 380. <strong>The people did.</strong></p>
-
-                    <p>We believe a kingdom is only as strong as the players willing to show up when it matters. The rallies, the coordination, the late-night defenses, the victories nobody expected — that's what separates a collection of players from a kingdom that moves as one.</p>
-
-                    <p>Now we're preparing for the next chapter. We're looking for players who want to compete. Players who communicate. Players who understand that individual strength matters, but collective strength wins wars.</p>
-
-                    <div style="background: rgba(212, 175, 55, 0.05); border-left: 3px solid var(--gold-primary); padding: 1.2rem; margin-top: 2rem; border-radius: 0 4px 4px 0;">
-                        <p style="margin-bottom: 0.5rem; font-weight: 600;">If you're searching for somewhere to simply exist after migration, we aren't for you.</p>
-                        <p style="margin-bottom: 0; color: var(--gold-light); font-weight: 700;">If you're looking for a kingdom with ambition, organization, competition and something to prove — Welcome to EMPIRE 380.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Kingdom Record Showcase -->
-        <section id="record" style="scroll-margin-top: 100px;">
-            <h2 class="section-title gold-text">KINGDOM RECORD</h2>
-            <p class="section-subtitle">Proven leadership and dominance in KvK and Apex battlegrounds.</p>
-
-            <div class="filter-tabs">
-                <button class="tab-btn active" onclick="filterRecords('all')">All History</button>
-                <button class="tab-btn" onclick="filterRecords('kvk')">KvK Campaigns</button>
-                <button class="tab-btn" onclick="filterRecords('apex')">Apex Championship</button>
-            </div>
-
-            <div class="record-grid">
-                <div class="record-card" data-category="kvk">
-                    <span class="record-tag">KvK Season 3</span>
-                    <h3>Imperial Capital Control</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Organized full-scale tactical dominance and garrison control throughout the S3 campaign.</p>
-                </div>
-                <div class="record-card" data-category="apex">
-                    <span class="record-tag">Apex Tournament</span>
-                    <h3>Legends & Master Champions</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Secured top rank finishes across major championship brackets with elite rally leadership.</p>
-                </div>
-                <div class="record-card" data-category="kvk">
-                    <span class="record-tag">Alliance Power</span>
-                    <h3>Server 380 Coalition</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Unified high-power main formations across Swords, Pikes, Archers, and Heavy Cavalry lineups.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Migration Requirements -->
-        <section id="requirements" style="scroll-margin-top: 100px; margin-top: 5rem;">
-            <h2 class="section-title gold-text">ENTRY REQUIREMENTS</h2>
-            <p class="section-subtitle">We maintain high standards to ensure competitive synergy across all rally compositions.</p>
-
-            <div class="req-grid">
-                <div class="req-card">
-                    <h3>High Activity</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Must be present during critical KvK objective timers and dark legion rallies.</p>
-                </div>
-                <div class="req-card">
-                    <h3>Rally Synergy</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Main hero compositions fully maxed or targeted for core rally and garrison callouts.</p>
-                </div>
-                <div class="req-card">
-                    <h3>Voice & Discord</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Active communication in Discord for strategic migration coordination and target assignments.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Application Form -->
-        <section id="apply" class="apply-section" style="scroll-margin-top: 100px;">
-            <h2 class="section-title gold-text" style="text-align: left; margin-bottom: 0.5rem;">MIGRATION APPLICATION</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Fill out the details below. Our leadership team will review your application shortly.</p>
-
-            <form id="migrationForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="inGameName">In-Game Name</label>
-                        <input type="text" id="inGameName" name="inGameName" required placeholder="Your exact IGN">
-                    </div>
-                    <div class="form-group">
-                        <label for="discordTag">Discord Username</label>
-                        <input type="text" id="discordTag" name="discordTag" required placeholder="username#0000">
-                    </div>
-                    <div class="form-group">
-                        <label for="currentServer">Current Server</label>
-                        <input type="text" id="currentServer" name="currentServer" required placeholder="e.g. #386">
-                    </div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="powerLevel">Current Power</label>
-                        <input type="number" id="powerLevel" name="powerLevel" required placeholder="e.g. 150000000">
-                    </div>
-                    <div class="form-group">
-                        <label for="merits">Total Merits / Kills</label>
-                        <input type="number" id="merits" name="merits" required placeholder="e.g. 60000000">
-                    </div>
-                    <div class="form-group">
-                        <label for="mainTroop">Main Troop Class</label>
-                        <select id="mainTroop" name="mainTroop" required>
-                            <option value="Cavalry">Cavalry</option>
-                            <option value="Swordsmen">Swordsmen</option>
-                            <option value="Pikemen">Pikemen</option>
-                            <option value="Archers">Archers</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group" style="margin-bottom: 2rem;">
-                    <label for="additionalInfo">Main Heroes & Additional Notes</label>
-                    <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="List your main hero compositions, stars, level, and active VIP status..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-gold" style="width: 100%; font-size: 1.1rem;">Submit Application</button>
-            </form>
-        </section>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">
-            <div class="css-shield-icon" style="width: 24px; height: 28px; font-size: 0.65rem;">380</div>
-            <span class="brand-title" style="font-size: 1.1rem;">EMPIRE 380</span>
-        </div>
-        <p style="margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 600;">FEAR THE BANNER. RESPECT THE CROWN.</p>
-        <p>&copy; 2026 Empire 380 Alliance. All rights reserved.</p>
-    </footer>
-
-    <!-- Interactive Scripts -->
-    <script>
-        function filterRecords(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const cards = document.querySelectorAll('.record-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
-
-</body>
-</html>
+/* Record Overview Grid */
+.record-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.record-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--border-glow);
+}
+
+.record-stat-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.record-stat-card p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Season Timeline Layout */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.season-block {
+    background: var(--bg-card);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.season-block.current-season {
+    border-color: var(--gold-primary);
+    box-shadow: var(--border-glow);
+}
+
+.season-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.season-title {
+    font-size: 1.4rem;
+    color: var(--gold-light);
+}
+
+.season-badge {
+    background: var(--gold-gradient);
+    color: #000;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.campaign-card {
+    background: #08080a;
+    border-left: 3px solid var(--gold-primary);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+}
+
+.campaign-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+}
+
+.match-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.match-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.tag-win {
+    color: #4ade80;
+    font-weight: 700;
+    font-size: 0.75rem;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.tag-loss {
+    color: #f87171;
+    font-weight: 700;
+    font-size: 0.75rem;
+    background: rgba(248, 113, 113, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.tag-podium {
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 0.75rem;
+    background: rgba(212, 175, 55, 0.15);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* Quote Banner */
+.record-footer-quote {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.record-footer-quote p {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
