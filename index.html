@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>EMPIRE 380 | Fear the Banner. Respect the Crown.</title>
-<meta name="description" content="EMPIRE 380 — Server 380 migration registration. Three seasons of competition, a proven record, and finishing Season 3 in 1st place.">
+<title>ERA 138 | E380 × E431 | Recruitment Open</title>
+<meta name="description" content="ERA 138 — E380 × E431 merger recruitment. Recruitment is open now.">
 <style>
 :root{--bg:#030507;--panel:#0b1018;--gold:#d8a84e;--gold2:#f4d27d;--white:#f5f7fa;--muted:#8d98a8;--green:#38d996;--red:#ff5c6c;--line:rgba(216,168,78,.2)}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:auto}body{font-family:Arial,Helvetica,sans-serif;background:#030507;color:var(--white);overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit}
@@ -33,73 +33,166 @@
 .hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:20;color:#687282;font-size:9px;letter-spacing:2px;text-transform:uppercase}.flash{animation:flash .8s ease}.reveal{animation:reveal .9s cubic-bezier(.2,.8,.2,1) both}@keyframes reveal{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}@keyframes flash{50%{filter:brightness(1.4)}}
 @media(max-width:850px){body{overflow:auto}.scene{position:relative;min-height:100vh;padding:95px 5vw 65px;display:none;opacity:1;visibility:visible;transform:none;overflow:visible}.scene.active{display:flex}.nav{display:none}.progress{left:auto;right:16px}.grid,.record{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border:0}.matches{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.powerhead,.prow{grid-template-columns:48px 1fr auto}.powerval{font-size:12px}.summary{grid-template-columns:1fr}.hint{display:none}}
 @media(max-width:500px){.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.hero h1{letter-spacing:-3px}}
+
+/* ERA 138 mobile-first overrides */
+html,body{min-height:100%;overflow-x:hidden}
+body{overflow-y:auto}
+#app{min-height:100vh}
+.scene{position:relative;min-height:100vh;height:auto;padding:105px 5vw 70px;display:none;opacity:1;visibility:visible;transform:none;overflow:visible}
+.scene.active{display:flex}
+.scene-inner{width:min(1180px,100%);margin:auto}
+.topbar{height:64px;padding:0 4vw}
+.logo{font-size:13px;gap:8px;white-space:nowrap}
+.crest{width:32px;height:32px;font-size:9px}
+.progress{right:10px;left:auto;gap:9px}
+.dot{width:6px;height:6px}
+.hero h1{font-size:clamp(40px,12vw,82px);letter-spacing:-3px}
+.hero p{font-size:15px;line-height:1.6;margin:22px auto}
+.buttons{gap:9px}
+.btn{width:100%;padding:14px 16px;text-align:center}
+.title h2{font-size:clamp(32px,9vw,58px)}
+.title p{font-size:14px}
+.grid,.record,.stats,.summary{grid-template-columns:1fr}
+.card{min-height:auto;padding:21px}
+.stats{border-radius:12px}
+.stat{border-right:0;border-bottom:1px solid var(--line)}
+.stat:last-child{border-bottom:0}
+.power{overflow:hidden}
+.powerhead,.prow{grid-template-columns:42px minmax(0,1fr) auto}
+.powerhead{padding:12px 13px;font-size:9px}
+.prow{padding:14px 13px;gap:8px}
+.player{font-size:13px;min-width:0;overflow-wrap:anywhere}
+.powerval{font-size:12px;white-space:nowrap}
+.prow:hover{padding-left:13px}
+.formbox{max-height:none;padding:19px}
+.formgrid{grid-template-columns:1fr}
+.full{grid-column:auto}
+input,select,textarea{font-size:16px;padding:13px}
+textarea{min-height:120px}
+.note{font-size:10px}
+.statement strong{font-size:24px}
+.hint{display:none}
+@media(min-width:851px){
+  body{overflow:hidden}
+  .scene{position:absolute;height:100vh;padding:92px 7vw 70px;display:flex;opacity:0;visibility:hidden;transform:scale(1.04);overflow:auto}
+  .scene.active{display:flex;opacity:1;visibility:visible;transform:scale(1)}
+}
+
 </style>
 </head>
 <body>
 <div id="ambient"></div><div id="stars"></div><div id="embers"></div>
 
 <header class="topbar">
-  <a class="logo" href="#" onclick="go(0);return false"><span class="crest">380</span>EMPIRE 380</a>
+  <a class="logo" href="#" onclick="go(0);return false"><span class="crest">138</span>ERA 138</a>
   <div class="nav">
-    <button onclick="go(0)">CROWN</button><button onclick="go(1)">KINGDOM</button><button onclick="go(2)">RECORD</button><button onclick="go(3)">POWER</button><button onclick="go(4)">SEASONS</button><button onclick="go(5)">RECRUIT</button><button onclick="go(6)">APPLY</button>
+    <button onclick="go(0)">HOME</button>
+    <button onclick="go(1)">MERGER</button>
+    <button onclick="go(2)">TOP 10</button>
+    <button onclick="go(3)">E380</button>
+    <button onclick="go(4)">E431</button>
+    <button onclick="go(5)">RECRUIT</button>
+    <button onclick="go(6)">APPLY</button>
   </div>
 </header>
 <div class="progress" id="progress"></div>
 <div class="hint">Use mouse wheel • arrow keys • navigation</div>
 
 <main id="app">
+
 <section class="scene active"><div class="scene-inner hero">
-  <div class="kicker">SERVER 380 • MIGRATION &amp; MERGER REGISTRATION</div>
-  <h1>FEAR THE BANNER.<span>RESPECT THE CROWN.</span></h1>
-  <p>Finished Season 3 in <span class="gold">1st Place</span> — Season 4 is now underway.<br>Migration and merger announced for <span class="gold">September 25th onwards</span>. Register now.</p>
-  <div class="buttons"><button class="btn primary" onclick="go(6)">REGISTER NOW</button><button class="btn" onclick="go(2)">VIEW THE RECORD</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div>
-</div></section>
-
-<section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">THE KINGDOM</div><h2>Built For The Fight.</h2><p>EMPIRE 380 is built around organization, activity, competition and long-term growth. Individual strength becomes collective power.</p></div>
-  <div class="stats"><div class="stat"><strong>#1</strong><span>Season 3 Finish</span></div><div class="stat"><strong>12–2</strong><span>Tracked Record</span></div><div class="stat"><strong>85.7%</strong><span>Tracked Win Rate</span></div><div class="stat"><strong>380</strong><span>Kingdom</span></div></div>
-  <br><div class="grid"><div class="card"><div class="num">01</div><h3>Competitive</h3><p>We play to win. Major kingdom events are treated seriously and when the fight starts, Server 380 shows up.</p></div><div class="card"><div class="num">02</div><h3>Proven</h3><p>Three seasons against strong kingdoms have built experience, coordination and a reputation.</p></div><div class="card"><div class="num">03</div><h3>Organized</h3><p>Communication, preparation and teamwork turn individual strength into kingdom-wide results.</p></div></div>
-</div></section>
-
-<section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">OUR RECORD SPEAKS FOR ITSELF</div><h2>Three Seasons. One Direction.</h2><p>We started Season 1 in second place, followed it with third, and climbed to the top to finish Season 3 in 1st place.</p></div>
-  <div class="record"><div class="box"><h3>Stellar Kingdom</h3><div class="line"><span>Season 1</span><strong class="gold">2nd Place</strong></div><div class="line"><span>Season 2</span><strong class="gold">3rd Place</strong></div><div class="line"><span>Season 3</span><strong class="win">1st Place</strong></div></div><div class="box"><h3>Overall Tracked Record</h3><div class="line"><span>Victories</span><strong class="win">12</strong></div><div class="line"><span>Losses</span><strong class="loss">2</strong></div><div class="line"><span>Win Rate</span><strong class="gold">85.7%</strong></div><div class="line"><span>Seasons</span><strong>3</strong></div></div></div>
-  <div class="statement"><strong>12 WINS • 2 LOSSES</strong><p>Every victory was earned. Every defeat taught us something. Every season made 380 stronger.</p></div>
-</div></section>
-
-<section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">THE POWERHOUSE</div><h2>Top 10 Players.</h2><p>Strength is only one part of a great kingdom — but Server 380 is not short on it.</p></div>
-  <div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div>
-  <div class="prow"><span class="rank">01</span><span class="player">モRムC³⁸⁰</span><span class="powerval">232,909,165</span></div>
-  <div class="prow"><span class="rank">02</span><span class="player">RҽԃD€ʋιʅ³⁸⁰</span><span class="powerval">179,536,912</span></div>
-  <div class="prow"><span class="rank">03</span><span class="player">殺戮之主</span><span class="powerval">174,741,232</span></div>
-  <div class="prow"><span class="rank">04</span><span class="player">Aɾƚҽɱιʂ³⁸⁰</span><span class="powerval">138,695,894</span></div>
-  <div class="prow"><span class="rank">05</span><span class="player">Samalops</span><span class="powerval">133,236,343</span></div>
-  <div class="prow"><span class="rank">06</span><span class="player">DuceX³⁸⁰</span><span class="powerval">116,368,538</span></div>
-  <div class="prow"><span class="rank">07</span><span class="player">Lunlaa³⁸⁰</span><span class="powerval">96,417,822</span></div>
-  <div class="prow"><span class="rank">08</span><span class="player">Aysss</span><span class="powerval">88,480,062</span></div>
-  <div class="prow"><span class="rank">09</span><span class="player">nindža</span><span class="powerval">87,813,062</span></div>
-  <div class="prow"><span class="rank">10</span><span class="player">BLΛÐĘ⚔︎</span><span class="powerval">79,722,915</span></div></div>
-  <div class="summary"><div><strong>10</strong><span>TOP PLAYERS</span></div><div><strong>1.43B+</strong><span>COMBINED POWER</span></div><div><strong>232M+</strong><span>TOP PLAYER POWER</span></div></div>
-</div></section>
-
-<section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">THREE SEASONS</div><h2>The Road To #1.</h2><p>From contender to finishing Season 3 at the top of the Stellar Kingdom. Season 4 is now underway.</p></div>
-  <div class="timeline">
-    <div class="season"><div class="seasonhead"><h3>SEASON 1</h3><span class="result">2ND PLACE STELLAR KINGDOM</span></div><div class="matches"><div class="match"><small>GOLDEN EXPEDITION</small>Victory vs Server 388</div><div class="match"><small>GOLDEN EXPEDITION</small>Victory vs Server 387</div><div class="match"><small>MEE</small>Victory vs Server 382</div><div class="match"><small>MEE</small>Victory vs Server 381</div><div class="match"><small>MEE</small>Victory vs Server 385</div></div></div>
-    <div class="season"><div class="seasonhead"><h3>SEASON 2</h3><span class="result">3RD PLACE STELLAR KINGDOM</span></div><div class="matches"><div class="match"><small>MEE</small>Victory vs Server 390</div><div class="match"><small>BEHEMOTH</small>Victory vs Server 390</div><div class="match"><small>DESOLATE DESERT</small>2nd Place vs 384, 403 &amp; 394</div><div class="match"><small>MEE</small>Loss vs Server 385</div><div class="match"><small>BEHEMOTH</small>Loss vs Server 385</div></div></div>
-    <div class="season"><div class="seasonhead"><h3>SEASON 3</h3><span class="result">1ST PLACE STELLAR KINGDOM</span></div><div class="matches"><div class="match"><small>BEHEMOTH</small>Victory vs Server 386</div><div class="match"><small>MEE</small>Victory vs Server 388</div><div class="match"><small>BEHEMOTH</small>Victory vs Server 388</div><div class="match"><small>MEE</small>Victory vs Server 386</div><div class="match"><small>DESOLATE DESERT</small>1st Place vs 394, 399 &amp; 402</div></div></div>
+  <div class="kicker">ERA 138 • E380 × E431 • RECRUITMENT OPEN</div>
+  <h1>ERA <span>138</span></h1>
+  <p>The kingdoms of <span class="gold">E380</span> and <span class="gold">E431</span> are coming together to build <span class="gold">Era 138</span>.<br><strong class="gold">Recruitment is OPEN now.</strong></p>
+  <div class="buttons">
+    <button class="btn primary" onclick="go(6)">APPLY TO ERA 138</button>
+    <button class="btn" onclick="go(2)">VIEW TOP 10</button>
+    <a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a>
   </div>
 </div></section>
 
 <section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">WHO WE WANT</div><h2>Bring The Right Mindset.</h2><p>Power matters. Attitude, activity and commitment matter just as much.</p></div>
-  <div class="grid"><div class="card"><div class="num">01</div><h3>Active Players</h3><p>Players who participate consistently, communicate and contribute to kingdom objectives.</p></div><div class="card"><div class="num">02</div><h3>Event Players</h3><p>Players willing to show up for major kingdom events and follow coordinated strategies.</p></div><div class="card"><div class="num">03</div><h3>Team Players</h3><p>Strong individuals are welcome, but when the fight matters, Server 380 comes first.</p></div></div>
-  <div class="statement"><strong>MIGRATION &amp; MERGER ANNOUNCED FOR SEPT 25TH ONWARDS.</strong><p>Registration is open now so our recruitment team can review your account ahead of the migration window.</p><br><button class="btn primary" onclick="go(6)">START REGISTRATION</button></div>
+  <div class="title"><div class="kicker">THE MERGER</div><h2>E380 × E431</h2><p>Two established kingdoms. One new chapter. Era 138 brings E380 and E431 together under one banner.</p></div>
+  <div class="stats">
+    <div class="stat"><strong>138</strong><span>NEW ERA</span></div>
+    <div class="stat"><strong>E380</strong><span>MERGING KINGDOM</span></div>
+    <div class="stat"><strong>E431</strong><span>MERGING KINGDOM</span></div>
+    <div class="stat"><strong>OPEN</strong><span>RECRUITMENT</span></div>
+  </div>
+  <br>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><h3>E380</h3><p>A strong core of established players bringing experience, power and organized kingdom play into Era 138.</p></div>
+    <div class="card"><div class="num">02</div><h3>E431</h3><p>A second competitive core joining the merger with its own established players and leadership.</p></div>
+    <div class="card"><div class="num">03</div><h3>ERA 138</h3><p>The merger creates a new roster, new identity and a fresh opportunity for players ready to contribute.</p></div>
+  </div>
+  <div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Applications are being accepted now. Submit your account details for recruitment review.</p><br><button class="btn primary" onclick="go(6)">START APPLICATION</button></div>
 </div></section>
 
 <section class="scene"><div class="scene-inner">
-  <div class="title"><div class="kicker">MIGRATION &amp; MERGER REGISTRATION</div><h2>Apply To EMPIRE 380.</h2><p>Migration and merger are announced starting September 25th. Submit your application for recruitment review.</p></div>
+  <div class="title"><div class="kicker">ERA 138 • COMBINED POWER</div><h2>Top 10 Of The Merger.</h2><p>The current Top 10 ranked by power across the E380 and E431 rosters.</p></div>
+  <div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div>
+<div class="prow"><span class="rank">01</span><span class="player">モRムC³⁸⁰<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">243,311,706</span></div>
+<div class="prow"><span class="rank">02</span><span class="player">RҽԃD€ʋιʅ<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">184,314,674</span></div>
+<div class="prow"><span class="rank">03</span><span class="player">殺戮之主<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">174,885,082</span></div>
+<div class="prow"><span class="rank">04</span><span class="player">Ἀνάγκη<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">138,029,120</span></div>
+<div class="prow"><span class="rank">05</span><span class="player">Samalops<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">135,802,016</span></div>
+<div class="prow"><span class="rank">06</span><span class="player">DuceX<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">121,986,593</span></div>
+<div class="prow"><span class="rank">07</span><span class="player">Lunlaa³⁸⁰<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">101,511,571</span></div>
+<div class="prow"><span class="rank">08</span><span class="player">nindža<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">94,464,702</span></div>
+<div class="prow"><span class="rank">09</span><span class="player">Aysss<small style="color:var(--muted);font-size:9px;margin-left:8px">E380</small></span><span class="powerval">94,407,665</span></div>
+<div class="prow"><span class="rank">10</span><span class="player">Snoopuhloop<small style="color:var(--muted);font-size:9px;margin-left:8px">E431</small></span><span class="powerval">88,630,281</span></div>
+  </div>
+  <div class="summary">
+    <div><strong>10</strong><span>TOP PLAYERS</span></div>
+    <div><strong>1.38B+</strong><span>COMBINED TOP 10 POWER</span></div>
+    <div><strong>243M+</strong><span>TOP PLAYER POWER</span></div>
+  </div>
+</div></section>
+
+<section class="scene"><div class="scene-inner">
+  <div class="title"><div class="kicker">E380 ROSTER</div><h2>Top 10 • E380</h2><p>Current E380 Top 10 by player power.</p></div>
+  <div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div>
+<div class="prow"><span class="rank">01</span><span class="player">モRムC³⁸⁰</span><span class="powerval">243,311,706</span></div>
+<div class="prow"><span class="rank">02</span><span class="player">RҽԃD€ʋιʅ</span><span class="powerval">184,314,674</span></div>
+<div class="prow"><span class="rank">03</span><span class="player">殺戮之主</span><span class="powerval">174,885,082</span></div>
+<div class="prow"><span class="rank">04</span><span class="player">Ἀνάγκη</span><span class="powerval">138,029,120</span></div>
+<div class="prow"><span class="rank">05</span><span class="player">Samalops</span><span class="powerval">135,802,016</span></div>
+<div class="prow"><span class="rank">06</span><span class="player">DuceX</span><span class="powerval">121,986,593</span></div>
+<div class="prow"><span class="rank">07</span><span class="player">Lunlaa³⁸⁰</span><span class="powerval">101,511,571</span></div>
+<div class="prow"><span class="rank">08</span><span class="player">nindža</span><span class="powerval">94,464,702</span></div>
+<div class="prow"><span class="rank">09</span><span class="player">Aysss</span><span class="powerval">94,407,665</span></div>
+<div class="prow"><span class="rank">10</span><span class="player">BLΛÐĘ⚔︎</span><span class="powerval">83,010,126</span></div>
+  </div>
+</div></section>
+
+<section class="scene"><div class="scene-inner">
+  <div class="title"><div class="kicker">E431 ROSTER</div><h2>Top 10 • E431</h2><p>Current E431 Top 10 by player power.</p></div>
+  <div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div>
+<div class="prow"><span class="rank">01</span><span class="player">Snoopuhloop</span><span class="powerval">88,630,281</span></div>
+<div class="prow"><span class="rank">02</span><span class="player">BLOYD</span><span class="powerval">79,146,202</span></div>
+<div class="prow"><span class="rank">03</span><span class="player">KIRAMI</span><span class="powerval">74,520,961</span></div>
+<div class="prow"><span class="rank">04</span><span class="player">MrGoodCat⁴³¹</span><span class="powerval">71,331,608</span></div>
+<div class="prow"><span class="rank">05</span><span class="player">Tѻｐ⍴ǤᎮ</span><span class="powerval">71,054,212</span></div>
+<div class="prow"><span class="rank">06</span><span class="player">Koko|TR</span><span class="powerval">69,840,419</span></div>
+<div class="prow"><span class="rank">07</span><span class="player">⁴³¹Pearlᴷᴼᴴ</span><span class="powerval">64,355,876</span></div>
+<div class="prow"><span class="rank">08</span><span class="player">wꪊꪀꪖꪀ⁴³¹</span><span class="powerval">58,605,961</span></div>
+<div class="prow"><span class="rank">09</span><span class="player">mystigri</span><span class="powerval">56,292,028</span></div>
+<div class="prow"><span class="rank">10</span><span class="player">Rexydomᴮᴹ</span><span class="powerval">55,655,322</span></div>
+  </div>
+</div></section>
+
+<section class="scene"><div class="scene-inner">
+  <div class="title"><div class="kicker">WHO WE WANT</div><h2>Era 138 Is Recruiting.</h2><p>Power matters. Activity, attitude, communication and commitment matter just as much.</p></div>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><h3>Active Players</h3><p>Players who participate consistently, communicate and contribute to kingdom objectives.</p></div>
+    <div class="card"><div class="num">02</div><h3>Event Players</h3><p>Players willing to show up for major kingdom events and follow coordinated strategies.</p></div>
+    <div class="card"><div class="num">03</div><h3>Team Players</h3><p>Strong individuals are welcome. We are building one roster for Era 138.</p></div>
+  </div>
+  <div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Submit your application now. Recruitment officers will review your account and contact you through Discord.</p><br><button class="btn primary" onclick="go(6)">APPLY NOW</button></div>
+</div></section>
+
+<section class="scene"><div class="scene-inner">
+  <div class="title"><div class="kicker">ERA 138 RECRUITMENT</div><h2>Apply To Era 138.</h2><p>E380 and E431 are merging. Submit your account for recruitment review.</p></div>
   <div class="formbox"><form id="applicationForm"><div class="formgrid">
     <div><label>In-Game Name *</label><input name="playerName" required placeholder="Your in-game name"></div>
     <div><label>Discord Username *</label><input name="discord" required placeholder="username"></div>
@@ -112,14 +205,21 @@
     <div><label>VIP Level</label><input type="number" name="vip" placeholder="Example: 17"></div>
     <div><label>Migration Availability</label><select name="migration"><option value="">Select</option><option>Ready to migrate</option><option>Preparing</option><option>Need information</option></select></div>
     <div class="full"><label>Previous Server / History</label><input name="previousServer" placeholder="Previous kingdoms or migration history"></div>
-    <div class="full"><label>Event Experience</label><textarea name="events" placeholder="Tell us about your Stellar Kingdom, Desolate Desert, Behemoth, MEE experience..."></textarea></div>
-    <div class="full"><label>Tell Us About Yourself</label><textarea name="aboutPlayer" placeholder="Why do you want to join EMPIRE 380?"></textarea></div>
-  </div><div class="note">By submitting, you confirm the information is accurate. Recruitment officers may contact you through Discord. <span class="gold">Migration &amp; merger announced for September 25th onwards; register now.</span></div><button class="btn primary" style="width:100%" id="submitButton">SUBMIT REGISTRATION</button><div id="status"></div></form></div>
+    <div class="full"><label>Event Experience</label><textarea name="events" placeholder="Tell us about your kingdom event experience..."></textarea></div>
+    <div class="full"><label>Tell Us About Yourself</label><textarea name="aboutPlayer" placeholder="Why do you want to join Era 138?"></textarea></div>
+  </div>
+  <div class="note">By submitting, you confirm the information is accurate. Recruitment officers may contact you through Discord. <span class="gold">Era 138 recruitment is OPEN.</span></div>
+  <button class="btn primary" style="width:100%" id="submitButton">SUBMIT APPLICATION</button>
+  <div id="status"></div></form></div>
 </div></section>
 
 <section class="scene"><div class="scene-inner end">
-  <div class="kicker">THE NEXT CHAPTER</div><h2>THE CROWN IS NOT GIVEN.<br><span class="gold">IT IS TAKEN.</span></h2><p>Join the EMPIRE 380 community, get to know the kingdom and put your name forward for migration and merger opening on September 25th.</p><div class="buttons"><button class="btn primary" onclick="go(6)">REGISTER</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div><br><div class="kicker">FEAR THE BANNER. RESPECT THE CROWN.</div>
+  <div class="kicker">THE NEXT CHAPTER</div><h2>WELCOME TO ERA 138.<br><span class="gold">THE BANNER RISES.</span></h2>
+  <p>E380 and E431 are merging. Recruitment is open for players ready to join the next chapter.</p>
+  <div class="buttons"><button class="btn primary" onclick="go(6)">APPLY NOW</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div>
+  <br><div class="kicker">ERA 138 • E380 × E431</div>
 </div></section>
+
 </main>
 
 <script>
@@ -129,6 +229,13 @@ scenes.forEach((_,i)=>{const d=document.createElement("button");d.className="dot
 function go(n){n=Math.max(0,Math.min(scenes.length-1,n));if(n===current)return;busy=true;scenes[current].classList.remove("active");current=n;scenes[current].classList.add("active");[...progress.children].forEach((d,i)=>d.classList.toggle("active",i===current));setTimeout(()=>busy=false,750)}
 window.addEventListener("wheel",e=>{if(window.innerWidth<=850)return;if(busy)return;if(Math.abs(e.deltaY)<20)return;go(current+(e.deltaY>0?1:-1))},{passive:true});
 window.addEventListener("keydown",e=>{if(e.key==="ArrowDown"||e.key==="PageDown"||e.key===" "){e.preventDefault();go(current+1)}if(e.key==="ArrowUp"||e.key==="PageUp"){e.preventDefault();go(current-1)}});
+let touchStartY=0;
+window.addEventListener("touchstart",e=>{touchStartY=e.changedTouches[0].screenY},{passive:true});
+window.addEventListener("touchend",e=>{
+  const dy=touchStartY-e.changedTouches[0].screenY;
+  if(window.innerWidth<=850 && Math.abs(dy)>55) go(current+(dy>0?1:-1));
+},{passive:true});
+
 for(let i=0;i<100;i++){const s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*4+"s";document.getElementById("stars").appendChild(s)}
 for(let i=0;i<28;i++){const e=document.createElement("i");e.className="ember";e.style.left=Math.random()*100+"%";e.style.animationDuration=5+Math.random()*8+"s";e.style.animationDelay=-Math.random()*10+"s";document.getElementById("embers").appendChild(e)}
 const form=document.getElementById("applicationForm"),button=document.getElementById("submitButton"),status=document.getElementById("status");
