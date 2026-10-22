@@ -25,21 +25,62 @@
 @media(max-width:850px){.scene{padding:84px 5vw 90px;align-items:flex-start}.scene-inner{margin:auto}.nav{display:none}.topbar{height:62px}.progress{right:12px;gap:10px}.grid,.stats,.summary{grid-template-columns:1fr}.record{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.matches{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.powerhead,.prow{grid-template-columns:42px minmax(0,1fr) auto;gap:8px}.powerhead{padding:12px 13px;font-size:9px}.prow{padding:14px 13px}.player{font-size:13px}.powerval{font-size:12px;white-space:nowrap}.formbox{padding:19px}.formgrid input,.formgrid select,.formgrid textarea{font-size:16px;padding:13px}.btn{width:100%;text-align:center}.buttons{gap:9px}.hero h1{font-size:clamp(40px,12vw,82px);letter-spacing:-3px}.hero p{font-size:15px}.title h2{font-size:clamp(32px,9vw,58px)}.hint{display:none}.seasonhead{flex-direction:column;gap:8px}.travel-controls{bottom:12px;left:5vw;right:5vw}.travel-controls button{padding:12px 10px;font-size:10px}}
 .travel-controls{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:110;display:flex;align-items:center;justify-content:center;gap:10px;width:min(460px,90vw);pointer-events:none}.travel-controls button{pointer-events:auto;border:1px solid var(--line);background:rgba(5,8,13,.86);backdrop-filter:blur(10px);color:var(--gold2);border-radius:7px;padding:11px 18px;font-size:10px;font-weight:900;letter-spacing:1.3px;transition:.25s}.travel-controls button:hover{border-color:var(--gold);box-shadow:0 0 24px rgba(216,168,78,.15)}.travel-controls .travel-next{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#090909;border-color:var(--gold2)}.travel-count{color:#8d98a8;font-size:10px;letter-spacing:1px;min-width:45px;text-align:center}@media(max-width:850px){.travel-controls{width:90vw}.travel-controls button{flex:1}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;scroll-snap-type:none}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.scene.space-arrive .scene-inner{animation:none}}
+
+/* HYBRID MODE: natural scrolling + click-triggered space travel */
+html{scroll-behavior:smooth;scroll-padding-top:78px;overflow-x:hidden;overflow-y:auto}
+body{height:auto;min-height:100vh;overflow-x:hidden;overflow-y:auto}
+#app{position:relative;width:100%;height:auto;min-height:100vh;overflow:visible;perspective:none}
+.scene,.scene.active,.scene.departing{position:relative;inset:auto;width:100%;height:auto;min-height:100vh;padding:108px 7vw 82px;display:flex;align-items:center;overflow:visible;opacity:1;visibility:visible;pointer-events:auto;transform:none;filter:none;transition:none;z-index:1;scroll-margin-top:0}
+.scene-inner{width:min(1180px,100%);margin:auto}
+.scene.space-arrive .scene-inner{animation:spaceArrival 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes spaceArrival{0%{opacity:.28;transform:scale(.965) translateY(18px);filter:brightness(.6)}45%{opacity:1;filter:brightness(1.2)}100%{opacity:1;transform:scale(1) translateY(0);filter:brightness(1)}}
+#space-jump{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;background:radial-gradient(ellipse at center,rgba(216,168,78,.12),rgba(3,5,7,.96) 65%);transition:opacity .22s ease,visibility .22s;overflow:hidden}
+#space-jump::before{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(100deg,transparent 0 7%,rgba(244,210,125,.0) 7.1% 7.25%,transparent 7.4% 13%);transform:scale(.2);opacity:0}
+#space-jump.traveling{opacity:1;visibility:visible}
+#space-jump.traveling::before{animation:warp 1s ease-in-out both}
+@keyframes warp{0%{transform:scale(.15);opacity:0}25%{opacity:.7}100%{transform:scale(1.8);opacity:0}}
+.topbar{position:fixed;z-index:100}
+.nav button.active{color:var(--gold2);border-color:var(--line);background:rgba(216,168,78,.08)}
+.progress{position:fixed;z-index:101}
+.travel-controls{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;display:flex;align-items:center;gap:14px;padding:8px 12px;border:1px solid rgba(216,168,78,.2);border-radius:999px;background:rgba(3,5,7,.82);backdrop-filter:blur(12px);color:#8d98a8;font-size:10px;letter-spacing:1px;white-space:nowrap}
+.travel-controls button{border:0;background:transparent;color:var(--gold2);font-size:10px;letter-spacing:1px;padding:5px;cursor:pointer}
+.travel-controls button:disabled{opacity:.25;cursor:default}
+@media(max-width:850px){
+  html{scroll-behavior:smooth;overflow-x:hidden;overflow-y:auto}
+  body{height:auto;overflow-x:hidden;overflow-y:auto}
+  #app{height:auto;overflow:visible}
+  .scene,.scene.active,.scene.departing{position:relative;inset:auto;min-height:100svh;height:auto;padding:92px 5vw 72px;display:flex;overflow:visible;opacity:1;visibility:visible;transform:none;filter:none;pointer-events:auto}
+  .nav{display:none}
+  .grid,.record{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .matches{grid-template-columns:1fr}
+  .formgrid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .powerhead,.prow{grid-template-columns:42px minmax(0,1fr) auto}
+  .powerval{font-size:12px;white-space:nowrap}
+  .summary{grid-template-columns:1fr}
+  .hint{display:none}
+  .travel-controls{bottom:8px;gap:8px;padding:7px 10px}
+}
+@media(max-width:500px){.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.hero h1{letter-spacing:-3px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scene.space-arrive .scene-inner{animation:none}#space-jump{display:none}}
+
 </style>
 </head>
 <body>
-<div id="ambient"></div><div id="stars"></div><div id="embers"></div>
-<header class="topbar"><a class="logo" href="#home" onclick="go(0);return false"><span class="crest">133</span>ERA 133</a><nav class="nav" aria-label="Main navigation"><button onclick="go(0)">HOME</button><button onclick="go(1)">MERGER</button><button onclick="go(2)">TOP 10</button><button onclick="go(3)">E380</button><button onclick="go(4)">E431</button><button onclick="go(5)">RECRUIT</button><button onclick="go(6)">APPLY</button><button onclick="go(8)">MIGRATION</button></nav></header>
+<div id="ambient"></div><div id="stars"></div><div id="embers"></div><div id="space-jump" aria-hidden="true"></div>
+<header class="topbar"><a class="logo" href="#home" onclick="go(0);return false"><span class="crest">133</span>ERA 133</a><nav class="nav" aria-label="Main navigation"><button data-index="0" onclick="go(0)">HOME</button><button data-index="1" onclick="go(1)">MERGER</button><button data-index="2" onclick="go(2)">TOP 10</button><button data-index="3" onclick="go(3)">RECRUIT</button><button data-index="4" onclick="go(4)">APPLY</button><button data-index="6" onclick="go(6)">MIGRATION</button></nav></header>
 <div class="progress" id="progress" aria-label="Section navigation"></div><div class="hint">Scroll to explore • Select a section to travel</div>
 <main id="app">
-<section class="scene" id="home"><div class="scene-inner hero"><div class="kicker">ERA 133 • E380 × E431 • RECRUITMENT OPEN</div><h1>ERA <span>133</span></h1><p>The kingdoms of <span class="gold">E380</span> and <span class="gold">E431</span> are coming together to build <span class="gold">Era 133</span>.<br><strong class="gold">Recruitment is OPEN now.</strong></p><div class="buttons"><button class="btn primary" onclick="go(6)">APPLY TO ERA 133</button><button class="btn" onclick="go(2)">VIEW TOP 10</button><button class="btn" onclick="go(8)">MIGRATION TIMELINE</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div></div></section>
-<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">THE MERGER</div><h2>E380 × E431</h2><p>Two established kingdoms. One new chapter. Era 133 brings E380 and E431 together under one banner.</p></div><div class="stats"><div class="stat"><strong>133</strong><span>NEW ERA</span></div><div class="stat"><strong>E380</strong><span>MERGING KINGDOM</span></div><div class="stat"><strong>E431</strong><span>MERGING KINGDOM</span></div><div class="stat"><strong>OPEN</strong><span>RECRUITMENT</span></div></div><br><div class="grid"><div class="card"><div class="num">01</div><h3>E380</h3><p>A strong core of established players bringing experience, power and organized kingdom play into Era 133.</p></div><div class="card"><div class="num">02</div><h3>E431</h3><p>A second competitive core joining the merger with its own established players and leadership.</p></div><div class="card"><div class="num">03</div><h3>ERA 133</h3><p>The merger creates a new roster, new identity and a fresh opportunity for players ready to contribute.</p></div></div><div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Applications are being accepted now. Submit your account details for recruitment review.</p><br><button class="btn primary" onclick="go(6)">START APPLICATION</button></div></div></section>
+<section class="scene" id="home"><div class="scene-inner hero"><div class="kicker">ERA 133 • E380 × E431 • RECRUITMENT OPEN</div><h1>ERA <span>133</span></h1><p>The kingdoms of <span class="gold">E380</span> and <span class="gold">E431</span> are coming together to build <span class="gold">Era 133</span>.<br><strong class="gold">Recruitment is OPEN now.</strong></p><div class="buttons"><button class="btn primary" onclick="go(4)">APPLY TO ERA 133</button><button class="btn" onclick="go(2)">VIEW TOP 10</button><button class="btn" onclick="go(6)">MIGRATION TIMELINE</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div></div></section>
+<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">THE MERGER</div><h2>E380 × E431</h2><p>Two established kingdoms. One new chapter. Era 133 brings E380 and E431 together under one banner.</p></div><div class="stats"><div class="stat"><strong>133</strong><span>NEW ERA</span></div><div class="stat"><strong>E380</strong><span>MERGING KINGDOM</span></div><div class="stat"><strong>E431</strong><span>MERGING KINGDOM</span></div><div class="stat"><strong>OPEN</strong><span>RECRUITMENT</span></div></div><br><div class="grid"><div class="card"><div class="num">01</div><h3>E380</h3><p>A strong core of established players bringing experience, power and organized kingdom play into Era 133.</p></div><div class="card"><div class="num">02</div><h3>E431</h3><p>A second competitive core joining the merger with its own established players and leadership.</p></div><div class="card"><div class="num">03</div><h3>ERA 133</h3><p>The merger creates a new roster, new identity and a fresh opportunity for players ready to contribute.</p></div></div><div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Applications are being accepted now. Submit your account details for recruitment review.</p><br><button class="btn primary" onclick="go(4)">START APPLICATION</button></div></div></section>
 <section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">ERA 133 • COMBINED POWER</div><h2>Top 10 Of The Merger.</h2><p>The current Top 10 ranked by power across the E380 and E431 rosters.</p></div><div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div><div class="prow"><span class="rank">01</span><span class="player">モRムC³⁸⁰</span><span class="powerval">274,640,622</span></div><div class="prow"><span class="rank">02</span><span class="player">RҽԃD€ʋιʅ</span><span class="powerval">208,082,823</span></div><div class="prow"><span class="rank">03</span><span class="player">殺戮之主</span><span class="powerval">185,126,913</span></div><div class="prow"><span class="rank">04</span><span class="player">Samalops</span><span class="powerval">168,663,083</span></div><div class="prow"><span class="rank">05</span><span class="player">Aɾƚҽɱιʂ</span><span class="powerval">145,755,032</span></div><div class="prow"><span class="rank">06</span><span class="player">DuceX</span><span class="powerval">139,034,818</span></div><div class="prow"><span class="rank">07</span><span class="player">Lunlaa³⁸⁰</span><span class="powerval">110,997,222</span></div><div class="prow"><span class="rank">08</span><span class="player">Nindža</span><span class="powerval">107,158,680</span></div><div class="prow"><span class="rank">09</span><span class="player">Aysss</span><span class="powerval">107,118,609</span></div><div class="prow"><span class="rank">10</span><span class="player">NOTBLOYD</span><span class="powerval">98,565,949</span></div></div><div class="summary"><div><strong>10</strong><span>TOP PLAYERS</span></div><div><strong>1.54B+</strong><span>COMBINED TOP 10 POWER</span></div><div><strong>274M+</strong><span>TOP PLAYER POWER</span></div></div></div></section>
-<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">E380 ROSTER</div><h2>Top 10 • E380</h2><p>Current E380 Top 10 by player power.</p></div><div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div><div class="prow"><span class="rank">01</span><span class="player">モRムC³⁸⁰</span><span class="powerval">245,435,701</span></div><div class="prow"><span class="rank">02</span><span class="player">RҽԃD€ʋιʅ</span><span class="powerval">188,271,504</span></div><div class="prow"><span class="rank">03</span><span class="player">殺戮之主</span><span class="powerval">172,564,391</span></div><div class="prow"><span class="rank">04</span><span class="player">ᦔꫀꪖꪻꫝ</span><span class="powerval">140,842,949</span></div><div class="prow"><span class="rank">05</span><span class="player">Samalops</span><span class="powerval">137,210,763</span></div><div class="prow"><span class="rank">06</span><span class="player">DuceX</span><span class="powerval">121,216,404</span></div><div class="prow"><span class="rank">07</span><span class="player">Lunlaa³⁸⁰</span><span class="powerval">103,682,502</span></div><div class="prow"><span class="rank">08</span><span class="player">Aysss</span><span class="powerval">99,235,376</span></div><div class="prow"><span class="rank">09</span><span class="player">Nindža</span><span class="powerval">98,057,986</span></div><div class="prow"><span class="rank">10</span><span class="player">Snoopuhloop</span><span class="powerval">90,278,404</span></div></div></div></section>
-<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">E431 ROSTER</div><h2>Top 10 • E431</h2><p>Current E431 Top 10 by player power.</p></div><div class="power"><div class="powerhead"><span>RANK</span><span>PLAYER</span><span>POWER</span></div><div class="prow"><span class="rank">01</span><span class="player">Snoopuhloop</span><span class="powerval">90,278,404</span></div><div class="prow"><span class="rank">02</span><span class="player">BLOYD</span><span class="powerval">79,146,202</span></div><div class="prow"><span class="rank">03</span><span class="player">KIRAMI</span><span class="powerval">74,520,961</span></div><div class="prow"><span class="rank">04</span><span class="player">MrGoodCat⁴³¹</span><span class="powerval">71,331,608</span></div><div class="prow"><span class="rank">05</span><span class="player">Tѻｐ⍴ǤᎮ</span><span class="powerval">71,054,212</span></div><div class="prow"><span class="rank">06</span><span class="player">Koko|TR</span><span class="powerval">69,840,419</span></div><div class="prow"><span class="rank">07</span><span class="player">⁴³¹Pearlᴷᴼᴴ</span><span class="powerval">64,355,876</span></div><div class="prow"><span class="rank">08</span><span class="player">wꪊꪀꪖꪀ⁴³¹</span><span class="powerval">58,605,961</span></div><div class="prow"><span class="rank">09</span><span class="player">mystigri</span><span class="powerval">56,292,028</span></div><div class="prow"><span class="rank">10</span><span class="player">Rexydomᴮᴹ</span><span class="powerval">55,655,322</span></div></div></div></section>
-<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">WHO WE WANT</div><h2>Era 133 Is Recruiting.</h2><p>Power matters. Activity, attitude, communication and commitment matter just as much.</p></div><div class="grid"><div class="card"><div class="num">01</div><h3>Active Players</h3><p>Players who participate consistently, communicate and contribute to kingdom objectives.</p></div><div class="card"><div class="num">02</div><h3>Event Players</h3><p>Players willing to show up for major kingdom events and follow coordinated strategies.</p></div><div class="card"><div class="num">03</div><h3>Team Players</h3><p>Strong individuals are welcome. We are building one roster for Era 133.</p></div></div><div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Submit your application now. Recruitment officers will review your account and contact you through Discord.</p><br><button class="btn primary" onclick="go(6)">APPLY NOW</button></div></div></section>
+
+
+<section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">WHO WE WANT</div><h2>Era 133 Is Recruiting.</h2><p>Power matters. Activity, attitude, communication and commitment matter just as much.</p></div><div class="grid"><div class="card"><div class="num">01</div><h3>Active Players</h3><p>Players who participate consistently, communicate and contribute to kingdom objectives.</p></div><div class="card"><div class="num">02</div><h3>Event Players</h3><p>Players willing to show up for major kingdom events and follow coordinated strategies.</p></div><div class="card"><div class="num">03</div><h3>Team Players</h3><p>Strong individuals are welcome. We are building one roster for Era 133.</p></div></div><div class="statement"><strong>RECRUITMENT IS OPEN</strong><p>Submit your application now. Recruitment officers will review your account and contact you through Discord.</p><br><button class="btn primary" onclick="go(4)">APPLY NOW</button></div></div></section>
 <section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">ERA 133 RECRUITMENT</div><h2>Apply To Era 133.</h2><p>E380 and E431 are merging. Submit your account for recruitment review.</p></div><div class="formbox"><form id="applicationForm"><div class="formgrid"><div><label>In-Game Name *</label><input name="playerName" required placeholder="Your in-game name"></div><div><label>Discord Username *</label><input name="discord" required placeholder="username"></div><div><label>Current Server *</label><input name="currentServer" required placeholder="Example: 385"></div><div><label>Current Power *</label><input type="number" name="power" required min="0" placeholder="Example: 75000000"></div><div><label>Citadel Level</label><input type="number" name="citadel" min="0" placeholder="Example: 36"></div><div><label>Merits</label><input type="number" name="merits" min="0" placeholder="Example: 2300000"></div><div><label>Main Troop Type</label><select name="mainTroop"><option value="">Select</option><option>Infantry</option><option>Pike</option><option>Archer</option><option>Cavalry</option><option>Sword</option><option>Mixed</option></select></div><div><label>Highest Troop Tier</label><select name="troopTier"><option value="">Select</option><option>T6</option><option>T7</option><option>T8</option><option>T9</option></select></div><div><label>VIP Level</label><input type="number" name="vip" min="0" placeholder="Example: 17"></div><div><label>Migration Availability</label><select name="migration"><option value="">Select</option><option>Ready to migrate</option><option>Preparing</option><option>Need information</option></select></div><div class="full"><label>Previous Server / History</label><input name="previousServer" placeholder="Previous kingdoms or migration history"></div><div class="full"><label>Event Experience</label><textarea name="events" placeholder="Tell us about your kingdom event experience..."></textarea></div><div class="full"><label>Tell Us About Yourself</label><textarea name="aboutPlayer" placeholder="Why do you want to join Era 133?"></textarea></div></div><div class="note">By submitting, you confirm the information is accurate. Recruitment officers may contact you through Discord. <span class="gold">Era 133 recruitment is OPEN.</span></div><button class="btn primary" style="width:100%" id="submitButton" type="submit">SUBMIT APPLICATION</button><div id="status" role="status" aria-live="polite"></div></form></div></div></section>
-<section class="scene"><div class="scene-inner end"><div class="kicker">THE NEXT CHAPTER</div><h2>WELCOME TO ERA 133.<br><span class="gold">THE BANNER RISES.</span></h2><p>E380 and E431 are merging. Recruitment is open for players ready to join the next chapter.</p><div class="buttons"><button class="btn primary" onclick="go(6)">APPLY NOW</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div><br><div class="kicker">ERA 133 • E380 × E431</div></div></section>
+<section class="scene"><div class="scene-inner end"><div class="kicker">THE NEXT CHAPTER</div><h2>WELCOME TO ERA 133.<br><span class="gold">THE BANNER RISES.</span></h2><p>E380 and E431 are merging. Recruitment is open for players ready to join the next chapter.</p><div class="buttons"><button class="btn primary" onclick="go(4)">APPLY NOW</button><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div><br><div class="kicker">ERA 133 • E380 × E431</div></div></section>
 <section class="scene"><div class="scene-inner"><div class="title"><div class="kicker">ERA 133 • KEY DATES</div><h2>Migration Timeline.</h2><p>The countdown is on. If you're planning to make Era 133 your new home, prepare early and follow each stage carefully. Migration places are limited and acceptance is subject to available capacity.</p></div><div class="timeline"><div class="season"><div class="seasonhead"><h3><span class="gold">01</span> &nbsp; Final Preparations</h3><span class="result">22 OCTOBER</span></div><div class="matches"><div class="match"><small>GET READY</small>Review the migration requirements and rules.</div><div class="match"><small>CHECK ELIGIBILITY</small>Make sure your account meets the requirements and prepare everything before migration begins.</div></div></div><div class="season"><div class="seasonhead"><h3><span class="gold">02</span> &nbsp; Preview & Verification</h3><span class="result">23–25 OCTOBER</span></div><div class="matches"><div class="match"><small>HISTORICAL POWER</small>Check your Historical Power and assigned Power Tier once they become available.</div><div class="match"><small>ADMIN CONFIRMATION</small>Contact E133 migration admin <span class="gold">@ᦔꫀꪖꪻꫝ</span> to verify your tier and confirm acceptance.</div><div class="match"><small>MIGRATION PASSES</small>Purchase the required Migration Passes from the in-game shop.</div><div class="match"><small>IMPORTANT</small>Having the required power does not automatically guarantee a place. Get your details verified early.</div></div></div><div class="season"><div class="seasonhead"><h3><span class="gold">03</span> &nbsp; Application Window</h3><span class="result">26–27 OCTOBER</span></div><div class="matches"><div class="match"><small>SUBMIT AT RESET</small>Submit your migration application as early as possible.</div><div class="match"><small>APPLY THROUGH</small>Send your application to migration admin <span class="gold">@ᦔꫀꪖꪻꫝ</span> or use the <a class="gold" href="https://artemis380.github.io/e380-migration/" target="_blank" rel="noopener"><u>E133 Migration Application</u></a>.</div><div class="match"><small>BEFORE APPLYING</small>Ensure your Power Tier and acceptance have been confirmed, then monitor your application and follow any instructions from the administration team.</div><div class="match"><small>PLEASE NOTE</small>If your application is still pending, don't panic. Processing takes time and a delay does not necessarily mean there is a problem.</div></div></div><div class="season"><div class="seasonhead"><h3><span class="gold">04</span> &nbsp; Final Migration Opportunity</h3><span class="result">28–29 OCTOBER</span></div><div class="matches"><div class="match"><small>REMAINING SPACES</small>Any remaining slots will be available on a first come, first served basis.</div><div class="match"><small>FINAL WINDOW</small>This is the final opportunity to migrate into E133, subject to available capacity. Do not rely on last-minute openings.</div></div></div></div><div class="statement"><strong>ERA 133 • A NEW CHAPTER</strong><p>Get prepared, stay in contact with the administration team, and be ready when the migration window opens.</p><br><div class="buttons"><a class="btn primary" href="https://artemis380.github.io/e380-migration/" target="_blank" rel="noopener">OPEN MIGRATION APPLICATION</a><a class="btn discord" href="https://discord.gg/S2898Ba3X" target="_blank" rel="noopener">JOIN DISCORD</a></div></div></div></section>
 </main>
 <script>
@@ -48,24 +89,25 @@ const scenes = [...document.querySelectorAll(".scene")];
 const progress = document.getElementById("progress");
 const navButtons = [...document.querySelectorAll(".nav button")];
 const ambient = document.getElementById("ambient");
+const spaceJump = document.getElementById("space-jump");
 let current = 0;
-let busy = false;
-let arrivalTimer;
+let travelBusy = false;
+let travelTimer;
 
 // Clickable section markers
 scenes.forEach((scene, i) => {
   const dot = document.createElement("button");
   dot.className = "dot" + (i === 0 ? " active" : "");
   dot.setAttribute("aria-label", `Travel to section ${i + 1}`);
-  dot.title = `Section ${i + 1}`;
+  dot.title = `Travel to section ${i + 1}`;
   dot.onclick = () => go(i);
   progress.appendChild(dot);
 });
 
-// Add persistent back/forward travel controls.
+// Compact previous/next controls. Natural scrolling remains enabled.
 const travelControls = document.createElement("div");
 travelControls.className = "travel-controls";
-travelControls.innerHTML = '<button type="button" class="travel-prev">← PREVIOUS</button><span class="travel-count">01 / 09</span><button type="button" class="travel-next">CONTINUE →</button>';
+travelControls.innerHTML = '<button type="button" class="travel-prev">← PREVIOUS</button><span class="travel-count">01 / 07</span><button type="button" class="travel-next">CONTINUE →</button>';
 document.body.appendChild(travelControls);
 travelControls.querySelector(".travel-prev").addEventListener("click", () => go(current - 1));
 travelControls.querySelector(".travel-next").addEventListener("click", () => go(current + 1));
@@ -73,54 +115,59 @@ travelControls.querySelector(".travel-next").addEventListener("click", () => go(
 function updateNavigation(index) {
   current = index;
   [...progress.children].forEach((dot, i) => dot.classList.toggle("active", i === index));
-  navButtons.forEach((button, i) => button.classList.toggle("active", i === index));
+  navButtons.forEach(button => button.classList.toggle("active", Number(button.dataset.index) === index));
   travelControls.querySelector(".travel-count").textContent = `${String(index + 1).padStart(2,"0")} / ${String(scenes.length).padStart(2,"0")}`;
-  travelControls.querySelector(".travel-prev").style.visibility = index === 0 ? "hidden" : "visible";
+  travelControls.querySelector(".travel-prev").disabled = index === 0;
   const next = travelControls.querySelector(".travel-next");
   next.textContent = index === scenes.length - 1 ? "BACK TO HOME ↺" : "CONTINUE →";
 }
 
 function go(index) {
-  if (busy) return;
-  if (index < 0) index = 0;
-  if (index >= scenes.length) index = 0;
-  if (index === current) return;
-
-  busy = true;
-  const previous = scenes[current];
-  const target = scenes[index];
-  clearTimeout(arrivalTimer);
-  previous.classList.remove("space-arrive");
-  previous.classList.add("departing");
+  index = Math.max(0, Math.min(scenes.length - 1, index));
+  if (index === current || travelBusy) return;
+  travelBusy = true;
+  clearTimeout(travelTimer);
+  spaceJump.classList.add("traveling");
   ambient.classList.add("traveling");
 
-  // Change scene after the outgoing view begins its space-jump.
-  window.setTimeout(() => {
-    previous.classList.remove("active", "departing");
-    target.classList.add("active");
-    target.scrollTop = 0;
+  // Start a short warp effect, then smoothly move to the requested section.
+  travelTimer = window.setTimeout(() => {
+    scenes[index].scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start"
+    });
     updateNavigation(index);
-    void target.offsetWidth;
-    target.classList.add("space-arrive");
-    arrivalTimer = window.setTimeout(() => {
-      target.classList.remove("space-arrive");
+    scenes[index].classList.remove("space-arrive");
+    void scenes[index].offsetWidth;
+    scenes[index].classList.add("space-arrive");
+
+    travelTimer = window.setTimeout(() => {
+      spaceJump.classList.remove("traveling");
       ambient.classList.remove("traveling");
-      busy = false;
-    }, 950);
-  }, 250);
+      scenes[index].classList.remove("space-arrive");
+      travelBusy = false;
+    }, 850);
+  }, 180);
 }
 
-// Keyboard navigation is deliberate; scrolling and swiping no longer switch sections.
+// Ordinary wheel/touch scrolling is natural; this observer updates the active section.
+const sectionObserver = new IntersectionObserver(entries => {
+  const visible = entries.filter(entry => entry.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+  if (visible.length && !travelBusy) {
+    const index = scenes.indexOf(visible[0].target);
+    if (index >= 0) updateNavigation(index);
+  }
+}, { threshold: [0.2, 0.4, 0.6], rootMargin: "-70px 0px -15% 0px" });
+scenes.forEach(scene => sectionObserver.observe(scene));
+
+// Keyboard navigation is optional; normal scrolling is not intercepted.
 window.addEventListener("keydown", event => {
   if (event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.target.matches("input, textarea, select, button")) return;
-  if (event.key === "ArrowRight" || event.key === "PageDown") { event.preventDefault(); go(current + 1); }
-  if (event.key === "ArrowLeft" || event.key === "PageUp") { event.preventDefault(); go(current - 1); }
-  if (event.key === "Home") { event.preventDefault(); go(0); }
-  if (event.key === "End") { event.preventDefault(); go(scenes.length - 1); }
+  if (event.key === "ArrowRight") { event.preventDefault(); go(current + 1); }
+  if (event.key === "ArrowLeft") { event.preventDefault(); go(current - 1); }
 });
-
-scenes.forEach((scene, i) => { scene.classList.toggle("active", i === 0); });
 updateNavigation(0);
 
 for (let i=0;i<100;i++){const s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*4+"s";document.getElementById("stars").appendChild(s);}
@@ -130,3 +177,4 @@ form.addEventListener("submit",async event=>{event.preventDefault();button.disab
 </script>
 </body>
 </html>
+
